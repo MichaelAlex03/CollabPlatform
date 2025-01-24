@@ -16,6 +16,9 @@ app.use(cors());
 app.use(express.json());
 
 
+app.use('/auth/login', require('./routes/auth/login'))
+
+
 
 //Starts server **should be done at the end after all middleware and enpoints setup**
 mongoose.connection.once('open', () => {
