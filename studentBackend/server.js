@@ -1,8 +1,25 @@
 const express = require('express');
+const cors = require('cors');
+const corsOptions = require('./config/corsOptions');
+const mongoose = require('mongoose');
+const connectDB = require('./config/dbConn');
 const PORT = process.env.PORT || 3000;
 
 const app = express();
 
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-})
+connectDB();
+
+//Verifies request is coming from accepted origin
+app.use(cors());
+
+//Parses request body into JSON for every request
+app.use(express.json());
+
+
+
+//Starts server **should be done at the end after all middleware and enpoints setup**
+mongoose.connection.once('open', () => {
+    app.listen(PORT, () => {
+        console.log(`Server running on http://localhost:${PORT}`);
+    })
+});
