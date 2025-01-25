@@ -15,10 +15,8 @@ app.use(cors());
 //Parses request body into JSON for every request
 app.use(express.json());
 
-
-app.use('/auth/login', require('./routes/auth/login'))
-
-
+app.use('/auth/login', require('./routes/auth/login'));
+app.use('/auth/register', require('./routes/auth/register'));
 
 //Starts server **should be done at the end after all middleware and enpoints setup**
 mongoose.connection.once('open', () => {
