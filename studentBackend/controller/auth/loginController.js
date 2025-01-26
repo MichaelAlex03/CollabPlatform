@@ -11,13 +11,28 @@ const handleLogin = async (req, res) => {
 
     //Compares the hashed value of the given password to the password in the DB that is already hashed
     const match = await bcrypt.compare(pass, foundStudent.password);
-    if(match){
+    if (match) {
         //create JWT tokens
         const accessToken = jwt.sign(
-            {username: foundStudent.username},
-            
-        )
-    }else{
+            { username: foundStudent.username },
+            process.env.ACCESS_TOKEN_SECRET,
+            { expiresIn: '30s' }
+        );
+
+        const refreshToken = jwt.sign(
+            { username: foundStudent.username },
+            process.env.REFRESH_TOKEN_SECRET,
+            { expiresIn: '1d' }
+        );
+
+        foundStudent.refreshToken = refreshToken
+        await foundStudent.save()
+
+        res.cookie('jwt', refreshToken, { httpOnly: true, sameSite: 'None', secure: true, maxAge: 24 * 60 * 60 * 1000 });
+        res.status(200).json({ accessToken });
+
+
+    } else {
         res.sendStatus(401);
     }
 }
