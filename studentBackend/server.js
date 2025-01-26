@@ -16,7 +16,7 @@ connectDB();
 app.use(cors(corsOptions));
 
 //Allows for credentials to be sent back (Cookies)
-// app.use(credentials());
+app.use(credentials);
 
 //Parses request body into JSON for every request
 app.use(express.json());
