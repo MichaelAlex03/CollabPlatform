@@ -4,19 +4,19 @@ const Schema = mongoose.Schema;
 const studentsSchema = new Schema({
     username: {
         type: String,
-        required
+        required: true
     },
     password: {
         type: String,
-        required
+        required: true
     },
     netId: {
         type: String,
-        required
+        required: true
     },
    email: {
         type: String,
-        required
+        required: true
     },
     refreshToken: {
         type: String,

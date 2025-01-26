@@ -4,3 +4,5 @@ const registerController = require('../../controller/auth/registerController');
 
 router.route('/')
     .post(registerController.handleNewStudent)
+
+module.exports = router;

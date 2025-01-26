@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+require('dotenv').config();
 const corsOptions = require('./config/corsOptions');
 const credentials = require('./middleware/credentials')
 const mongoose = require('mongoose');
@@ -15,7 +16,7 @@ connectDB();
 app.use(cors(corsOptions));
 
 //Allows for credentials to be sent back (Cookies)
-app.use(credentials());
+// app.use(credentials());
 
 //Parses request body into JSON for every request
 app.use(express.json());
