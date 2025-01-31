@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 
 const LandingPage = () => {
     return (
-        <body class="font-sans text-gray-800 bg-white">
+        <body class="font-fam text-gray-800 bg-white">
             <Navbar />
 
             <main class="max-w-6xl mx-auto p-8">
