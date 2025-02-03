@@ -4,10 +4,10 @@ import Footer from '../components/Footer';
 
 const LandingPage = () => {
     return (
-        <body class="font-fam text-gray-800 bg-white">
+        <main class="font-fam text-gray-800 bg-white">
             <Navbar />
 
-            <main class="max-w-6xl mx-auto p-8">
+            <div class="max-w-6xl mx-auto p-8">
                 <section id="overview" class="mb-16 p-8 bg-white">
                     <h1 class="text-[#501214] text-3xl mb-6 pb-2 border-b-2 border-gray-300">Faculty Project Collaboration
                         Platform</h1>
@@ -187,10 +187,10 @@ const LandingPage = () => {
                     </div>
                 </section>
 
-            </main>
+            </div>
 
             <Footer />
-        </body>
+        </main>
     )
 }
 
