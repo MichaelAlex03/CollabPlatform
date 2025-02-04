@@ -1,19 +1,26 @@
 import React from 'react'
 
 const Navbar = () => {
+
+    const handleClick = (div) => {
+        if (!div){
+            window.scrollTo({top: 0, behavior: 'smooth'})
+        } else{
+            document.getElementById(div)?.scrollIntoView({behavior: 'smooth'});
+        }
+    }
+
     return (
         <header class="bg-white border-b-4 border-[#501214] sticky top-0 z-50 shadow-md">
             <nav class="max-w-6xl mx-auto p-4 flex justify-between items-center">
-                <a href="#" class="text-[#501214] text-xl font-semibold no-underline">Texas State University</a>
-                <ul class="hidden md:flex gap-8 list-none">
-                    <li><a href="#overview" class="text-gray-800 font-medium hover:text-[#501214] transition">Overview</a>
-                    </li>
-                    <li><a href="#process" class="text-gray-800 font-medium hover:text-[#501214] transition">Project
-                        Submission</a></li>
-                    <li><a href="#benefits" class="text-gray-800 font-medium hover:text-[#501214] transition">Benefits</a>
-                    </li>
-                    <li><a href="#faq" class="text-gray-800 font-medium hover:text-[#501214] transition">FAQ</a></li>
-                </ul>
+                {/* <a href="#" class="text-[#501214] text-xl font-semibold no-underline">Texas State University</a> */}
+                <button onClick={() => handleClick('')}  class="text-[#501214] text-xl font-semibold no-underline">Texas State University</button>
+                <div class="hidden md:flex gap-8">
+                    <button onClick={() => handleClick('overview')} class="text-gray-800 font-medium hover:text-[#501214]">Overview</button>
+                    <button onClick={() => handleClick('process')} class="text-gray-800 font-medium hover:text-[#501214]">Project</button>
+                    <button onClick={() => handleClick('benefits')} class="text-gray-800 font-medium hover:text-[#501214]">Benefits</button>
+                    <button onClick={() => handleClick('faq')} class="text-gray-800 font-medium hover:text-[#501214]">FAQ</button>
+                </div>
             </nav>
         </header>
     )
