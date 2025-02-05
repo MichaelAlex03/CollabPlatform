@@ -21,7 +21,7 @@ const LoginPage = () => {
                     <div className="mb-4">
                         <input type="checkbox" className="mr-2" />
                         <label className="text-gray-700">Remember Me</label>
-                        <label className="text-gray-700 float-right">Forgot Password?</label>
+                        <label><a href="#" className="text-gray-700 float-right">Forgot Password?</a></label>
                     </div>
                     <button type="submit" className="w-full bg-[#501214] hover:bg-[#7d1c1f] text-white p-2 rounded">Log In</button>
                     <label className="block text-center text-gray-700 mt-4">Don't have an account? <a href="#" className="text-[#501214]">Sign Up</a></label>
