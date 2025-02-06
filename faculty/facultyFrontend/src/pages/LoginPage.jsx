@@ -1,14 +1,14 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import LogHeader from '../components/LoginHeader';
 
 const LoginPage = () => {
     return (
     <main class="font-fam text-gray-800 bg-white">
-        <Navbar />
-        <div className="flex justify-center items-center h-screen bg-gray-100">
+        <LogHeader />
+        <div className="flex justify-center items-center h-screen bg-zinc-100">
             <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
-                <h2 className="text-2xl font-semibold mb-6">Faculty Log In</h2>
+                <h2 className="text-2xl text-center font-semibold mb-6">Log In</h2>
                 <form>
                     <div className="mb-4">
                         <label className="block text-gray-700">Email</label>
