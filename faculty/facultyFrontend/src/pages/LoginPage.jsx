@@ -1,8 +1,16 @@
 import React from 'react';
 import Footer from '../components/Footer';
 import LogHeader from '../components/LoginHeader';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
+    const navigate = useNavigate();
+
+
+    const handleSignUpClick = () => {
+        navigate('/signup');
+    }
+
     return (
     <main class="font-fam text-gray-800 bg-white">
         <LogHeader />
@@ -24,7 +32,7 @@ const LoginPage = () => {
                         <label><a href="#" className="text-gray-700 float-right">Forgot Password?</a></label>
                     </div>
                     <button type="submit" className="w-full bg-[#501214] hover:bg-[#7d1c1f] text-white p-2 rounded">Log In</button>
-                    <label className="block text-center text-gray-700 mt-4">Don't have an account? <a href="#" className="text-[#501214]">Sign Up</a></label>
+                    <label className="block text-center text-gray-700 mt-4">Don't have an account? <button onClick={handleSignUpClick} className="text-gray-700 mt-4">Sign Up</button> </label>
                 </form>
             </div>
         </div>
