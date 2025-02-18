@@ -26,8 +26,6 @@ const LoginPage = () => {
         navigate('/signup');
     }
 
-    console.log(email)
-
     return (
         <main class="font-fam text-gray-800 bg-white">
             <LogHeader />

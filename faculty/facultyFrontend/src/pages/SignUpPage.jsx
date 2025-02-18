@@ -1,14 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
 import LogHeader from '../components/LoginHeader';
-import { useNavigate  } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import axios from '../../api/axios';
 
 const SignUpPage = () => {
 
     const navigate = useNavigate();
 
+    const [name, setName] = useState('');
+    const [department, setDepartment] = useState('');
+    const [id, setId] = useState('');
+    const [email, setEmail] = useState('');
+    const [pass, setPass] = useState('');
+    const [confirmPass, setConfirmPass] = useState('');
+    const [validMatch, setValidMatch] = useState(false);
+    const [errMsg, setErrMsg] = useState('');
+
+    console.log(name, department)
+
+    //Checks if password matches the confirm password field
+    useEffect(() => {
+        setValidMatch(confirmPass === pass)
+    }, [confirmPass, pass])
+
     const handleSignInClick = () => {
         navigate('/login');
+    }
+
+    const handleRegister = (e) => {
+        e.preventDefault()
+        if (!name || !department || !id || !email || !pass || !confirmPass) {
+            console.log('All fields required')
+            setErrMsg('All fields are required');
+            return;
+        }
     }
 
     return (
@@ -20,29 +46,59 @@ const SignUpPage = () => {
                     <form>
                         <div className="mb-4">
                             <label className="block text-gray-700">Name</label>
-                            <input type="name" className="w-full p-2 border border-gray-300 rounded mt-1" />
+                            <input
+                                type="name"
+                                className="w-full p-2 border border-gray-300 rounded mt-1"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            />
                         </div>
                         <div className="mb-4">
                             <label className="block text-gray-700">Department</label>
-                            <input type="department" className="w-full p-2 border border-gray-300 rounded mt-1" />
+                            <input
+                                type="department"
+                                className="w-full p-2 border border-gray-300 rounded mt-1"
+                                value={department}
+                                onChange={(e) => setDepartment(e.target.value)}  
+                            />
                         </div>
                         <div className="mb-4">
                             <label className="block text-gray-700">ID Number</label>
-                            <input type="anum" className="w-full p-2 border border-gray-300 rounded mt-1" />
+                            <input 
+                                type="anum" 
+                                className="w-full p-2 border border-gray-300 rounded mt-1" 
+                                value={id}
+                                onChange={(e) => setId(e.target.value)}  
+                            />
                         </div>
                         <div className="mb-4">
                             <label className="block text-gray-700">Texas State Email</label>
-                            <input type="email" className="w-full p-2 border border-gray-300 rounded mt-1" />
+                            <input 
+                                type="email" 
+                                className="w-full p-2 border border-gray-300 rounded mt-1"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}   
+                            />
                         </div>
                         <div className="mb-4">
                             <label className="block text-gray-700">Password</label>
-                            <input type="password" className="w-full p-2 border border-gray-300 rounded mt-1" />
+                            <input 
+                                type="password" 
+                                className="w-full p-2 border border-gray-300 rounded mt-1"
+                                value={pass}
+                                onChange={(e) => setPass(e.target.value)}   
+                            />
                         </div>
                         <div className="mb-4">
                             <label className="block text-gray-700">Confirm Password</label>
-                            <input type="password" className="w-full p-2 border border-gray-300 rounded mt-1" />
+                            <input 
+                                type="password" 
+                                className="w-full p-2 border border-gray-300 rounded mt-1"
+                                value={confirmPass}
+                                onChange={(e) => setConfirmPass(e.target.value)}   
+                            />
                         </div>
-                        <button type="submit" className="w-full bg-[#501214] hover:bg-[#7d1c1f] text-white p-2 rounded">Sign Up</button>
+                        <button type="submit" className="w-full bg-[#501214] hover:bg-[#7d1c1f] text-white p-2 rounded" onClick={handleRegister}>Sign Up</button>
                         <label className="block text-center text-gray-700 mt-4">Already have an account? <button onClick={handleSignInClick} className="text-gray-700 mt-4">Sign In</button> </label>
                     </form>
                 </div>
