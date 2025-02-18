@@ -3,23 +3,23 @@ const bcrypt = require('bcrypt');
 const Faculty = require('../../model/Faculty');
 
 const handleLogin = async (req, res) => {
-    const { user, pass } = req.body
-    if (!user || !pass) return res.status(400).json({ message: 'username and password required' });
+    const { email, pass } = req.body
+    if (!email || !pass) return res.status(400).json({ message: 'username and password required' });
 
-    foundFaculty = await Faculty.findOne({ username: user }).exec();
+    foundFaculty = await Faculty.findOne({ email: email }).exec();
     if (!foundFaculty) return res.sendStatus(401);
 
     const match = await bcrypt.compare(pass, foundFaculty.password);
     if (match) {
 
         const accessToken = jwt.sign(
-            { 'username': user },
+            { 'username': email },
             process.env.ACCESS_TOKEN_SECRET,
             { expiresIn: '30s' }
         )
 
         const refreshToken = jwt.sign(
-            { 'username': user },
+            { 'username': email },
             process.env.REFRESH_TOKEN_SECRET,
             { expiresIn: '1d' }
         )
