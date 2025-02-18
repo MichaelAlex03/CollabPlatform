@@ -8,8 +8,6 @@ const handleNewFaculty = async (req, res) => {
     const duplicate = await Faculty.findOne({ username: user }).exec();
     if (duplicate) return res.sendStatus(409);
 
-    console.log('hello')
-
     try {
         const hashedPwd = await bcrypt.hash(pass, 10);
         await Faculty.create({
