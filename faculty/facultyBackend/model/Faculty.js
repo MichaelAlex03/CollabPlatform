@@ -6,7 +6,7 @@ const facultySchema = new Schema({
         type: Number,
         required: true,
     },
-    username: {
+    name: {
         type: String,
         required: true,
     },
@@ -14,8 +14,8 @@ const facultySchema = new Schema({
         type: String,
         required: true,
     },
-    phoneNumber: {
-        type: Number,
+    department: {
+        type: String,
         required: true,
     },
     email: {

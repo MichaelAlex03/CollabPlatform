@@ -4,6 +4,8 @@ import LogHeader from '../components/LoginHeader';
 import { useNavigate } from 'react-router-dom';
 import axios from '../../api/axios';
 
+const REGISTER_URL = 'auth/register'
+
 const SignUpPage = () => {
 
     const navigate = useNavigate();
@@ -29,20 +31,39 @@ const SignUpPage = () => {
     }
 
     const handleRegister = (e) => {
-        e.preventDefault()
+        e.preventDefault(); //Prevents browser from refreshing form and losing all data
+
+        //Checks if any of the fields are empty
         if (!name || !department || !id || !email || !pass || !confirmPass) {
-            console.log('All fields required')
             setErrMsg('All fields are required');
             return;
         }
+
+        axios.post(REGISTER_URL, {
+            id,
+            name,
+            pass, 
+            department,
+            email
+        })
+
+        //Set all fields back to empty
+        setName('');
+        setEmail('');
+        setConfirmPass('');
+        setId('');
+        setDepartment('');
+
+
     }
 
     return (
-        <main class="font-fam text-gray-800 bg-white">
+        <main className="font-fam text-gray-800 bg-white">
             <LogHeader />
-            <div className="flex justify-center items-center h-screen bg-zinc-100">
+            <div className="flex flex-col justify-center items-center bg-zinc-100">
                 <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
                     <h2 className="text-2xl text-center font-semibold mb-6">Sign Up</h2>
+                    {errMsg && <p className='text-center font-bold text-red-500'>{errMsg}</p>}
                     <form>
                         <div className="mb-4">
                             <label className="block text-gray-700">Name</label>

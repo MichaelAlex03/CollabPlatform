@@ -27,7 +27,7 @@ const LoginPage = () => {
     }
 
     return (
-        <main class="font-fam text-gray-800 bg-white">
+        <main className="font-fam text-gray-800 bg-white">
             <LogHeader />
             <div className="flex justify-center items-center h-screen bg-zinc-100">
                 <div className="bg-white p-8 rounded shadow-md w-full max-w-md">

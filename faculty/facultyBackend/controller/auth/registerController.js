@@ -2,23 +2,23 @@ const bcrypt = require('bcrypt');
 const Faculty = require('../../model/Faculty');
 
 const handleNewFaculty = async (req, res) => {
-    const { id, user, pass, phoneNum, email } = req.body;
-    if (!id || !user || !pass || !phoneNum || !email) return res.status(400).json({ message: 'missing fields' });
+    const { id, name, pass, department, email } = req.body;
+    if (!id || !name || !pass || !department || !email) return res.status(400).json({ message: 'missing fields' });
 
-    const duplicate = await Faculty.findOne({ username: user }).exec();
+    const duplicate = await Faculty.findOne({ name: name }).exec();
     if (duplicate) return res.sendStatus(409);
 
     try {
         const hashedPwd = await bcrypt.hash(pass, 10);
         await Faculty.create({
-            facultyId: id,
-            username: user,
+            facultyId: parseInt(id),
+            name: name,
             password: hashedPwd,
-            phoneNumber: phoneNum,
+            department: department,
             email,
         });
 
-        res.status(201).json({message: `New faculty ${user} was created`});
+        res.status(201).json({message: `New faculty ${name} was created`});
     } catch (error) {
         res.sendStatus(500)
     }
