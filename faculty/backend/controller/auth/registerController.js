@@ -8,12 +8,22 @@ const handleNewFaculty = async (req, res) => {
     if (duplicate) return res.sendStatus(409);
 
 
-    //Check if email is a valid tstate email
+    //validate id
+    const parsedId = parseInt(id)
 
     //Check if id is actually a number
-    const parsedId = parseInt(id)
-    if (typeof parsedId != Number) {
-        return res.status(400).json({ message: "invalid id entry"})
+    if (isNaN(parsedId)) {
+        return res.sendStatus(400)
+    }
+    
+    // Check if parsedId is a positive integer
+    if (parsedId <= 0) {
+        return res.sendStatus(400)
+    }
+    
+    // Check if original input had decimals
+    if (parsedId != id) {
+        return res.sendStatus(400)
     }
 
 
