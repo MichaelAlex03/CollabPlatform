@@ -3,7 +3,6 @@ const Faculty = require('../../model/Faculty');
 
 const handleNewFaculty = async (req, res) => {
     const { id, name, pass, department, email } = req.body;
-    // if (!id || !name || !pass || !department || !email) return res.status(400).json({ message: 'All fields are required' });
 
     const duplicate = await Faculty.findOne({ name: name }).exec();
     if (duplicate) return res.sendStatus(409);
