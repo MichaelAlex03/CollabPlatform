@@ -7,7 +7,7 @@ import axios from '../../api/axios';
 const REGISTER_URL = 'auth/register'
 
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const EMAIL_REGEX = /^[^\s@]+@txstate.edu$/;
+const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@txstate\.edu$/;
 
 const SignUpPage = () => {
 
@@ -16,7 +16,10 @@ const SignUpPage = () => {
     const [name, setName] = useState('');
     const [department, setDepartment] = useState('');
     const [id, setId] = useState('');
+
     const [email, setEmail] = useState('');
+    const [validEmail, setValidEmail] = useState(false);
+    const [emailFocus, setEmailFocus] = useState(false);
 
     const [pass, setPass] = useState('');
     const [passFocus, setPassFocus] = useState(false);
@@ -35,6 +38,11 @@ const SignUpPage = () => {
         setValidMatch(confirmPass === pass)
     }, [confirmPass, pass])
 
+    //Check if email is valid
+    useEffect(() => {
+        setValidEmail(EMAIL_REGEX.test(email))
+    },[email])
+
     const handleSignInClick = () => {
         navigate('/login');
     }
@@ -48,15 +56,21 @@ const SignUpPage = () => {
             return;
         }
 
+        //Check if email is valid
+        if (!validEmail) {
+            setErrMsg("Invalid Email Address! Please look at requirements when clicking email field")
+            return;
+        }
+
         //Check if password is valid
         if (!validPass) {
-            setErrMsg('Invalid Password please look at requirements')
+            setErrMsg('Invalid Password please look at requirements');
             return;
         }
 
         //Check if passwords match
         if (!validMatch) {
-            setErrMsg('Password and Confirm Pass dont match')
+            setErrMsg('Password and Confirm Pass dont match');
             return;
         }
 
@@ -69,7 +83,7 @@ const SignUpPage = () => {
                 email
             })
 
-            navigate('/')
+            navigate('/');
 
             //Set all fields back to empty
             setName('');
@@ -79,13 +93,13 @@ const SignUpPage = () => {
             setDepartment('');
         } catch (err) {
             if (!err?.response) {
-                setErrMsg('No response from server')
+                setErrMsg('No response from server');
             } else if (err.response?.status === 409) {
-                setErrMsg('Faculty already exists')
+                setErrMsg('Faculty already exists');
             } else if (err.response?.status === 400) {
-                setErrMsg('Invalid Id Entry')
+                setErrMsg('Invalid Id Entry');
             } else {
-                setErrMsg('Registration Failed')
+                setErrMsg('Registration Failed');
             }
         }
 
@@ -97,7 +111,7 @@ const SignUpPage = () => {
             <div className="flex flex-col justify-center items-center bg-zinc-100 p-10">
                 <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
                     <h2 className="text-2xl text-center font-semibold mb-6">Sign Up</h2>
-                    {errMsg && <p className='text-center font-bold text-red-500 m-2'>{errMsg}</p>}
+                    {errMsg && <p className='text-center text-sm md:text-base font-bold text-red-500 m-2'>{errMsg}</p>}
                     <form>
                         <div className="mb-4">
                             <label className="text-black text-sm md:text-base lg:text-lg">Name</label>
@@ -108,6 +122,7 @@ const SignUpPage = () => {
                                 onChange={(e) => setName(e.target.value)}
                             />
                         </div>
+
                         <div className="mb-4">
                             <label className="text-black text-sm md:text-base lg:text-lg">Department</label>
                             <input
@@ -117,6 +132,7 @@ const SignUpPage = () => {
                                 onChange={(e) => setDepartment(e.target.value)}
                             />
                         </div>
+
                         <div className="mb-4">
                             <label className="text-black text-sm md:text-base lg:text-lg">ID Number</label>
                             <input
@@ -126,6 +142,7 @@ const SignUpPage = () => {
                                 onChange={(e) => setId(e.target.value)}
                             />
                         </div>
+
                         <div className="mb-4">
                             <label className="text-black text-sm md:text-base lg:text-lg">Texas State Email</label>
                             <input
@@ -133,8 +150,17 @@ const SignUpPage = () => {
                                 className="w-full p-2 border border-gray-300 rounded mt-1"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
+                                onFocus={() => setEmailFocus(true)}
+                                onBlur={() => setEmailFocus(false)}
                             />
+                            {emailFocus && !validEmail && (
+                                <p className='font-bold text-red-500 text-sm mt-2'>
+                                    Email must end in @txstate.edu with no spaces<br />
+                                    Allowed characters: letters, numbers, . _ % + - <br/>
+                                </p>
+                            )}
                         </div>
+
                         <div className="mb-4">
                             <label className="text-black text-sm md:text-base lg:text-lg">Password</label>
                             <input
@@ -145,7 +171,7 @@ const SignUpPage = () => {
                                 onFocus={() => setPassFocus(true)}
                                 onBlur={() => setPassFocus(false)}
                             />
-                            {passFocus && pass && !validPass && (
+                            {passFocus && !validPass && (
                                 <p className='font-bold text-red-500 text-sm mt-2'>
                                     Password must be 8-24 characters<br />
                                     At least 1 capital letter, 1 lowercase, 1 digit<br />
