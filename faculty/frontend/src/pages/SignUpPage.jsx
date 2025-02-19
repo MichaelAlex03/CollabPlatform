@@ -47,7 +47,7 @@ const SignUpPage = () => {
         navigate('/login');
     }
 
-    const handleRegister = (e) => {
+    const handleRegister = async (e) => {
         e.preventDefault(); //Prevents browser from refreshing form and losing all data
 
         //Checks if any of the fields are empty
@@ -75,7 +75,7 @@ const SignUpPage = () => {
         }
 
         try {
-            axios.post(REGISTER_URL, {
+            await axios.post(REGISTER_URL, {
                 id,
                 name,
                 pass,
@@ -83,6 +83,7 @@ const SignUpPage = () => {
                 email
             })
 
+            console.log('success')
             navigate('/');
 
             //Set all fields back to empty
