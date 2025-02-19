@@ -17,9 +17,10 @@ const LoginPage = () => {
             email,
             pass
         })
+        navigate('/')
         setEmail('');
         setPass('');
-        navigate('/')
+        
     }
 
     const handleSignUpClick = () => {

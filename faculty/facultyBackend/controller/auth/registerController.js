@@ -8,6 +8,11 @@ const handleNewFaculty = async (req, res) => {
     const duplicate = await Faculty.findOne({ name: name }).exec();
     if (duplicate) return res.sendStatus(409);
 
+    //Check if email is a valid tstate email
+
+    //Check if id is actually a number
+
+
     try {
         const hashedPwd = await bcrypt.hash(pass, 10);
         await Faculty.create({

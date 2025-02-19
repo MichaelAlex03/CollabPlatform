@@ -6,6 +6,8 @@ import axios from '../../api/axios';
 
 const REGISTER_URL = 'auth/register'
 
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+
 const SignUpPage = () => {
 
     const navigate = useNavigate();
@@ -13,13 +15,15 @@ const SignUpPage = () => {
     const [name, setName] = useState('');
     const [department, setDepartment] = useState('');
     const [id, setId] = useState('');
+
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
+
     const [confirmPass, setConfirmPass] = useState('');
     const [validMatch, setValidMatch] = useState(false);
+
     const [errMsg, setErrMsg] = useState('');
 
-    console.log(name, department)
 
     //Checks if password matches the confirm password field
     useEffect(() => {
@@ -39,6 +43,11 @@ const SignUpPage = () => {
             return;
         }
 
+        if (!validMatch) {
+            setErrMsg('Password and Confirm Pass dont match')
+            return;
+        }
+
         axios.post(REGISTER_URL, {
             id,
             name,
@@ -46,6 +55,8 @@ const SignUpPage = () => {
             department,
             email
         })
+
+        navigate('/')
 
         //Set all fields back to empty
         setName('');
@@ -55,12 +66,13 @@ const SignUpPage = () => {
         setDepartment('');
 
 
+
     }
 
     return (
         <main className="font-fam text-gray-800 bg-white">
             <LogHeader />
-            <div className="flex flex-col justify-center items-center bg-zinc-100">
+            <div className="flex flex-col justify-center items-center bg-zinc-100 h-screen">
                 <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
                     <h2 className="text-2xl text-center font-semibold mb-6">Sign Up</h2>
                     {errMsg && <p className='text-center font-bold text-red-500'>{errMsg}</p>}
