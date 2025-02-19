@@ -3,14 +3,20 @@ const Faculty = require('../../model/Faculty');
 
 const handleNewFaculty = async (req, res) => {
     const { id, name, pass, department, email } = req.body;
-    if (!id || !name || !pass || !department || !email) return res.status(400).json({ message: 'missing fields' });
+    // if (!id || !name || !pass || !department || !email) return res.status(400).json({ message: 'All fields are required' });
 
     const duplicate = await Faculty.findOne({ name: name }).exec();
     if (duplicate) return res.sendStatus(409);
 
+
     //Check if email is a valid tstate email
 
     //Check if id is actually a number
+    const parsedId = parseInt(id)
+    if (typeof parsedId != Number) {
+        return res.status(400).json({ message: "invalid id entry"})
+    }
+
 
 
     try {
