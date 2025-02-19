@@ -7,6 +7,7 @@ import axios from '../../api/axios';
 const REGISTER_URL = 'auth/register'
 
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+const EMAIL_REGEX = /^[^\s@]+@txstate.edu$/;
 
 const SignUpPage = () => {
 
@@ -81,13 +82,12 @@ const SignUpPage = () => {
                 setErrMsg('No response from server')
             } else if (err.response?.status === 409) {
                 setErrMsg('Faculty already exists')
+            } else if (err.response?.status === 400) {
+                setErrMsg('Invalid Id Entry')
             } else {
                 setErrMsg('Registration Failed')
             }
         }
-
-
-
 
     }
 
