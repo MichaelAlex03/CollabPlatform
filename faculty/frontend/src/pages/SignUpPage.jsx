@@ -21,14 +21,12 @@ const SignUpPage = () => {
 
     const [confirmPass, setConfirmPass] = useState('');
     const [validMatch, setValidMatch] = useState(false);
+    const [matchFocus, setMatchFocus] = useState(false);
 
     const [errMsg, setErrMsg] = useState('');
 
 
     //Checks if password matches the confirm password field
-    useEffect(() => {
-        setValidMatch(confirmPass === pass)
-    }, [confirmPass, pass])
 
     const handleSignInClick = () => {
         navigate('/login');
@@ -72,7 +70,7 @@ const SignUpPage = () => {
     return (
         <main className="font-fam text-gray-800 bg-white">
             <LogHeader />
-            <div className="flex flex-col justify-center items-center bg-zinc-100 h-screen">
+            <div className="flex flex-col justify-center items-center bg-zinc-100 p-10">
                 <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
                     <h2 className="text-2xl text-center font-semibold mb-6">Sign Up</h2>
                     {errMsg && <p className='text-center font-bold text-red-500'>{errMsg}</p>}
@@ -128,8 +126,13 @@ const SignUpPage = () => {
                                 type="password" 
                                 className="w-full p-2 border border-gray-300 rounded mt-1"
                                 value={confirmPass}
-                                onChange={(e) => setConfirmPass(e.target.value)}   
+                                onChange={(e) => setConfirmPass(e.target.value)}
+                                onFocus={() => setMatchFocus(true)}
+                                onBlur={() => setMatchFocus(false)}   
                             />
+                            {matchFocus && !validMatch && confirmPass && (
+                                <p className='font-bold text-red-500'>Passwords Don't Match</p>
+                            )}
                         </div>
                         <button type="submit" className="w-full bg-[#501214] hover:bg-[#7d1c1f] text-white p-2 rounded" onClick={handleRegister}>Sign Up</button>
                         <label className="block text-center text-gray-700 mt-4">Already have an account? <button onClick={handleSignInClick} className="text-gray-700 mt-4">Sign In</button> </label>
