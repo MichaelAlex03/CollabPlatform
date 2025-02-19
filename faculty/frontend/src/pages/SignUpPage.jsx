@@ -15,9 +15,11 @@ const SignUpPage = () => {
     const [name, setName] = useState('');
     const [department, setDepartment] = useState('');
     const [id, setId] = useState('');
-
     const [email, setEmail] = useState('');
+
     const [pass, setPass] = useState('');
+    const [passFocus, setPassFocus] = useState(false);
+    const [validPass, setValidPass] = useState(false);
 
     const [confirmPass, setConfirmPass] = useState('');
     const [validMatch, setValidMatch] = useState(false);
@@ -27,6 +29,10 @@ const SignUpPage = () => {
 
 
     //Checks if password matches the confirm password field
+    useEffect(() => {
+        setValidPass(PWD_REGEX.test(pass))
+        setValidMatch(confirmPass === pass)
+    }, [confirmPass, pass])
 
     const handleSignInClick = () => {
         navigate('/login');
@@ -41,27 +47,45 @@ const SignUpPage = () => {
             return;
         }
 
+        //Check if password is valid
+        if (!validPass) {
+            setErrMsg('Invalid Password please look at requirements')
+            return;
+        }
+
+        //Check if passwords match
         if (!validMatch) {
             setErrMsg('Password and Confirm Pass dont match')
             return;
         }
 
-        axios.post(REGISTER_URL, {
-            id,
-            name,
-            pass, 
-            department,
-            email
-        })
+        try {
+            axios.post(REGISTER_URL, {
+                id,
+                name,
+                pass,
+                department,
+                email
+            })
 
-        navigate('/')
+            navigate('/')
 
-        //Set all fields back to empty
-        setName('');
-        setEmail('');
-        setConfirmPass('');
-        setId('');
-        setDepartment('');
+            //Set all fields back to empty
+            setName('');
+            setEmail('');
+            setConfirmPass('');
+            setId('');
+            setDepartment('');
+        } catch (err) {
+            if (!err?.response) {
+                setErrMsg('No response from server')
+            } else if (err.response?.status === 409) {
+                setErrMsg('Faculty already exists')
+            } else {
+                setErrMsg('Registration Failed')
+            }
+        }
+
 
 
 
@@ -73,7 +97,7 @@ const SignUpPage = () => {
             <div className="flex flex-col justify-center items-center bg-zinc-100 p-10">
                 <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
                     <h2 className="text-2xl text-center font-semibold mb-6">Sign Up</h2>
-                    {errMsg && <p className='text-center font-bold text-red-500'>{errMsg}</p>}
+                    {errMsg && <p className='text-center font-bold text-red-500 m-2'>{errMsg}</p>}
                     <form>
                         <div className="mb-4">
                             <label className="text-black text-sm md:text-base lg:text-lg">Name</label>
@@ -90,48 +114,60 @@ const SignUpPage = () => {
                                 type="department"
                                 className="w-full p-2 border border-gray-300 rounded mt-1"
                                 value={department}
-                                onChange={(e) => setDepartment(e.target.value)}  
+                                onChange={(e) => setDepartment(e.target.value)}
                             />
                         </div>
                         <div className="mb-4">
                             <label className="text-black text-sm md:text-base lg:text-lg">ID Number</label>
-                            <input 
-                                type="anum" 
-                                className="w-full p-2 border border-gray-300 rounded mt-1" 
+                            <input
+                                type="anum"
+                                className="w-full p-2 border border-gray-300 rounded mt-1"
                                 value={id}
-                                onChange={(e) => setId(e.target.value)}  
+                                onChange={(e) => setId(e.target.value)}
                             />
                         </div>
                         <div className="mb-4">
                             <label className="text-black text-sm md:text-base lg:text-lg">Texas State Email</label>
-                            <input 
-                                type="email" 
+                            <input
+                                type="email"
                                 className="w-full p-2 border border-gray-300 rounded mt-1"
                                 value={email}
-                                onChange={(e) => setEmail(e.target.value)}   
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
                         <div className="mb-4">
                             <label className="text-black text-sm md:text-base lg:text-lg">Password</label>
-                            <input 
-                                type="password" 
+                            <input
+                                type="password"
                                 className="w-full p-2 border border-gray-300 rounded mt-1"
                                 value={pass}
-                                onChange={(e) => setPass(e.target.value)}   
+                                onChange={(e) => setPass(e.target.value)}
+                                onFocus={() => setPassFocus(true)}
+                                onBlur={() => setPassFocus(false)}
                             />
+                            {passFocus && pass && !validPass && (
+                                <p className='font-bold text-red-500 text-sm mt-2'>
+                                    Password must be 8-24 characters<br />
+                                    At least 1 capital letter, 1 lowercase, 1 digit<br />
+                                    And 1 special character from the following(! @ # $ %)
+                                </p>
+                            )}
                         </div>
+
+
+
                         <div className="mb-4">
                             <label className="text-black text-sm md:text-base lg:text-lg">Confirm Password</label>
-                            <input 
-                                type="password" 
+                            <input
+                                type="password"
                                 className="w-full p-2 border border-gray-300 rounded mt-1"
                                 value={confirmPass}
                                 onChange={(e) => setConfirmPass(e.target.value)}
                                 onFocus={() => setMatchFocus(true)}
-                                onBlur={() => setMatchFocus(false)}   
+                                onBlur={() => setMatchFocus(false)}
                             />
                             {matchFocus && !validMatch && confirmPass && (
-                                <p className='font-bold text-red-500'>Passwords Don't Match</p>
+                                <p className='font-bold text-red-500 text-sm mt-2'>Passwords Don't Match</p>
                             )}
                         </div>
                         <button type="submit" className="w-full bg-[#501214] hover:bg-[#7d1c1f] text-white p-2 rounded text-md md:text-base lg:text-lg" onClick={handleRegister}>Sign Up</button>
