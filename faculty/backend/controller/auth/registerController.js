@@ -26,8 +26,6 @@ const handleNewFaculty = async (req, res) => {
         return res.sendStatus(400)
     }
 
-
-
     try {
         const hashedPwd = await bcrypt.hash(pass, 10);
         await Faculty.create({
