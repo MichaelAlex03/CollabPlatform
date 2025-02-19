@@ -4,7 +4,7 @@ const Faculty = require('../../model/Faculty');
 
 const handleLogin = async (req, res) => {
     const { email, pass } = req.body
-    if (!email || !pass) return res.status(400).json({ message: 'username and password required' });
+    if (!email || !pass) return res.sendStatus(400);
 
     foundFaculty = await Faculty.findOne({ email: email }).exec();
     if (!foundFaculty) return res.sendStatus(401);
