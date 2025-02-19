@@ -33,7 +33,7 @@ const handleNewFaculty = async (req, res) => {
             name: name,
             password: hashedPwd,
             department: department,
-            email,
+            email: email,
         });
 
         res.status(201).json({message: `New faculty ${name} was created`});
