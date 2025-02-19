@@ -36,7 +36,7 @@ const LoginPage = () => {
                     <h2 className="text-2xl text-center font-semibold mb-6">Log In</h2>
                     <form>
                         <div className="mb-4">
-                            <label className="text-gray-700 text-sm md:text-base lg:text-lg">Email</label>
+                            <label className="text-black text-sm md:text-base lg:text-lg">Email</label>
                             <input 
                                 type="email" 
                                 className="w-full p-2 border border-gray-300 rounded mt-1"
@@ -45,7 +45,7 @@ const LoginPage = () => {
                             />
                         </div>
                         <div className="mb-4">
-                            <label className="text-gray-700 text-sm md:text-base lg:text-lg">Password</label>
+                            <label className="text-black text-sm md:text-base lg:text-lg">Password</label>
                             <input
                                 type="password"
                                 className="w-full p-2 border border-gray-300 rounded mt-1"
@@ -55,8 +55,8 @@ const LoginPage = () => {
                         </div>
                         <div className="mb-4 flex flex-row items-center w-full">
                             <input type="checkbox" className="mr-2" />
-                            <label className="text-gray-700 text-sm mr-auto md:text-base lg:text-lg">Remember Me</label>
-                            <label><a href="#" className="text-gray-700 text-sm mr-auto md:text-base lg:text-lg">Forgot Password?</a></label>
+                            <label className="text-black text-sm mr-auto md:text-base lg:text-lg">Remember Me</label>
+                            <label><a href="#" className="text-black text-sm mr-auto md:text-base lg:text-lg">Forgot Password?</a></label>
                         </div>
                         <button type="submit" className="w-full bg-[#501214] hover:bg-[#7d1c1f] text-white p-2 rounded  text-md md:text-base lg:text-lg" onClick={() => handleLogin}>Log In</button>
                         <label className="block text-center text-gray-700 mt-2 text-md md:text-base lg:text-lg">Don't have an account? <button onClick={handleSignUpClick} className="text-gray-700 mt-4">Sign Up</button> </label>

@@ -76,7 +76,7 @@ const SignUpPage = () => {
                     {errMsg && <p className='text-center font-bold text-red-500'>{errMsg}</p>}
                     <form>
                         <div className="mb-4">
-                            <label className="block text-gray-700">Name</label>
+                            <label className="text-black text-sm md:text-base lg:text-lg">Name</label>
                             <input
                                 type="name"
                                 className="w-full p-2 border border-gray-300 rounded mt-1"
@@ -85,7 +85,7 @@ const SignUpPage = () => {
                             />
                         </div>
                         <div className="mb-4">
-                            <label className="block text-gray-700">Department</label>
+                            <label className="text-black text-sm md:text-base lg:text-lg">Department</label>
                             <input
                                 type="department"
                                 className="w-full p-2 border border-gray-300 rounded mt-1"
@@ -94,7 +94,7 @@ const SignUpPage = () => {
                             />
                         </div>
                         <div className="mb-4">
-                            <label className="block text-gray-700">ID Number</label>
+                            <label className="text-black text-sm md:text-base lg:text-lg">ID Number</label>
                             <input 
                                 type="anum" 
                                 className="w-full p-2 border border-gray-300 rounded mt-1" 
@@ -103,7 +103,7 @@ const SignUpPage = () => {
                             />
                         </div>
                         <div className="mb-4">
-                            <label className="block text-gray-700">Texas State Email</label>
+                            <label className="text-black text-sm md:text-base lg:text-lg">Texas State Email</label>
                             <input 
                                 type="email" 
                                 className="w-full p-2 border border-gray-300 rounded mt-1"
@@ -112,7 +112,7 @@ const SignUpPage = () => {
                             />
                         </div>
                         <div className="mb-4">
-                            <label className="block text-gray-700">Password</label>
+                            <label className="text-black text-sm md:text-base lg:text-lg">Password</label>
                             <input 
                                 type="password" 
                                 className="w-full p-2 border border-gray-300 rounded mt-1"
@@ -121,7 +121,7 @@ const SignUpPage = () => {
                             />
                         </div>
                         <div className="mb-4">
-                            <label className="block text-gray-700">Confirm Password</label>
+                            <label className="text-black text-sm md:text-base lg:text-lg">Confirm Password</label>
                             <input 
                                 type="password" 
                                 className="w-full p-2 border border-gray-300 rounded mt-1"
@@ -134,8 +134,8 @@ const SignUpPage = () => {
                                 <p className='font-bold text-red-500'>Passwords Don't Match</p>
                             )}
                         </div>
-                        <button type="submit" className="w-full bg-[#501214] hover:bg-[#7d1c1f] text-white p-2 rounded" onClick={handleRegister}>Sign Up</button>
-                        <label className="block text-center text-gray-700 mt-4">Already have an account? <button onClick={handleSignInClick} className="text-gray-700 mt-4">Sign In</button> </label>
+                        <button type="submit" className="w-full bg-[#501214] hover:bg-[#7d1c1f] text-white p-2 rounded text-md md:text-base lg:text-lg" onClick={handleRegister}>Sign Up</button>
+                        <label className="block text-center text-gray-700 mt-4 text-md md:text-base lg:text-lg">Already have an account? <button onClick={handleSignInClick} className="text-gray-700 mt-4">Sign In</button> </label>
                     </form>
                 </div>
             </div>
