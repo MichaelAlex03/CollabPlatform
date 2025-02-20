@@ -22,10 +22,9 @@ const Navbar = () => {
                 <button onClick={() => handleClick('')} className="text-[#501214] text-xl font-semibold no-underline">Texas State University</button>
                 <div className="hidden md:flex gap-8">
                     <button onClick={() => handleClick('overview')} className="text-gray-800 font-medium hover:text-[#501214]">Overview</button>
-                    <button onClick={() => handleClick('process')} className="text-gray-800 font-medium hover:text-[#501214]">Project</button>
+                    <button onClick={handleLoginClick} className="text-gray-800 font-medium hover:text-[#501214]">Join the Platform</button>
                     <button onClick={() => handleClick('benefits')} className="text-gray-800 font-medium hover:text-[#501214]">Benefits</button>
                     <button onClick={() => handleClick('faq')} className="text-gray-800 font-medium hover:text-[#501214]">FAQ</button>
-                    <button onClick={handleLoginClick} className="text-gray-800 font-medium hover:text-[#501214]">Log In</button>
                 </div>
             </nav>
         </header>
