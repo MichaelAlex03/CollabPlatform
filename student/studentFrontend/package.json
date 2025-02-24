@@ -1,5 +1,5 @@
 {
-  "name": "studentfrontend",
+  "name": "facultyfrontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,8 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.0.8",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.1.4",
+    "tailwindcss": "^4.0.8"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
@@ -23,6 +26,6 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
-    "vite": "^6.1.1"
+    "vite": "^6.0.5"
   }
 }
