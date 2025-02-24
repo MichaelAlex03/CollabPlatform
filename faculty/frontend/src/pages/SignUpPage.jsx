@@ -115,8 +115,9 @@ const SignUpPage = () => {
                     {errMsg && <p className='text-center text-sm md:text-base font-bold text-red-500 m-2'>{errMsg}</p>}
                     <form>
                         <div className="mb-4">
-                            <label className="text-black text-sm md:text-base lg:text-lg">Name</label>
+                            <label htmlFor='name' className="text-black text-sm md:text-base lg:text-lg">Name</label>
                             <input
+                                id='name'
                                 type="name"
                                 className="w-full p-2 border border-gray-300 rounded mt-1"
                                 value={name}
@@ -125,9 +126,10 @@ const SignUpPage = () => {
                         </div>
 
                         <div className="mb-4">
-                            <label className="text-black text-sm md:text-base lg:text-lg">Department</label>
+                            <label htmlFor='department' className="text-black text-sm md:text-base lg:text-lg">Department</label>
                             <input
-                                type="department"
+                                id='department'
+                                type="text"
                                 className="w-full p-2 border border-gray-300 rounded mt-1"
                                 value={department}
                                 onChange={(e) => setDepartment(e.target.value)}
@@ -135,8 +137,9 @@ const SignUpPage = () => {
                         </div>
 
                         <div className="mb-4">
-                            <label className="text-black text-sm md:text-base lg:text-lg">ID Number</label>
+                            <label htmlFor='idNum' className="text-black text-sm md:text-base lg:text-lg">ID Number</label>
                             <input
+                                id='idNum'
                                 type="anum"
                                 className="w-full p-2 border border-gray-300 rounded mt-1"
                                 value={id}
@@ -145,8 +148,9 @@ const SignUpPage = () => {
                         </div>
 
                         <div className="mb-4">
-                            <label className="text-black text-sm md:text-base lg:text-lg">Texas State Email</label>
+                            <label htmlFor='email' className="text-black text-sm md:text-base lg:text-lg">Texas State Email</label>
                             <input
+                                id='email'
                                 type="email"
                                 className="w-full p-2 border border-gray-300 rounded mt-1"
                                 value={email}
@@ -163,8 +167,9 @@ const SignUpPage = () => {
                         </div>
 
                         <div className="mb-4">
-                            <label className="text-black text-sm md:text-base lg:text-lg">Password</label>
+                            <label htmlFor='pass' className="text-black text-sm md:text-base lg:text-lg">Password</label>
                             <input
+                                id='pass'
                                 type="password"
                                 className="w-full p-2 border border-gray-300 rounded mt-1"
                                 value={pass}
@@ -184,8 +189,9 @@ const SignUpPage = () => {
 
 
                         <div className="mb-4">
-                            <label className="text-black text-sm md:text-base lg:text-lg">Confirm Password</label>
+                            <label htmlFor='confirmPass' className="text-black text-sm md:text-base lg:text-lg">Confirm Password</label>
                             <input
+                                id='confirmPass'
                                 type="password"
                                 className="w-full p-2 border border-gray-300 rounded mt-1"
                                 value={confirmPass}
