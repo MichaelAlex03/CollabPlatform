@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd backend 
-npm run dev
+npm run dev & 
 
 cd ../frontend
 npm run dev
