@@ -3,10 +3,10 @@ const bcrypt = require('bcrypt');
 const Student = require('../../model/Student')
 
 const handleLogin = async (req, res) => {
-    const { netId, pass } = req.body;
-    if (!netId || !pass) return res.status(400).json({ message: 'netId and password required' });
+    const { id, pass } = req.body;
+    if (!id || !pass) return res.status(400).json({ message: 'netId and password required' });
 
-    const foundStudent = await Student.findOne({ netId }).exec();
+    const foundStudent = await Student.findOne({ id }).exec();
     if (!foundStudent) return res.sendStatus(401);
 
     //Compares the hashed value of the given password to the password in the DB that is already hashed
