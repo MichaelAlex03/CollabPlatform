@@ -7,12 +7,11 @@ const REGISTER_URL = 'auth/register'
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@txstate\.edu$/;
 
-const SignUpPage = () => {
+const Register = () => {
 
     const navigate = useNavigate();
 
     const [name, setName] = useState('');
-    const [department, setDepartment] = useState('');
     const [id, setId] = useState('');
 
     const [email, setEmail] = useState('');
@@ -49,7 +48,7 @@ const SignUpPage = () => {
         e.preventDefault(); //Prevents browser from refreshing form and losing all data
 
         //Checks if any of the fields are empty
-        if (!name || !department || !id || !email || !pass || !confirmPass) {
+        if (!name || !id || !email || !pass || !confirmPass) {
             setErrMsg('All fields are required');
             return;
         }
@@ -75,13 +74,11 @@ const SignUpPage = () => {
         try {
             await axios.post(REGISTER_URL, {
                 id,
-                name,
+                user: name,
                 pass,
-                department,
                 email
             })
 
-            console.log('success')
             navigate('/');
 
             //Set all fields back to empty
@@ -89,14 +86,13 @@ const SignUpPage = () => {
             setEmail('');
             setConfirmPass('');
             setId('');
-            setDepartment('');
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No response from server');
             } else if (err.response?.status === 409) {
                 setErrMsg('Faculty already exists');
             } else if (err.response?.status === 400) {
-                setErrMsg('Invalid Id Entry');
+                setErrMsg('Invalid Id Entry. Make sure your following format A########');
             } else {
                 setErrMsg('Registration Failed');
             }
@@ -107,7 +103,7 @@ const SignUpPage = () => {
     return (
         <main className="font-fam text-gray-800 bg-white">
         
-            <div className="flex flex-col justify-center items-center bg-zinc-100 p-10">
+            <div className="flex flex-col justify-center items-center h-screen bg-zinc-100 p-10">
                 <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
                     <h2 className="text-2xl text-center font-semibold mb-6">Sign Up</h2>
                     {errMsg && <p className='text-center text-sm md:text-base font-bold text-red-500 m-2'>{errMsg}</p>}
@@ -123,17 +119,7 @@ const SignUpPage = () => {
                         </div>
 
                         <div className="mb-4">
-                            <label className="text-black text-sm md:text-base lg:text-lg">Department</label>
-                            <input
-                                type="department"
-                                className="w-full p-2 border border-gray-300 rounded mt-1"
-                                value={department}
-                                onChange={(e) => setDepartment(e.target.value)}
-                            />
-                        </div>
-
-                        <div className="mb-4">
-                            <label className="text-black text-sm md:text-base lg:text-lg">ID Number</label>
+                            <label className="text-black text-sm md:text-base lg:text-lg">ID Number (A#)</label>
                             <input
                                 type="anum"
                                 className="w-full p-2 border border-gray-300 rounded mt-1"
@@ -205,4 +191,4 @@ const SignUpPage = () => {
     );
 }
 
-export default SignUpPage;
+export default Register;
