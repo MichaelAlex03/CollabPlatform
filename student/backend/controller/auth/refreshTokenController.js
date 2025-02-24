@@ -5,13 +5,14 @@ const handleRefreshToken = async (req, res) => {
 
     const cookies = req.cookies;
     // Check if there is a property of the cookie called jwt
+    // Optional chaining (?.) allows reading the value of `cookies.jwt` without causing an error if `cookies` is undefined or null
     if (!cookies?.jwt) {
-        return res.sendStatus(401)
+        return res.sendStatus(401);
     }
 
     //Checks if the refresh token matches a students refresh token in the db if not return a 403 (Unauthorized)
     const refreshToken = cookies.jwt;
-    const user = await User.findOne({ refreshToken }).exec();
+    const user = await Student.findOne({ refreshToken }).exec();
 
     if (!user) {
         return res.sendStatus(403);
@@ -32,8 +33,6 @@ const handleRefreshToken = async (req, res) => {
             }
         );
     });
-
-
 }
 
 //returns object that contains handleRefreshToken function to use in other files
