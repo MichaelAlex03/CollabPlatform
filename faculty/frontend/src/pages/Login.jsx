@@ -55,8 +55,9 @@ const LoginPage = () => {
                     {errMsg && <p className='text-center text-sm md:text-base font-bold text-red-500 m-2'>{errMsg}</p>}
                     <form>
                         <div className="mb-4">
-                            <label className="text-black text-sm md:text-base lg:text-lg">Email</label>
+                            <label htmlFor='email' className="text-black text-sm md:text-base lg:text-lg">Email</label>
                             <input
+                                id='email'
                                 type="email"
                                 className="w-full p-2 border border-gray-300 rounded mt-1"
                                 value={email}
@@ -64,8 +65,9 @@ const LoginPage = () => {
                             />
                         </div>
                         <div className="mb-4">
-                            <label className="text-black text-sm md:text-base lg:text-lg">Password</label>
+                            <label htmlFor='pass' className="text-black text-sm md:text-base lg:text-lg">Password</label>
                             <input
+                                id='pass'
                                 type="password"
                                 className="w-full p-2 border border-gray-300 rounded mt-1"
                                 value={pass}

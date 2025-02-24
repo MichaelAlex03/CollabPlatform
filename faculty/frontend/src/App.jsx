@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import LandingPage from './pages/LandingPage'
-import LoginPage from './pages/LoginPage'
-import SignUpPage from './pages/SignUpPage'
+import LoginPage from './pages/Login'
+import SignUpPage from './pages/Register'
 
 function App() {
 
