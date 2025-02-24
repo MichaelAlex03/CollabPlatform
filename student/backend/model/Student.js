@@ -20,6 +20,10 @@ const studentsSchema = new Schema({
     },
     refreshToken: {
         type: String,
+    },
+    firstTime: {
+        type: Boolean,
+        required: true
     }
 });
 
