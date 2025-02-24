@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
 
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const REGISTER_URL = 'auth/register'
 
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -38,7 +41,7 @@ const Register = () => {
     //Check if email is valid
     useEffect(() => {
         setValidEmail(EMAIL_REGEX.test(email))
-    },[email])
+    }, [email])
 
     const handleSignInClick = () => {
         navigate('/login');
@@ -102,7 +105,7 @@ const Register = () => {
 
     return (
         <main className="font-fam text-gray-800 bg-white">
-        
+
             <div className="flex flex-col justify-center items-center h-screen bg-zinc-100 p-10">
                 <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
                     <h2 className="text-2xl text-center font-semibold mb-6">Sign Up</h2>
@@ -140,12 +143,19 @@ const Register = () => {
                                 onChange={(e) => setEmail(e.target.value)}
                                 onFocus={() => setEmailFocus(true)}
                                 onBlur={() => setEmailFocus(false)}
+                                autoComplete='false'
                             />
                             {emailFocus && !validEmail && (
-                                <p className='font-bold text-red-500 text-sm mt-2'>
-                                    Email must end in @txstate.edu with no spaces<br />
-                                    Allowed characters: letters, numbers, . _ % + - <br/>
-                                </p>
+
+                                <div className='bg-black text-white text-xs px-2 py-3 rounded-md mb-3 flex flex-row'>
+                                    <FontAwesomeIcon
+                                        icon={faInfoCircle}
+                                        className="mr-2"
+                                        size="lg"
+                                    />
+                                    <p>Email must end in @txstate.edu with no spaces
+                                        Allowed characters: letters, numbers, . _ % + - </p>
+                                </div>
                             )}
                         </div>
 
@@ -161,11 +171,16 @@ const Register = () => {
                                 onBlur={() => setPassFocus(false)}
                             />
                             {passFocus && !validPass && (
-                                <p className='font-bold text-red-500 text-sm mt-2'>
-                                    Password must be 8-24 characters<br />
-                                    At least 1 capital letter, 1 lowercase, 1 digit<br />
-                                    And 1 special character from the following(! @ # $ %)
-                                </p>
+                                <div className='bg-black text-white text-xs px-2 py-3 rounded-md mb-3 flex flex-row'>
+                                    <FontAwesomeIcon
+                                        icon={faInfoCircle}
+                                        className="mr-2"
+                                        size="lg"
+                                    />
+                                    <p>Password must be 8-24 characters<br />
+                                        At least 1 capital letter, 1 lowercase, 1 digit<br />
+                                        And 1 special character from the following(! @ # $ %)</p>
+                                </div>
                             )}
                         </div>
 
@@ -190,7 +205,7 @@ const Register = () => {
                     </form>
                 </div>
             </div>
-            
+
         </main>
     );
 }
