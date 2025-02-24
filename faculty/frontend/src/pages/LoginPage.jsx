@@ -4,7 +4,7 @@ import LogHeader from '../components/LoginHeader';
 import { useNavigate } from 'react-router-dom';
 import axios from '../../api/axios';
 
-const LOGIN_URL = '/auth/login'
+const LOGIN_URL = '/auth/login';
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -15,15 +15,15 @@ const LoginPage = () => {
     const [errMsg, setErrMsg] = useState('');
 
     const handleLogin = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
         try {
             const response = await axios.post(LOGIN_URL, {
                 email,
                 pass
-            })
-            console.log(response)
-            navigate('/')
+            });
+            console.log(response);
+            navigate('/');
             setEmail('');
             setPass('');
         } catch (err) {
