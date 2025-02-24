@@ -8,8 +8,12 @@ const handleNewStudent = async (req, res) => {
     const { user, pass, id, email } = req.body;
 
     //Check if user already exists
-    const duplicate = await Student.findOne({ username: user }).exec();
+    const duplicate = await Student.findOne({ id }).exec();
     if (duplicate) return res.sendStatus(409);
+
+    //Check if email is already in use aswell
+    const duplicateEmail = await Student.findOne({ email }).exec();
+    if (duplicateEmail) return res.resStatus(409);
 
     //checks if A number is in the correct format
     if (!ANUM_REGEX.test(id)) return res.sendStatus(400);
