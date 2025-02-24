@@ -24,7 +24,7 @@ const studentsSchema = new Schema({
     firstTime: {
         type: Boolean,
         required: true
-    }
+    },
 });
 
 module.exports = mongoose.model('Student', studentsSchema);
