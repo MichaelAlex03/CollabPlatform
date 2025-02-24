@@ -8,6 +8,12 @@ const Form = () => {
 
     const navigate = useNavigate();
 
+    const [formData, setFormData] = useState({
+        neural_networks: false,
+        LLM: false,
+        
+      });
+
     const [formStage, setFormStage] = useState(1)
     const [errMsg, setErrMsg] = useState('');
 
@@ -19,16 +25,25 @@ const Form = () => {
 
 
     return (
-        <section className="font-fam text-gray-800 bg-white flex flex-col items-center">
-            
+        <form className="font-fam text-gray-800 bg-white flex flex-col items-center p-10">
+
             <div>
-                <h1 className='text-2xl font-semibold'> Profile Creation</h1>
+                <h1 className='text-3xl font-semibold text-[#501214]'> Profile Creation</h1>
             </div>
-        
-            <FormStage1 />  
-                
-            
-        </section>
+
+            <div>
+                {formStage === 1 && ( <FormStage1 /> ) }
+            </div>
+
+            <div className='flex flex-row gap-8 justify-center'>
+                <button onClick={() => setFormStage(prevStage => prevStage - 1)}>
+                    <p>Previous</p>
+                </button>
+                <button>
+                    <p>Next</p>
+                </button>
+            </div>
+        </form>
     );
 }
 
