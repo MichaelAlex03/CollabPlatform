@@ -42,15 +42,15 @@ const LandingPage = () => {
                 <section id="overview" class="mb-16 p-8 bg-white rounded-md">
                     <h1 class="text-[#501214] text-4xl font-bold mb-6 pb-2 border-b-2 border-gray-300">How It Works</h1>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="p-4 bg-gray-100 rounded-md">
+                        <div class="p-4 bg-gray-100 rounded-md lift-up">
                             <h2 class="text-lg font-bold mb-2">1.Create Your Profile</h2>
                             <p class="text-base">Sign up and complete your student profile, including details about your skills, interests, availability, and academic background.</p>
                         </div>
-                        <div class="p-4 bg-gray-100 rounded-md">
+                        <div class="p-4 bg-gray-100 rounded-md lift-up">
                             <h2 class="text-lg font-bold mb-2">2.Interview & Skill Assessment</h2>
                             <p class="text-base">Participate in a one-on-one interview to discuss your skills in-depth and assess your readiness for projects.</p>
                         </div>
-                        <div class="p-4 bg-gray-100 rounded-md">
+                        <div class="p-4 bg-gray-100 rounded-md lift-up">
                             <h2 class="text-lg font-bold mb-2">3.Gain Experience</h2>
                             <p class="text-base">If selected, work on real-world projects, develop new skills, collaborate with faculty, and build your resume for future opportunities.</p>
                         </div>
