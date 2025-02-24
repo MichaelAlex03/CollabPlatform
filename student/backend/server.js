@@ -26,6 +26,8 @@ app.use(cookieParser());
 
 app.use('/auth/login', require('./routes/auth/login'));
 app.use('/auth/register', require('./routes/auth/register'));
+app.use('/auth/refresh', require('./routes/auth/refresh'));
+app.use('/auth/logout', require('./routes/auth/logout'));
 
 
 //Starts server **should be done at the end after all middleware and enpoints setup**
