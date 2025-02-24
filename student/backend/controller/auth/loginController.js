@@ -4,8 +4,11 @@ const Student = require('../../model/Student')
 
 const handleLogin = async (req, res) => {
     const { id, pass } = req.body;
+
+    //If id or password field on client side not filled out return an error
     if (!id || !pass) return res.status(400).json({ message: 'netId and password required' });
 
+    //Checks to see if the id entered in matches one in the DB
     const foundStudent = await Student.findOne({ id }).exec();
     if (!foundStudent) return res.sendStatus(401);
 
