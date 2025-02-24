@@ -10,7 +10,7 @@ const studentsSchema = new Schema({
         type: String,
         required: true
     },
-    netId: {
+    id: {
         type: String,
         required: true
     },
