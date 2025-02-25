@@ -11,8 +11,8 @@ const Form = () => {
     const [formData, setFormData] = useState({
         neural_networks: false,
         LLM: false,
-        
-      });
+
+    });
 
     const [formStage, setFormStage] = useState(1)
     const [errMsg, setErrMsg] = useState('');
@@ -25,15 +25,17 @@ const Form = () => {
 
 
     return (
-        <form className="font-fam text-gray-800 bg-white flex flex-col items-center p-10">
+        <form className="text-gray-800 bg-white flex flex-col items-center p-10 justify-center h-screen">
 
             <div>
                 <h1 className='text-3xl font-semibold text-[#501214]'> Profile Creation</h1>
             </div>
 
+
             <div>
-                {formStage === 1 && ( <FormStage1 /> ) }
+                {formStage === 1 && (<FormStage1 />)}
             </div>
+
 
             <div className='flex flex-row gap-8 justify-center'>
                 <button onClick={() => setFormStage(prevStage => prevStage - 1)}>
