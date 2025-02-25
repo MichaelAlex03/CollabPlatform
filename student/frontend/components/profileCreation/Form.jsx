@@ -14,7 +14,25 @@ const Form = () => {
     const [skillsData, setSkillsData] = useState({
         neural_networks: false,
         LLM: false,
+        data_analysis: false,
+        MERN: false,
+        web_designer: false,
+        jira: false,
+        cplus: false,
+        java: false,
+        python: false,
+        sql: false
     });
+
+    //Best practice to pass handler to child components rather than directly passing setState 
+    const handleSkillsChange = (e) => {
+        const { name, checked } = e.target;
+        setSkillsData(prevSkills => ({
+            ...prevSkills,
+            name: checked
+        }));
+        console.log(name, checked)
+    }
 
     const [formStage, setFormStage] = useState(1);
     const [errMsg, setErrMsg] = useState('');
@@ -41,12 +59,14 @@ const Form = () => {
 
                 <h1 className='text-2xl md:text-3xl xl:text-4xl font-bold text-[#501214] text-center'> Profile Creation</h1>
 
-                {formStage === 1 && (<p className='xl:text-xl text-base mt-2'>Select the following skills that you have:</p>)}
+                {formStage === 1
+                    ? <p className='xl:text-xl text-base mt-2'>Select the following skills that you have</p>
+                    : <p className='xl:text-xl text-base mt-2'>Please fill out the information below</p>}
 
                 <div className='mt-4 w-full'>
-                    {formStage === 1 && (<FormStage1 />)}
-                    {formStage === 2 && (<FormStage2 />)}
-                    {formStage === 3 && (<FormStage3 />)}
+                    {formStage === 1 && (<FormStage1 skillsData={skillsData} />)}
+                    {formStage === 2 && (<FormStage2 skillsData={skillsData} />)}
+                    {formStage === 3 && (<FormStage3 skillsData={skillsData} />)}
                 </div>
 
                 {/* Render nav buttons */}

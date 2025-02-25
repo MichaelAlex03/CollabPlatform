@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Skills2 = () => {
+const Skills2 = ({ skillsData }) => {
     return (
         <div className='flex flex-col gap-4'>
             <label className='flex flex-row gap-4'>

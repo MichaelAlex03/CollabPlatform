@@ -1,11 +1,16 @@
 import React from 'react'
 
-const Skills1 = () => {
+const Skills1 = ({ skillsData }) => {
+
+    console.log(skillsData.neural_networks)
     return (
         <div className='flex flex-col gap-4'>
 
             <label className='flex flex-row gap-4'>
-                <input type='Checkbox' />
+                <input 
+                    type='Checkbox'
+                    checked={skillsData.neural_networks}
+                />
                 <p className='sm:text-sm md:text-base xl:text-lg'>AI - Neural Networks</p>
             </label>
 
