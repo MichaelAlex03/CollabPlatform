@@ -6,27 +6,27 @@ const Skills1 = () => {
 
             <label className='flex flex-row gap-4'>
                 <input type='Checkbox' />
-                <p className='text-base xl:text-lg'>AI - Neural Networks</p>
+                <p className='sm:text-sm md:text-base xl:text-lg'>AI - Neural Networks</p>
             </label>
 
             <label className='flex flex-row gap-4'>
                 <input type='Checkbox' />
-                <p className='text-base xl:text-lg'>AI - LLMS</p>
+                <p className='sm:text-sm md:text-base xl:text-lg'>AI - LLMS</p>
             </label>
 
             <label className='flex flex-row gap-4'>
                 <input type='Checkbox' />
-                <p className='text-base xl:text-lg'>Data Analysis</p>
+                <p className='sm:text-sm md:text-base xl:text-lg'>Data Analysis</p>
             </label>
 
             <label className='flex flex-row gap-4'>
                 <input type='Checkbox' />
-                <p className='text-base xl:text-lg'>MERN Stack</p>
+                <p className='sm:text-sm md:text-base xl:text-lg'>MERN Stack</p>
             </label>
 
             <label className='flex flex-row gap-4'>
                 <input type='Checkbox' />
-                <p className='text-base xl:text-lg'>Web Designer</p>
+                <p className='sm:text-sm md:text-base xl:text-lg'>Web Designer</p>
             </label>
         </div>
     )

@@ -36,7 +36,7 @@ const Form = () => {
                 Back To Login
             </button>
 
-            <form className="text-gray-800 bg-white flex flex-col p-10 items-center w-full lg:w-1/3 2xl:w-1/4 m-auto">
+            <form className="text-gray-800 bg-white flex flex-col p-10 items-center w-full md:w-1/2 lg:w-1/2 xl:w-1/3 2xl:w-1/4 m-auto">
 
                 <h1 className='text-2xl md:text-3xl xl:text-4xl font-bold text-[#501214] text-center'> Profile Creation</h1>
 
@@ -53,7 +53,7 @@ const Form = () => {
                         (
                             <button
                                 type='button'
-                                className='bg-[#501214] text-white px-10 py-1 rounded-md'
+                                className='bg-[#501214] p-2 w-1/3 text-white transition transform duration-300 hover:scale-110 rounded-lg '
                                 onClick={() => setFormStage(prevStage => prevStage - 1)}
                             >
                                 Previous
