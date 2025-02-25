@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Skills1 = () => {
+const Skills2 = () => {
     return (
         <div className='flex flex-col gap-4'>
             <label className='flex flex-row gap-4'>
@@ -31,4 +31,4 @@ const Skills1 = () => {
     )
 }
 
-export default Skills1
+export default Skills2

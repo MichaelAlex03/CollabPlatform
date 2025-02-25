@@ -1,9 +1,11 @@
 import React from 'react'
-import CreateProfile from '../components/profileCreation/CreateProfile'
+import Form from '../components/profileCreation/Form'
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <main className='flex w-screen h-screen'>
+      <Form />
+    </main>
   )
 }
 
