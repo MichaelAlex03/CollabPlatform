@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Skills1 from './skillsCheckbox/Skills1'
 
 const FormStage1 = () => {
 
@@ -10,30 +11,7 @@ const FormStage1 = () => {
       </div>
 
       <div className='flex flex-col gap-4 mt-4'>
-        <label className='flex flex-row gap-4'>
-          <input type='Checkbox' />
-          <p>AI - Neural Networks</p>
-        </label>
-
-        <label className='flex flex-row gap-4'>
-          <input type='Checkbox' />
-          <p>AI - LLMS</p>
-        </label>
-
-        <label className='flex flex-row gap-4'>
-          <input type='Checkbox' />
-          <p>Data Analysis</p>
-        </label>
-
-        <label className='flex flex-row gap-4'>
-          <input type='Checkbox' />
-          <p>MERN Stack</p>
-        </label>
-
-        <label className='flex flex-row gap-4'>
-          <input type='Checkbox' />
-          <p>Web Designer</p>
-        </label>
+        <Skills1 />
       </div>
     </div>
   )
