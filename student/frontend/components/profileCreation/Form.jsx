@@ -11,6 +11,10 @@ const Form = () => {
 
     const navigate = useNavigate();
 
+    const degrees = [
+        "Computer Science"
+    ]
+
     const [skillsData, setSkillsData] = useState({
         neural_networks: false,
         LLM: false,
@@ -60,11 +64,11 @@ const Form = () => {
                 <h1 className='text-2xl md:text-3xl xl:text-4xl font-bold text-[#501214] text-center'> Profile Creation</h1>
 
                 {formStage === 1
-                    ? <p className='xl:text-xl text-base mt-2'>Select the following skills that you have</p>
-                    : <p className='xl:text-xl text-base mt-2'>Please fill out the information below</p>}
+                    ? <p className='xl:text-xl text-base mt-2 font-semibold text-center'>Select the following skills that you have</p>
+                    : <p className='xl:text-xl text-base mt-2 font-semibold text-center'>Please fill out the information below</p>}
 
                 <div className='mt-4 w-full'>
-                    {formStage === 1 && (<FormStage1 skillsData={skillsData} />)}
+                    {formStage === 1 && (<FormStage1 skillsData={skillsData} handleSkillsChange={handleSkillsChange}/>)}
                     {formStage === 2 && (<FormStage2 skillsData={skillsData} />)}
                     {formStage === 3 && (<FormStage3 skillsData={skillsData} />)}
                 </div>
@@ -110,13 +114,19 @@ const Form = () => {
 
                 <div className='flex gap-3 mt-6 w-full justify-center'>
                     <button
+                        type='button'
                         className={` h-3 ${formStage === 1 ? 'w-8 bg-[#501214]' : 'w-3 bg-gray-400'} rounded-full`}
+                        onClick={() => setFormStage(1)}
                     />
                     <button
+                        type='button'
                         className={` h-3 ${formStage === 2 ? 'w-8 bg-[#501214]' : 'w-3 bg-gray-400'} rounded-full`}
+                        onClick={() => setFormStage(2)}
                     />
                     <button
+                        type='button'
                         className={` h-3 ${formStage === 3 ? 'w-8 bg-[#501214] ' : 'w-3 bg-gray-400'} rounded-full`}
+                        onClick={() => setFormStage(3)}
                     />
                 </div>
 

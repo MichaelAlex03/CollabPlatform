@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Skills1 from './skillsCheckbox/Skills1'
 import Skills2 from './skillsCheckbox/Skills2'
 
-const FormStage1 = ({ skillsData }) => {
+const FormStage1 = ({ skillsData, handleSkillsChange }) => {
 
 
   return (

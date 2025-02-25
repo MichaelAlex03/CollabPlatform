@@ -1,6 +1,14 @@
 import React from 'react'
 
-const Skills2 = ({ skillsData }) => {
+/**
+ * Skills2 component renders a list of skill checkboxes.
+ * 
+ * @param {Object} props - The component props.
+ * @param {Array} props.skillsData - The array of skills data.
+ * @param {Function} props.handleSkillsChange - The function to handle changes in the skills checkboxes.
+ * @returns {JSX.Element} The rendered component.
+ */
+const Skills2 = ({ skillsData, handleSkillsChange}) => {
     return (
         <div className='flex flex-col gap-4'>
             <label className='flex flex-row gap-4'>
