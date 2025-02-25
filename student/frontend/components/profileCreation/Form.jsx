@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FormStage1 from './FormStage1';
 import FormStage2 from './FormStage2';
+import FormStage3 from './FormStage3';
 
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -45,6 +46,7 @@ const Form = () => {
                 <div className='mt-4 w-full'>
                     {formStage === 1 && (<FormStage1 />)}
                     {formStage === 2 && (<FormStage2 />)}
+                    {formStage === 3 && (<FormStage3 />)}
                 </div>
 
                 {/* Render nav buttons */}
@@ -77,7 +79,7 @@ const Form = () => {
                         (
                             <button
                                 type='button'
-                                className='bg-[#501214] p-2 w-1/3 text-white transition transform duration-300 hover:scale-110'
+                                className='bg-[#501214] p-2 w-1/3 text-white transition transform duration-300 hover:scale-110 rounded-lg'
                                 onClick={() => setFormStage(prevStage => prevStage + 1)}
                             >
                                 Done
