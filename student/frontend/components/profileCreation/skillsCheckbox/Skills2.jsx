@@ -5,27 +5,27 @@ const Skills2 = () => {
         <div className='flex flex-col gap-4'>
             <label className='flex flex-row gap-4'>
                 <input type='Checkbox' />
-                <p>AI - Neural Networks</p>
+                <p className='text-lg'>Java</p>
             </label>
 
             <label className='flex flex-row gap-4'>
                 <input type='Checkbox' />
-                <p>AI - LLMS</p>
+                <p className='text-lg'>C++</p>
             </label>
 
             <label className='flex flex-row gap-4'>
                 <input type='Checkbox' />
-                <p>Data Analysis</p>
+                <p className='text-lg'>C</p>
             </label>
 
             <label className='flex flex-row gap-4'>
                 <input type='Checkbox' />
-                <p>MERN Stack</p>
+                <p className='text-lg'>Python</p>
             </label>
 
             <label className='flex flex-row gap-4'>
                 <input type='Checkbox' />
-                <p>Web Designer</p>
+                <p className='text-lg'>SQL</p>
             </label>
         </div>
     )

@@ -3,29 +3,30 @@ import React from 'react'
 const Skills1 = () => {
     return (
         <div className='flex flex-col gap-4'>
+
             <label className='flex flex-row gap-4'>
                 <input type='Checkbox' />
-                <p>AI - Neural Networks</p>
+                <p className='text-lg'>AI - Neural Networks</p>
             </label>
 
             <label className='flex flex-row gap-4'>
                 <input type='Checkbox' />
-                <p>AI - LLMS</p>
+                <p className='text-lg'>AI - LLMS</p>
             </label>
 
             <label className='flex flex-row gap-4'>
                 <input type='Checkbox' />
-                <p>Data Analysis</p>
+                <p className='text-lg'>Data Analysis</p>
             </label>
 
             <label className='flex flex-row gap-4'>
                 <input type='Checkbox' />
-                <p>MERN Stack</p>
+                <p className='text-lg'>MERN Stack</p>
             </label>
 
             <label className='flex flex-row gap-4'>
                 <input type='Checkbox' />
-                <p>Web Designer</p>
+                <p className='text-lg'>Web Designer</p>
             </label>
         </div>
     )
