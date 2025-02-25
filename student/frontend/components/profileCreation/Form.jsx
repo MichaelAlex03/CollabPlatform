@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FormStage1 from './FormStage1';
+import FormStage2 from './FormStage2';
 
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -25,7 +26,7 @@ const Form = () => {
         <>
             {/*Back to login button*/}
             <button
-                className='absolute top-4 left-4 font-bold text-lg'
+                className='absolute top-4 left-4 font-bold text-sm md:text-base xl:text-lg'
                 onClick={() => navigate('/register')}
             >
                 <FontAwesomeIcon
@@ -37,13 +38,13 @@ const Form = () => {
 
             <form className="text-gray-800 bg-white flex flex-col p-10 items-center w-full lg:w-1/3 2xl:w-1/4 m-auto">
 
-                <h1 className='text-4xl font-bold text-[#501214] text-center'> Profile Creation</h1>
+                <h1 className='text-2xl md:text-3xl xl:text-4xl font-bold text-[#501214] text-center'> Profile Creation</h1>
 
-                {formStage <= 3 && (<p className='xl:text-xl text-base'>Select the following skills that you have:</p>)}
+                {formStage === 1 && (<p className='xl:text-xl text-base mt-2'>Select the following skills that you have:</p>)}
 
-                <div className='mt-4'>
+                <div className='mt-4 w-full'>
                     {formStage === 1 && (<FormStage1 />)}
-                    {formStage === 2 && (<FormStage1 />)}
+                    {formStage === 2 && (<FormStage2 />)}
                 </div>
 
                 {/* Render nav buttons */}
