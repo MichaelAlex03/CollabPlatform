@@ -10,7 +10,7 @@ const LandingPage = () => {
         navigate('/login');
     }
     return (
-        <main class="font-fam bg-gray-50">
+        <main class="font-fam bg-stone-100">
             
             <Navbar />
 
@@ -36,7 +36,7 @@ const LandingPage = () => {
                 <section class="text-center p-12 my-8 rounded-md" style={{ backgroundColor: '#501214' }}>
                     <h2 class="text-[#ffffff] font-bold text-3xl mb-4">Start Your Journey Today</h2>
                     <p class="mb-6 text-lg text-[#ffffff]">Sign up, showcase your skills, and get matched with exciting projects that align with your career goals.</p>
-                    <button onClick={handleLoginClick} className="bg-white text-[#501214] text-x font-medium py-[15px] px-[25px] rounded-md">Join Now</button>
+                        <button onClick={handleLoginClick} className="bg-[#AC9155] text-white text-x font-medium py-[15px] px-[25px] rounded-md lift-up">Join Now</button>
                 </section>
 
                 <section id="overview" class="mb-16 p-8 bg-white rounded-md">
@@ -57,7 +57,7 @@ const LandingPage = () => {
                     </div>
                 </section>
 
-                <section id="benefits" class="bg-white p-12 my-8">
+                <section id="benefits" class="bg-white p-12 my-8 rounded-md">
                     <h2 class="text-[#501214] text-4xl font-bold mb-6 pb-2 border-b-2 border-gray-300">Is This Right for Me?</h2>
                     <div class="space-y-6">
                         <div class="mb-6 text-lg">
