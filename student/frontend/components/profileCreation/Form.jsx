@@ -35,11 +35,11 @@ const Form = () => {
                 Back To Login
             </button>
 
-            <form className="text-gray-800 bg-white flex flex-col p-10 items-center xl:w-1/4 m-auto">
+            <form className="text-gray-800 bg-white flex flex-col p-10 items-center w-full lg:w-1/3 2xl:w-1/4 m-auto">
 
                 <h1 className='text-4xl font-bold text-[#501214] text-center'> Profile Creation</h1>
 
-                {formStage <= 3 && (<p className='text-xl'>Select the following skills that you have:</p>)}
+                {formStage <= 3 && (<p className='xl:text-xl text-base'>Select the following skills that you have:</p>)}
 
                 <div className='mt-4'>
                     {formStage === 1 && (<FormStage1 />)}
