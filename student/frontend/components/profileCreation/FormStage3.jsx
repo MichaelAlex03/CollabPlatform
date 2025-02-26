@@ -14,7 +14,7 @@ const FormStage3 = () => {
                     <label htmlFor={i} className='text-sm mt-2 font-semibold'>Link {i + 1}</label>
                     <div className='flex flex-row w-full items-center'>
                         <input type='text' id={i} className={`border-1 border-gray-400 p-2 rounded-lg w-full mt-1 ${i === 0 ? 'mr-0' : 'mr-5'}`}></input>
-                        {i > 0 && (
+                        { i > 0 && (
                             <button
                                 type='button'
                                 onClick={() => setNumOfLinks(numOfLinks - 1)}
@@ -38,7 +38,7 @@ const FormStage3 = () => {
                                 />
                             </button> */}
                     </div>
-                    {i < 2 && (
+                    {numOfLinks < 3 && i < 2 && (
                         <p className='text-xs mt-2 hover:underline font-semibold' onClick={() => setNumOfLinks(numOfLinks + 1)}>+ Add Another Link</p>
                     )}
                 </div>
