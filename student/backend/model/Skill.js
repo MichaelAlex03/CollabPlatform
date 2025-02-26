@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const skillsSchema = new Schema({
+    id: {
+        type: Number,
+        required: true
+    },
     neural_networks: {
         type: Boolean,
         required: true

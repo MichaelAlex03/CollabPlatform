@@ -33,7 +33,7 @@ app.use('/auth/logout', require('./routes/auth/logout'));
 
 
 //All routes past here are protected by JWT token
-app.use(verifyJWT);
+// app.use(verifyJWT);
 
 //Endpoints require authentication
 app.use('/api/student', require('./routes/api/student'));
