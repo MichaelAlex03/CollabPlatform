@@ -33,10 +33,12 @@ const Form = () => {
         const { name, checked } = e.target;
         setSkillsData(prevSkills => ({
             ...prevSkills,
-            name: checked
+            [name]: checked
         }));
-        console.log(name, checked)
+
     }
+
+    console.log(skillsData)
 
     const [formStage, setFormStage] = useState(1);
     const [errMsg, setErrMsg] = useState('');

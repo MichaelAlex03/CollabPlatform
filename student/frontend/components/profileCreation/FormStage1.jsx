@@ -9,8 +9,8 @@ const FormStage1 = ({ skillsData, handleSkillsChange }) => {
     <div className='flex flex-col w-full items-center'>
 
       <div className='flex flex-row gap-8 mt-4'>
-        <Skills1 skillsData={skillsData} />
-        <Skills2 skillsData={skillsData} />
+        <Skills1 skillsData={skillsData} handleSkillsChange={handleSkillsChange}/>
+        <Skills2 skillsData={skillsData} handleSkillsChange={handleSkillsChange}/>
       </div>
     </div>
   )
