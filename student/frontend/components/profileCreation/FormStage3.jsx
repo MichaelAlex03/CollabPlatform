@@ -7,27 +7,32 @@ const FormStage3 = () => {
     const [numOfLinks, setNumOfLinks] = useState(1);
 
     const renderLinkFields = () => {
-        for (let i = 1; i < numOfLinks; i++) {
-            return (
-                <div className='w-full flex flex-col items-start'>
-                    <label htmlFor={i} className='text-sm mt-2'>Link {numOfLinks}</label>
+        const linkFields = [];
+        for (let i = 0; i < numOfLinks; i++) {
+            linkFields.push(
+                <div key={i} className='w-full flex flex-col items-start'>
+                    <label htmlFor={i} className='text-sm mt-2'>Link {i + 1}</label>
                     <div className='flex flex-row w-full items-center'>
-                        <input type='text' id={i} className='border-1 border-gray-400 p-2 rounded-lg w-full mt-1 mr-5'></input>
-                        <button onClick={() => setNumOfLinks(numOfLinks - 1)}>
-                            <FontAwesomeIcon
-                                icon={faTrash}
-                                color='black'
-                                size='lg'
+                        <input type='text' id={i} className={`border-1 border-gray-400 p-2 rounded-lg w-full mt-1 ${i === 0 ? 'mr-0' : 'mr-5'}`}></input>
+                        {i > 0 && (
+                            <button onClick={() => setNumOfLinks(numOfLinks - 1)}>
+                                <FontAwesomeIcon
+                                    icon={faTrash}
+                                    color='black'
+                                    size='lg'
 
-                            />
-                        </button>
+                                />
+                            </button>
+                        )}
                     </div>
-                    {i < 3 && (
+                    {i < 2 && (
                         <p className='text-xs mt-2 hover:underline' onClick={() => setNumOfLinks(numOfLinks + 1)}>+ Add Another Link</p>
                     )}
                 </div>
             )
         }
+
+        return linkFields
     }
 
     return (
@@ -50,13 +55,6 @@ const FormStage3 = () => {
 
             <div className='flex flex-col items-start w-full '>
                 <label htmlFor='links' className='text-sm md:text-base '>Links? Github, LinkedIn, Personal Site, etc...</label>
-                <label htmlFor='links' className='text-sm mt-2'>Link 1</label>
-                <input type='text' id='links' className='border-1 border-gray-400 p-2 rounded-lg w-full mt-1'></input>
-                {numOfLinks === 1 &&
-                    (
-                        <p className='text-xs mt-2 hover:underline' onClick={() => setNumOfLinks(numOfLinks + 1)}>+ Add Another Link</p>
-                    )
-                }
                 {renderLinkFields()}
             </div>
 
