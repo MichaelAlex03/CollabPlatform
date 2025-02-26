@@ -15,7 +15,10 @@ const FormStage3 = () => {
                     <div className='flex flex-row w-full items-center'>
                         <input type='text' id={i} className={`border-1 border-gray-400 p-2 rounded-lg w-full mt-1 ${i === 0 ? 'mr-0' : 'mr-5'}`}></input>
                         {i > 0 && (
-                            <button onClick={() => setNumOfLinks(numOfLinks - 1)}>
+                            <button
+                                type='button'
+                                onClick={() => setNumOfLinks(numOfLinks - 1)} className='transition duration-300 hover:scale-110'
+                            >
                                 <FontAwesomeIcon
                                     icon={faTrash}
                                     color='black'
