@@ -28,6 +28,20 @@ const Form = () => {
         sql: false
     });
 
+
+    const [formData, setFormData] = useState({
+        name: '',
+        expectedGrad: '',
+        degree: '',
+        department: '',
+        phoneNum: '',
+        workedHrs: 0,
+        projects: '',
+        jobs: '',
+        links: [],
+        refernces: ''
+    });
+
     //Best practice to pass handler to child components rather than directly passing setState 
     const handleSkillsChange = (e) => {
         const { name, checked } = e.target;
@@ -35,10 +49,8 @@ const Form = () => {
             ...prevSkills,
             [name]: checked
         }));
-
     }
 
-    console.log(skillsData)
 
     const [formStage, setFormStage] = useState(1);
     const [errMsg, setErrMsg] = useState('');
