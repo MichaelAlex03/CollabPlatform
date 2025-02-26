@@ -106,8 +106,8 @@ const Register = () => {
     return (
         <main className="font-fam text-gray-800 bg-white">
 
-            <div className="flex flex-col justify-center items-center h-screen bg-zinc-100 p-10">
-                <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
+            <div className="flex flex-col justify-center items-center h-screen bg-zinc-100 p-4 md:p-0">
+                <div className="bg-white p-8 rounded shadow-md w-full md:max-w-md m-auto">
                     <h2 className="text-2xl text-center font-semibold mb-6">Sign Up</h2>
                     {errMsg && <p className='text-center text-sm md:text-base font-bold text-red-500 m-2'>{errMsg}</p>}
                     <form>
@@ -153,7 +153,7 @@ const Register = () => {
                                         className="mr-2"
                                         size="lg"
                                     />
-                                    <p>Email must end in @txstate.edu with no spaces
+                                    <p>Email must end in @txstate.edu with no spaces <br />
                                         Allowed characters: letters, numbers, . _ % + - </p>
                                 </div>
                             )}
@@ -197,7 +197,14 @@ const Register = () => {
                                 onBlur={() => setMatchFocus(false)}
                             />
                             {matchFocus && !validMatch && confirmPass && (
-                                <p className='font-bold text-red-500 text-sm mt-2'>Passwords Don't Match</p>
+                                <div className='bg-black text-white text-xs px-2 py-3 rounded-md mb-3 flex flex-row'>
+                                    <FontAwesomeIcon
+                                        icon={faInfoCircle}
+                                        className="mr-2"
+                                        size="lg"
+                                    />
+                                    <p>Passwords dont match</p>
+                                </div>
                             )}
                         </div>
                         <button type="submit" className="w-full bg-[#501214] hover:bg-[#7d1c1f] text-white p-2 rounded text-md md:text-base lg:text-lg" onClick={handleRegister}>Sign Up</button>
