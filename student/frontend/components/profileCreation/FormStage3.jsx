@@ -1,6 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const FormStage3 = () => {
+
+    const [numOfLinks, setNumOfLinks] = useState(1);
+
+    const renderLinkFields = () => {
+        for (let i = 1; i < numOfLinks; i++) {
+            return (
+                <div className='w-full flex flex-col items-start'>
+                    <label htmlFor={i} className='text-sm mt-2'>Link {numOfLinks}</label>
+                    <div className='flex flex-row w-full items-center'>
+                        <input type='text' id={i} className='border-1 border-gray-400 p-2 rounded-lg w-full mt-1 mr-5'></input>
+                        <button onClick={() => setNumOfLinks(numOfLinks - 1)}>
+                            <FontAwesomeIcon
+                                icon={faTrash}
+                                color='black'
+                                size='lg'
+
+                            />
+                        </button>
+                    </div>
+                    {i < 3 && (
+                        <p className='text-xs mt-2 hover:underline' onClick={() => setNumOfLinks(numOfLinks + 1)}>+ Add Another Link</p>
+                    )}
+                </div>
+            )
+        }
+    }
+
     return (
         <div className='flex flex-col items-center w-full gap-4'>
 
@@ -20,8 +49,15 @@ const FormStage3 = () => {
             </div>
 
             <div className='flex flex-col items-start w-full '>
-                <label htmlFor='Grad' className='text-sm md:text-base '>Links? Github, LinkedIn, Personal Site, etc...</label>
-                <input type='text' id='Grad' className='border-1 border-gray-400 p-2 rounded-lg w-full mt-1' />
+                <label htmlFor='links' className='text-sm md:text-base '>Links? Github, LinkedIn, Personal Site, etc...</label>
+                <label htmlFor='links' className='text-sm mt-2'>Link 1</label>
+                <input type='text' id='links' className='border-1 border-gray-400 p-2 rounded-lg w-full mt-1'></input>
+                {numOfLinks === 1 &&
+                    (
+                        <p className='text-xs mt-2 hover:underline' onClick={() => setNumOfLinks(numOfLinks + 1)}>+ Add Another Link</p>
+                    )
+                }
+                {renderLinkFields()}
             </div>
 
             <div className='flex flex-col items-start w-full '>

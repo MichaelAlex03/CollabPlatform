@@ -15,6 +15,10 @@ const Form = () => {
         "Computer Science"
     ]
 
+    const [formStage, setFormStage] = useState(1);
+    const [errMsg, setErrMsg] = useState('');
+
+    //Skills data from checkboxes
     const [skillsData, setSkillsData] = useState({
         neural_networks: false,
         LLM: false,
@@ -28,7 +32,7 @@ const Form = () => {
         sql: false
     });
 
-
+    //Form data not relating to skills
     const [formData, setFormData] = useState({
         name: '',
         expectedGrad: '',
@@ -42,7 +46,7 @@ const Form = () => {
         refernces: ''
     });
 
-    //Best practice to pass handler to child components rather than directly passing setState 
+    //Handles state changed for the skills sections
     const handleSkillsChange = (e) => {
         const { name, checked } = e.target;
         setSkillsData(prevSkills => ({
@@ -51,17 +55,17 @@ const Form = () => {
         }));
     }
 
-
-    const [formStage, setFormStage] = useState(1);
-    const [errMsg, setErrMsg] = useState('');
-
-    const handleSignInClick = () => {
-        navigate('/login');
+    //Handles state being changed for non skills section
+    const handleFormChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prevData = ({
+            ...prevData,
+            [name]: value
+        }))
     }
 
     return (
         <>
-            {/*Back to login button*/}
             <button
                 className='absolute top-4 left-4 font-bold text-sm md:text-base xl:text-lg'
                 onClick={() => navigate('/register')}
@@ -82,12 +86,11 @@ const Form = () => {
                     : <p className='xl:text-xl text-base mt-2 font-semibold text-center'>Please fill out the information below</p>}
 
                 <div className='mt-4 w-full'>
-                    {formStage === 1 && (<FormStage1 skillsData={skillsData} handleSkillsChange={handleSkillsChange}/>)}
+                    {formStage === 1 && (<FormStage1 skillsData={skillsData} handleSkillsChange={handleSkillsChange} />)}
                     {formStage === 2 && (<FormStage2 skillsData={skillsData} />)}
                     {formStage === 3 && (<FormStage3 skillsData={skillsData} />)}
                 </div>
 
-                {/* Render nav buttons */}
                 <div className={`flex flex-row gap-8 ${formStage === 1 ? 'justify-end' : 'justify-evenly'} mt-8 w-full`}>
                     {formStage !== 1 &&
                         (
