@@ -107,7 +107,7 @@ const Register = () => {
         <main className="font-fam text-gray-800 bg-white">
 
             <div className="flex flex-col justify-center items-center h-screen bg-zinc-100 p-4 md:p-0">
-                <div className="bg-white p-8 rounded shadow-md w-full md:max-w-md m-auto">
+                <div className="bg-white p-8 rounded shadow-md w-full md:max-w-md m-auto ">
                     <h2 className="text-2xl text-center font-semibold mb-6">Sign Up</h2>
                     {errMsg && <p className='text-center text-sm md:text-base font-bold text-red-500 m-2'>{errMsg}</p>}
                     <form>
@@ -147,13 +147,13 @@ const Register = () => {
                             />
                             {emailFocus && !validEmail && (
 
-                                <div className='bg-black text-white text-xs px-2 py-3 rounded-md mb-3 flex flex-row'>
+                                <div className='bg-black text-white px-2 py-3 rounded-md mb-3 flex flex-row'>
                                     <FontAwesomeIcon
                                         icon={faInfoCircle}
                                         className="mr-2"
                                         size="lg"
                                     />
-                                    <p>Email must end in @txstate.edu with no spaces <br />
+                                    <p className='text-xs md:text-sm'>Email must end in @txstate.edu <br />
                                         Allowed characters: letters, numbers, . _ % + - </p>
                                 </div>
                             )}
@@ -171,13 +171,13 @@ const Register = () => {
                                 onBlur={() => setPassFocus(false)}
                             />
                             {passFocus && !validPass && (
-                                <div className='bg-black text-white text-xs px-2 py-3 rounded-md mb-3 flex flex-row'>
+                                <div className='bg-black text-white px-2 py-3 rounded-md mb-3 flex flex-row'>
                                     <FontAwesomeIcon
                                         icon={faInfoCircle}
                                         className="mr-2"
                                         size="lg"
                                     />
-                                    <p>Password must be 8-24 characters<br />
+                                    <p className='text-xs md:text-sm'>Password must be 8-24 characters<br />
                                         At least 1 capital letter, 1 lowercase, 1 digit<br />
                                         And 1 special character from the following(! @ # $ %)</p>
                                 </div>
@@ -197,13 +197,13 @@ const Register = () => {
                                 onBlur={() => setMatchFocus(false)}
                             />
                             {matchFocus && !validMatch && confirmPass && (
-                                <div className='bg-black text-white text-xs px-2 py-3 rounded-md mb-3 flex flex-row'>
+                                <div className='bg-black text-white px-2 py-3 rounded-md mb-3 flex flex-row'>
                                     <FontAwesomeIcon
                                         icon={faInfoCircle}
                                         className="mr-2"
                                         size="lg"
                                     />
-                                    <p>Passwords dont match</p>
+                                    <p className='text-xs md:text-sm'>Passwords dont match</p>
                                 </div>
                             )}
                         </div>

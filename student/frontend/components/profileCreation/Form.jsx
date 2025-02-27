@@ -32,7 +32,7 @@ const Form = () => {
     const [formData, setFormData] = useState({
         studentName: '',
         expectedGrad: '',
-        degree: '',
+        degree: 'Select your degree',
         department: '',
         phoneNum: '',
         workedHrs: 0,
@@ -123,9 +123,8 @@ const Form = () => {
                     {formStage === 3 &&
                         (
                             <button
-                                type='button'
+                                type='submit'
                                 className='bg-[#501214] p-2 w-1/3 text-white transition transform duration-300 hover:scale-110 rounded-lg'
-                                onClick={() => setFormStage(prevStage => prevStage + 1)}
                             >
                                 Done
                             </button>
