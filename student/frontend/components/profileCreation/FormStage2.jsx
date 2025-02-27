@@ -72,9 +72,8 @@ const FormStage2 = ({ formData, handleFormChange }) => {
         {degrees.map((item, index) => (
           <div
             key={index}
-            className='p-2 cursor-pointer'
+            className='p-2 cursor-pointer '
             onMouseDown={() => { //Use onMouseDown instead of OnClick or not the div will be removed from DOM before selecting is processed
-            
               const e = {
                 target: {
                   name: "degree",

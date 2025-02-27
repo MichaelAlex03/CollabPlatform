@@ -35,11 +35,11 @@ const Form = () => {
         degree: 'Select your degree',
         department: '',
         phoneNum: '',
-        workedHrs: 0,
+        workedHrs: '',
         projects: '',
         jobs: '',
         links: [],
-        refernce: ''
+        reference: ''
     });
 
     //Handles state changed for the skills sections
@@ -53,11 +53,22 @@ const Form = () => {
 
     //Handles state being changed for non skills section
     const handleFormChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prevData => ({
-            ...prevData,
-            [name]: value
-        }))
+        const { name, value, id } = e.target;
+        setFormData(prevData => {
+            if (name === 'links') {
+                const updatedLinks = prevData.links || [];
+                updatedLinks[id] = value;
+                return {
+                    ...prevData,
+                    links: updatedLinks
+                };
+            } else {
+                return {
+                    ...prevData,
+                    [name]: value
+                };
+            }
+        })
     }
 
     const submitForm = (e) => {
@@ -92,7 +103,7 @@ const Form = () => {
                 <div className='mt-4 w-full'>
                     {formStage === 1 && (<FormStage1 skillsData={skillsData} handleSkillsChange={handleSkillsChange} />)}
                     {formStage === 2 && (<FormStage2 formData={formData} handleFormChange={handleFormChange} />)}
-                    {formStage === 3 && (<FormStage3 formData={formData} handleFormChange={handleFormChange}/>)}
+                    {formStage === 3 && (<FormStage3 formData={formData} handleFormChange={handleFormChange} />)}
                 </div>
 
                 <div className={`flex flex-row gap-8 ${formStage === 1 ? 'justify-end' : 'justify-evenly'} mt-8 w-full`}>

@@ -29,11 +29,6 @@ const handleAddFormData = async (req, res) => {
 
     //Want to check if any input from formData is not filled in
 
-    //Want to make sure this is there first time adding data, if not they want to go to update route
-    const firstTime = await Skill.findOne({ id }).exec();
-    if (firstTime) {
-        return res.sendStatus(409);
-    }
 
 
     //After passing all validation try creating mongo db document

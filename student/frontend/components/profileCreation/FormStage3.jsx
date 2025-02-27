@@ -1,10 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const FormStage3 = ({ formData, handleFormChange}) => {
+const HOURS_REGEX = /^[0-9]+$/
+
+const FormStage3 = ({ formData, handleFormChange }) => {
+    const [hoursFocus, setHoursFocus] = useState(false);
+    const [validHours, setValidHours] = useState(false);
 
     const [numOfLinks, setNumOfLinks] = useState(1);
+
+    //Validates that hours is a number
+    useEffect(() => {
+        setValidHours(HOURS_REGEX.test(formData.workedHrs));
+    }, [formData.workedHrs]);
+
+    console.log(formData)
 
     const renderLinkFields = () => {
         const linkFields = [];
@@ -13,8 +24,15 @@ const FormStage3 = ({ formData, handleFormChange}) => {
                 <div key={i} className='w-full flex flex-col items-start mb-2'>
                     <label htmlFor={i} className='text-sm mt-2 font-semibold'>Link {i + 1}</label>
                     <div className='flex flex-row w-full items-center'>
-                        <input type='text' id={i} className={`border-1 border-gray-400 p-2 rounded-lg w-full mt-1 ${i === 0 ? 'mr-0' : 'mr-5'}`}></input>
-                        { i > 0 && (
+                        <input
+                            type='text'
+                            name='links'
+                            id={i}
+                            className={`border-1 border-gray-400 p-2 rounded-lg w-full mt-1 ${i === 0 ? 'mr-0' : 'mr-5'}`}
+                            value={formData.links[i] || ''}
+                            onChange={handleFormChange}
+                        />
+                        {i > 0 && (
                             <button
                                 type='button'
                                 onClick={() => setNumOfLinks(numOfLinks - 1)}
@@ -22,7 +40,7 @@ const FormStage3 = ({ formData, handleFormChange}) => {
                                 <FontAwesomeIcon
                                     icon={faTrash}
                                     color='black'
-                                   
+
                                     className='h-[10px]'
                                 />
                             </button>
@@ -32,7 +50,7 @@ const FormStage3 = ({ formData, handleFormChange}) => {
                     {/*Only render add another link p tag for the first and second field*/}
                     {numOfLinks === 1 && i == 0
                         ? <p className='text-xs mt-2 hover:underline font-semibold' onClick={() => setNumOfLinks(numOfLinks + 1)}>+ Add Another Link</p>
-                        : numOfLinks === 2  && i == 1 
+                        : numOfLinks === 2 && i == 1
                             ? <p className='text-xs mt-2 hover:underline font-semibold' onClick={() => setNumOfLinks(numOfLinks + 1)}>+ Add Another Link</p>
                             : null
                     }
@@ -48,17 +66,48 @@ const FormStage3 = ({ formData, handleFormChange}) => {
 
             <div className='flex flex-col items-start w-full '>
                 <label htmlFor='hours' className='text-sm md:text-base '>Number of hours currently worked per week</label>
-                <input type='text' id='hours' className='border-1 border-gray-400 p-2 rounded-lg w-full mt-1' />
+                <input
+                    type='text'
+                    id='hours'
+                    name='workedHrs'
+                    className='border-1 border-gray-400 p-2 rounded-lg w-full mt-1'
+                    value={formData.workedHrs}
+                    onChange={handleFormChange}
+                    onFocus={() => setHoursFocus(true)}
+                    onBlur={() => setHoursFocus(false)}
+                />
+                {hoursFocus && !validHours && (
+                    <div className='bg-black text-white px-2 py-3 rounded-md mb-3 flex flex-row w-full mt-1 items-center'>
+                        <FontAwesomeIcon
+                            icon={faInfoCircle}
+                            className="mr-2"
+                            size="lg"
+                        />
+                        <p className='text-xs md:text-sm'> Numbers only</p>
+                    </div>
+                )}
             </div>
 
             <div className='flex flex-col items-start w-full '>
                 <label htmlFor='projects' className='text-sm md:text-base'>Projects Done? Please explain them</label>
-                <textarea id='projects' className='border-1 border-gray-400 p-2 rounded-lg w-full mt-1' />
+                <textarea
+                    id='projects'
+                    name='projects'
+                    className='border-1 border-gray-400 p-2 rounded-lg w-full mt-1'
+                    value={formData.projects}
+                    onChange={handleFormChange}
+                />
             </div>
 
             <div className='flex flex-col items-start w-full '>
                 <label htmlFor='jobs' className='text-sm md:text-base'>Jobs that you have done that will help be a team player</label>
-                <textarea id='jobs' className='border-1 border-gray-400 p-2 rounded-lg w-full mt-1' />
+                <textarea
+                    id='jobs'
+                    name='jobs'
+                    className='border-1 border-gray-400 p-2 rounded-lg w-full mt-1'
+                    value={formData.jobs}
+                    onChange={handleFormChange}
+                />
             </div>
 
             <div className='flex flex-col items-start w-full'>
@@ -67,16 +116,19 @@ const FormStage3 = ({ formData, handleFormChange}) => {
             </div>
 
             <div className='flex flex-col items-start w-full '>
-                <label htmlFor='Grad' className='text-sm md:text-base '>
+                <label htmlFor='reference' className='text-sm md:text-base '>
                     Any faculty that can speak highly of your work ethic? <br />
                     If so please provide their name and contact
                 </label>
-                <input type='text' id='Grad' className='border-1 border-gray-400 p-2 rounded-lg w-full mt-1' />
+                <input 
+                type='text' 
+                id='reference'
+                name='reference'
+                className='border-1 border-gray-400 p-2 rounded-lg w-full mt-1'
+                value={formData.reference}
+                onChange={handleFormChange} 
+                />
             </div>
-
-
-
-
 
         </div>
     )
