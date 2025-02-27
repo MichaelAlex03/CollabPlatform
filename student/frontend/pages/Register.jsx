@@ -179,7 +179,7 @@ const Register = () => {
                                     />
                                     <p className='text-xs md:text-sm'>Password must be 8-24 characters<br />
                                         At least 1 capital letter, 1 lowercase, 1 digit<br />
-                                        And 1 special character from the following(! @ # $ %)</p>
+                                        And 1 special character from the following(!@#$%)</p>
                                 </div>
                             )}
                         </div>

@@ -1,5 +1,5 @@
 const Student = require('../../model/Student');
-const Skill = require('../../model/Skill');
+const StudentProfile = require('../../model/StudentProfile');
 
 
 const handleAddFormData = async (req, res) => {
@@ -21,6 +21,7 @@ const handleAddFormData = async (req, res) => {
     } = req.body.skillsData;
 
     //Get properties from form object
+    
 
     //Want to make sure at least one field is checked. Student should have at least one skill
     if (!neural_networks && !LLM && !data_analysis && !MERN && !web_designer && !jira && !cplus && !java && !python && !sql) {
@@ -34,7 +35,7 @@ const handleAddFormData = async (req, res) => {
     //After passing all validation try creating mongo db document
     try {
 
-        await Skill.create({
+        await StudentInfo.create({
             aNum ,
             neural_networks,
             LLM,

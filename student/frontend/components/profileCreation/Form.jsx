@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import FormStage1 from './FormStage1';
 import FormStage2 from './FormStage2';
 import FormStage3 from './FormStage3';
@@ -74,7 +75,7 @@ const Form = () => {
     const deleteLink = (id) => {
         setFormData(prevData => {
             const updatedLinks = formData.links || [];
-            if (updatedLinks) {
+            if (updatedLinks.length >= id + 1) {
                 updatedLinks[id] = '';
             }
             return {
@@ -86,6 +87,8 @@ const Form = () => {
 
     const submitForm = (e) => {
         e.preventDefault();
+
+        const axiosPrivate = useAxiosPrivate(); //use private instance that sets header with access token
     }
 
 
@@ -107,7 +110,7 @@ const Form = () => {
                 onSubmit={submitForm}
             >
 
-                <h1 className='text-2xl md:text-3xl xl:text-4xl font-bold text-[#501214] text-center'> Profile Creation</h1>
+                <h1 className='text-2xl md:text-3xl xl:text-4xl font-bold text-[#501214] text-center mt-4 md:mt-0'> Profile Creation</h1>
 
                 {formStage === 1
                     ? <p className='xl:text-xl text-base mt-2 font-semibold text-center'>Select the following skills that you have</p>
