@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const FormStage3 = () => {
+const FormStage3 = ({ formData, handleFormChange}) => {
 
     const [numOfLinks, setNumOfLinks] = useState(1);
 
@@ -27,16 +27,6 @@ const FormStage3 = () => {
                                 />
                             </button>
                         )}
-                        {/* <button
-                                type='button'
-                                onClick={() => setNumOfLinks(numOfLinks - 1)}
-                            >
-                                <FontAwesomeIcon
-                                    icon={faTrash}
-                                    color='black'
-                                    size='lg'
-                                />
-                            </button> */}
                     </div>
 
                     {/*Only render add another link p tag for the first and second field*/}

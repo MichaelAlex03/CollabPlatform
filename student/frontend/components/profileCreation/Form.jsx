@@ -92,7 +92,7 @@ const Form = () => {
                 <div className='mt-4 w-full'>
                     {formStage === 1 && (<FormStage1 skillsData={skillsData} handleSkillsChange={handleSkillsChange} />)}
                     {formStage === 2 && (<FormStage2 formData={formData} handleFormChange={handleFormChange} />)}
-                    {formStage === 3 && (<FormStage3 skillsData={skillsData} />)}
+                    {formStage === 3 && (<FormStage3 formData={formData} handleFormChange={handleFormChange}/>)}
                 </div>
 
                 <div className={`flex flex-row gap-8 ${formStage === 1 ? 'justify-end' : 'justify-evenly'} mt-8 w-full`}>
