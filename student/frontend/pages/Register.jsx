@@ -4,6 +4,8 @@ import axios from '../api/axios';
 
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import LoginHeader from '../components/LoginHeader'
+import Footer from '../components/Footer';
 
 const REGISTER_URL = 'auth/register'
 
@@ -105,7 +107,7 @@ const Register = () => {
 
     return (
         <main className="font-fam text-gray-800 bg-white">
-
+            <LoginHeader />
             <div className="flex flex-col justify-center items-center h-screen bg-zinc-100 p-4 md:p-0">
                 <div className="bg-white p-8 rounded shadow-md w-full md:max-w-md m-auto ">
                     <h2 className="text-2xl text-center font-semibold mb-6">Sign Up</h2>
@@ -212,7 +214,7 @@ const Register = () => {
                     </form>
                 </div>
             </div>
-
+            <Footer />
         </main>
     );
 }

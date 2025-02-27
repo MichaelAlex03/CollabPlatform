@@ -1,6 +1,6 @@
 import React from 'react';
 import Footer from '../components/Footer';
-import LogHeader from '../components/LoginHeader.jsx';
+import LoginHeader from '../components/LoginHeader.jsx';
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
@@ -8,12 +8,12 @@ const LoginPage = () => {
 
 
     const handleSignUpClick = () => {
-        navigate('/signup');
+        navigate('/register');
     }
 
     return (
     <main class="font-fam text-gray-800 bg-white">
-        <LogHeader />
+        <LoginHeader />
         <div className="flex justify-center items-center h-screen bg-zinc-100">
             <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
                 <h2 className="text-2xl text-center font-semibold mb-6">Log In</h2>
