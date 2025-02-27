@@ -33,7 +33,9 @@ const Form = () => {
     const [formData, setFormData] = useState({
         studentName: '',
         expectedGrad: '',
+        year: '',
         degree: 'Select your degree',
+        degreeCompleted: 'Select your degree',
         department: '',
         phoneNum: '',
         workedHrs: '',

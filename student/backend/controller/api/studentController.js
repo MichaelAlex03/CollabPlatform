@@ -21,6 +21,7 @@ const handleAddFormData = async (req, res) => {
 
     //Get properties from form object
     
+    
 
     //Want to make sure at least one field is checked. Student should have at least one skill
     if (!neural_networks && !LLM && !data_analysis && !MERN && !web_designer && !jira && !cplus && !java && !python && !sql) {

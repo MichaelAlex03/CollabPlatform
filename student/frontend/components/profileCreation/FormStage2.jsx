@@ -66,7 +66,7 @@ const FormStage2 = ({ formData, handleFormChange }) => {
 
 
   //Renders dropdown of degrees
-  const renderDegrees = () => {
+  const renderDegrees = (inputName) => {
     return (
       <div className='max-h-40 overflow-y-auto w-full mt-1 border border-gray-300 rounded-lg'>
         {degrees.map((item, index) => (
@@ -76,7 +76,7 @@ const FormStage2 = ({ formData, handleFormChange }) => {
             onMouseDown={() => { //Use onMouseDown instead of OnClick or not the div will be removed from DOM before selecting is processed
               const e = {
                 target: {
-                  name: "degree",
+                  name: inputName,
                   value: item
                 }
               };
@@ -120,26 +120,69 @@ const FormStage2 = ({ formData, handleFormChange }) => {
       </div>
 
       <div className='flex flex-col items-start w-full '>
-        <label htmlFor='Grad' className='text-sm md:text-base'>Semester and Year Graduating</label>
-        <input type='date' id='Grad' className='border-1 border-gray-400 p-2 rounded-lg w-full mt-1' />
+        <label htmlFor='year' className='text-sm md:text-base'>Year</label>
+        <select
+          className="border-1 border-gray-400 p-2 rounded-lg w-full mt-1"
+          id="year"
+          name="year"
+          value={formData.year}
+          onChange={handleFormChange}
+        >
+          <option value="">Select Your Year</option>
+          <option value="freshman">Freshman</option>
+          <option value="sophmore">Sophmore</option>
+          <option value="junior">Junior</option>
+          <option value="senior">Senior</option>
+          <option value="graduate">Graduate</option>
+        </select>
       </div>
 
-      <div className='flex flex-col items-start w-full '>
-        <label htmlFor='degree' className='text-sm md:text-base'>Degree Sought</label>
-        <input
-          type='text'
-          name='degree'
-          value={formData.degree}
-          id='degree'
-          className='border-1 border-gray-400 p-2 rounded-lg w-full'
-          onFocus={() => setDegreeFocus(true)}
-          onBlur={() => setDegreeFocus(false)}
-          readOnly
-        />
-        {degreeFocus && (
-          renderDegrees()
-        )}
-      </div>
+      {/*Only render this div if gradfuate is not selected*/}
+      {formData.year !== 'graduate' && formData.year !== '' && (
+        <div className='flex flex-col items-start w-full '>
+          <label htmlFor='Grad' className='text-sm md:text-base'>Semester and Year Graduating</label>
+          <input type='date' id='Grad' className='border-1 border-gray-400 p-2 rounded-lg w-full mt-1' />
+        </div>
+      )}
+
+      {/*Only render this div if gradfuate is not selected*/}
+      {formData.year !== 'graduate' && formData.year !== '' && (
+        <div className='flex flex-col items-start w-full '>
+          <label htmlFor='degree' className='text-sm md:text-base'>Degree Sought</label>
+          <input
+            type='text'
+            name='degree'
+            value={formData.degree}
+            id='degree'
+            className='border-1 border-gray-400 p-2 rounded-lg w-full'
+            onFocus={() => setDegreeFocus(true)}
+            onBlur={() => setDegreeFocus(false)}
+            readOnly
+          />
+          {degreeFocus && (
+            renderDegrees("degree")
+          )}
+        </div>
+      )}
+
+      {formData.year === 'graduate' && (
+        <div className='flex flex-col items-start w-full '>
+          <label htmlFor='degree' className='text-sm md:text-base'>Degree Completed</label>
+          <input
+            type='text'
+            name='degree'
+            value={formData.degreeCompleted}
+            id='degree'
+            className='border-1 border-gray-400 p-2 rounded-lg w-full'
+            onFocus={() => setDegreeFocus(true)}
+            onBlur={() => setDegreeFocus(false)}
+            readOnly
+          />
+          {degreeFocus && (
+            renderDegrees("degreeCompleted")
+          )}
+        </div>
+      )}
 
       <div className='flex flex-col items-start w-full '>
         <label htmlFor='department' className='text-sm md:text-base '>Department Name</label>
