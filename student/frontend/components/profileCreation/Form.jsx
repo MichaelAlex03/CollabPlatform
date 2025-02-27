@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FormStage1 from './FormStage1';
 import FormStage2 from './FormStage2';
@@ -10,10 +10,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Form = () => {
 
     const navigate = useNavigate();
-
-    const degrees = [
-        "Computer Science"
-    ]
 
     const [formStage, setFormStage] = useState(1);
     const [errMsg, setErrMsg] = useState('');
@@ -34,7 +30,7 @@ const Form = () => {
 
     //Form data not relating to skills
     const [formData, setFormData] = useState({
-        name: '',
+        studentName: '',
         expectedGrad: '',
         degree: '',
         department: '',
@@ -43,7 +39,7 @@ const Form = () => {
         projects: '',
         jobs: '',
         links: [],
-        refernces: ''
+        refernce: ''
     });
 
     //Handles state changed for the skills sections
@@ -58,12 +54,15 @@ const Form = () => {
     //Handles state being changed for non skills section
     const handleFormChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prevData = ({
+        setFormData(prevData => ({
             ...prevData,
             [name]: value
         }))
     }
 
+    const submitForm = (e) => {
+        e.preventDefault();
+    }
 
 
     return (
@@ -79,7 +78,10 @@ const Form = () => {
                 Back To Login
             </button>
 
-            <form className="text-gray-800 bg-white flex flex-col p-10 items-center w-full md:w-1/2 lg:w-1/2 xl:w-1/3 2xl:w-1/4 m-auto">
+            <form
+                className="text-gray-800 bg-white flex flex-col p-10 items-center w-full md:w-1/2 lg:w-1/2 xl:w-1/3 2xl:w-1/4 m-auto"
+                onSubmit={submitForm}
+            >
 
                 <h1 className='text-2xl md:text-3xl xl:text-4xl font-bold text-[#501214] text-center'> Profile Creation</h1>
 
@@ -89,7 +91,7 @@ const Form = () => {
 
                 <div className='mt-4 w-full'>
                     {formStage === 1 && (<FormStage1 skillsData={skillsData} handleSkillsChange={handleSkillsChange} />)}
-                    {formStage === 2 && (<FormStage2 skillsData={skillsData} />)}
+                    {formStage === 2 && (<FormStage2 formData={formData} handleFormChange={handleFormChange} />)}
                     {formStage === 3 && (<FormStage3 skillsData={skillsData} />)}
                 </div>
 

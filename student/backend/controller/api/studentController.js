@@ -4,7 +4,7 @@ const Skill = require('../../model/Skill');
 
 const handleAddFormData = async (req, res) => {
     //Get student id
-    const { id } = req.body;
+    const { aNum: id } = req.body;
 
     //Get properties from skillsData object
     const {
@@ -20,10 +20,14 @@ const handleAddFormData = async (req, res) => {
         sql
     } = req.body.skillsData;
 
+    //Get properties from form object
+
     //Want to make sure at least one field is checked. Student should have at least one skill
     if (!neural_networks && !LLM && !data_analysis && !MERN && !web_designer && !jira && !cplus && !java && !python && !sql) {
         return res.status(400).json({ 'message': 'Please select at least one skill' });
     }
+
+    //Want to check if any input from formData is not filled in
 
     //Want to make sure this is there first time adding data, if not they want to go to update route
     const firstTime = await Skill.findOne({ id }).exec();
@@ -31,13 +35,12 @@ const handleAddFormData = async (req, res) => {
         return res.sendStatus(409);
     }
 
-    //Get properties from form object
 
     //After passing all validation try creating mongo db document
     try {
 
         await Skill.create({
-            id,
+            aNum ,
             neural_networks,
             LLM,
             data_analysis,

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const skillsSchema = new Schema({
-    id: {
+    aNum: {
         type: Number,
         required: true
     },

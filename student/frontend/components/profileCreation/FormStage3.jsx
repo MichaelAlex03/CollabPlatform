@@ -38,9 +38,14 @@ const FormStage3 = () => {
                                 />
                             </button> */}
                     </div>
-                    {numOfLinks < 3 && i < 2 && (
-                        <p className='text-xs mt-2 hover:underline font-semibold' onClick={() => setNumOfLinks(numOfLinks + 1)}>+ Add Another Link</p>
-                    )}
+
+                    {/*Only render add another link p tag for the first and second field*/}
+                    {numOfLinks === 1 && i == 0
+                        ? <p className='text-xs mt-2 hover:underline font-semibold' onClick={() => setNumOfLinks(numOfLinks + 1)}>+ Add Another Link</p>
+                        : numOfLinks === 2  && i == 1 
+                            ? <p className='text-xs mt-2 hover:underline font-semibold' onClick={() => setNumOfLinks(numOfLinks + 1)}>+ Add Another Link</p>
+                            : null
+                    }
                 </div>
             )
         }
