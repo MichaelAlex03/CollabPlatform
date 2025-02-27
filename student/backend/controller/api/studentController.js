@@ -1,4 +1,3 @@
-const Student = require('../../model/Student');
 const StudentProfile = require('../../model/StudentProfile');
 
 
@@ -29,6 +28,22 @@ const handleAddFormData = async (req, res) => {
     }
 
     //Want to check if any input from formData is not filled in
+
+
+
+
+     // Transform the skillsData object into an array of skill objects
+     const skills = [];
+     if (neural_networks) skills.push({ name: 'neural_networks', level: neural_networks });
+     if (LLM) skills.push({ name: 'LLM', level: LLM });
+     if (data_analysis) skills.push({ name: 'data_analysis', level: data_analysis });
+     if (MERN) skills.push({ name: 'MERN', level: MERN });
+     if (web_designer) skills.push({ name: 'web_designer', level: web_designer });
+     if (jira) skills.push({ name: 'jira', level: jira });
+     if (cplus) skills.push({ name: 'cplus', level: cplus });
+     if (java) skills.push({ name: 'java', level: java });
+     if (python) skills.push({ name: 'python', level: python });
+     if (sql) skills.push({ name: 'sql', level: sql });
 
 
 
