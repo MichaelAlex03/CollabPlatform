@@ -21,10 +21,10 @@ const Navbar = () => {
             <nav className="max-w-6xl mx-auto p-4 flex justify-between items-center">
                 <button onClick={() => handleClick('')} className="text-[#501214] text-xl font-semibold no-underline">Texas State University</button>
                 <div className="hidden md:flex gap-8">
-                    <button onClick={() => handleClick('overview')} className="text-gray-800 font-medium hover:text-[#501214]">Overview</button>
-                    <button onClick={handleLoginClick} className="text-gray-800 font-medium hover:text-[#501214]">Join the Platform</button>
-                    <button onClick={() => handleClick('benefits')} className="text-gray-800 font-medium hover:text-[#501214]">Benefits</button>
-                    <button onClick={() => handleClick('faq')} className="text-gray-800 font-medium hover:text-[#501214]">FAQ</button>
+                    <button onClick={() => handleClick('overview')} className="text-gray-800 font-medium hover:text-[#AC9155]">Overview</button>
+                    <button onClick={handleLoginClick} className="text-gray-800 font-medium hover:text-[#AC9155]">Join the Platform</button>
+                    <button onClick={() => handleClick('benefits')} className="text-gray-800 font-medium hover:text-[#AC9155]">Benefits</button>
+                    <button onClick={() => handleClick('faq')} className="text-gray-800 font-medium hover:text-[#AC9155]">FAQ</button>
                 </div>
             </nav>
         </header>

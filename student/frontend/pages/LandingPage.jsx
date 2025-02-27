@@ -106,6 +106,20 @@ const LandingPage = () => {
                                 <p>Some projects offer stipends, while others provide valuable experience and mentorship.</p>
                             </div>
                         </div>
+
+                        <div class="mb-6">
+                            <h3 class="text-[#501214] font-semibold mb-2">Can I use this experience on my resume or LinkedIn?</h3>
+                            <div class="bg-gray-100 p-6 rounded">
+                                <p>Absolutely! This is a great way to showcase your skills and hands-on experience.</p>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <h3 class="text-[#501214] font-semibold mb-2">What kind of skills can I gain?</h3>
+                            <div class="bg-gray-100 p-6 rounded">
+                                <p>Students develop technical, teamwork, communication, and problem-solving skills applicable to their future careers.</p>
+                            </div>
+                        </div>
                     </div>
                 </section>
             </div>
