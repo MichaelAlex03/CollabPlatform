@@ -71,6 +71,19 @@ const Form = () => {
         })
     }
 
+    const deleteLink = (id) => {
+        setFormData(prevData => {
+            const updatedLinks = formData.links || [];
+            if (updatedLinks) {
+                updatedLinks[id] = '';
+            }
+            return {
+                ...prevData,
+                links: updatedLinks
+            }
+        })
+    }
+
     const submitForm = (e) => {
         e.preventDefault();
     }
@@ -103,7 +116,7 @@ const Form = () => {
                 <div className='mt-4 w-full'>
                     {formStage === 1 && (<FormStage1 skillsData={skillsData} handleSkillsChange={handleSkillsChange} />)}
                     {formStage === 2 && (<FormStage2 formData={formData} handleFormChange={handleFormChange} />)}
-                    {formStage === 3 && (<FormStage3 formData={formData} handleFormChange={handleFormChange} />)}
+                    {formStage === 3 && (<FormStage3 formData={formData} handleFormChange={handleFormChange} deleteLink={deleteLink} />)}
                 </div>
 
                 <div className={`flex flex-row gap-8 ${formStage === 1 ? 'justify-end' : 'justify-evenly'} mt-8 w-full`}>

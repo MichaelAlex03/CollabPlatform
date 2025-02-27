@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const HOURS_REGEX = /^[0-9]+$/
 
-const FormStage3 = ({ formData, handleFormChange }) => {
+const FormStage3 = ({ formData, handleFormChange, deleteLink }) => {
     const [hoursFocus, setHoursFocus] = useState(false);
     const [validHours, setValidHours] = useState(false);
 
@@ -16,6 +16,7 @@ const FormStage3 = ({ formData, handleFormChange }) => {
     }, [formData.workedHrs]);
 
     console.log(formData)
+
 
     const renderLinkFields = () => {
         const linkFields = [];
@@ -35,7 +36,10 @@ const FormStage3 = ({ formData, handleFormChange }) => {
                         {i > 0 && (
                             <button
                                 type='button'
-                                onClick={() => setNumOfLinks(numOfLinks - 1)}
+                                onClick={() => {
+                                    deleteLink(i);
+                                    setNumOfLinks(numOfLinks - 1)
+                                }}
                             >
                                 <FontAwesomeIcon
                                     icon={faTrash}
@@ -120,13 +124,13 @@ const FormStage3 = ({ formData, handleFormChange }) => {
                     Any faculty that can speak highly of your work ethic? <br />
                     If so please provide their name and contact
                 </label>
-                <input 
-                type='text' 
-                id='reference'
-                name='reference'
-                className='border-1 border-gray-400 p-2 rounded-lg w-full mt-1'
-                value={formData.reference}
-                onChange={handleFormChange} 
+                <input
+                    type='text'
+                    id='reference'
+                    name='reference'
+                    className='border-1 border-gray-400 p-2 rounded-lg w-full mt-1'
+                    value={formData.reference}
+                    onChange={handleFormChange}
                 />
             </div>
 
