@@ -35,18 +35,8 @@ const handleAddFormData = async (req, res) => {
     //After passing all validation try creating mongo db document
     try {
 
-        await StudentInfo.create({
-            aNum ,
-            neural_networks,
-            LLM,
-            data_analysis,
-            MERN,
-            web_designer,
-            jira,
-            cplus,
-            java,
-            python,
-            sql
+        await StudentProfile.create({
+            links: req.body.skillsData
         });
         res.status(201).json({ 'message': `skills added for student with the id ${id}` });
     } catch (error) {
