@@ -33,7 +33,9 @@ const Form = () => {
     const [formData, setFormData] = useState({
         studentName: '',
         expectedGrad: '',
+        year: '',
         degree: 'Select your degree',
+        degreeCompleted: 'Select your degree',
         department: '',
         phoneNum: '',
         workedHrs: '',
@@ -63,6 +65,21 @@ const Form = () => {
                     ...prevData,
                     links: updatedLinks
                 };
+            }
+            else if (name === 'year') {
+                if (value !== 'graduate') {
+                    return {
+                        ...prevData,
+                        year: value,
+                        degreeCompleted: ''
+                    }
+                } else {
+                    return {
+                        ...prevData,
+                        year: value,
+                        degree: ''
+                    }
+                }
             } else {
                 return {
                     ...prevData,

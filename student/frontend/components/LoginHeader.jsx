@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const Login = () => {
+const LoginHeader = () => {
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -20,4 +20,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default LoginHeader
