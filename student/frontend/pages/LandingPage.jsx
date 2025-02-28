@@ -15,7 +15,7 @@ const LandingPage = () => {
             <Navbar />
 
             <div class="max-w-6xl mx-auto p-8">
-               <section id="overview" class="mb-16 p-8 bg-white rounded-md">
+               <section id="overview" class="mb-16 p-8 bg-white shadow-md rounded-md">
                     <h1 class="text-[#501214] text-4xl font-bold mb-6 pb-2 border-b-2 border-gray-300">Student Research Collaboration Platform</h1>
                     <p class="mb-4 text-lg">Join a university-wide initiative that connects students with real-world faculty projects,
                         helping you gain valuable experience and boost your career prospects.
@@ -33,31 +33,31 @@ const LandingPage = () => {
                     </ul>
                 </section>
 
-                <section class="text-center p-12 my-8 rounded-md" style={{ backgroundColor: '#501214' }}>
+                <section class="text-center p-12 my-8 shadow-md rounded-md" style={{ backgroundColor: '#501214' }}>
                     <h2 class="text-[#ffffff] font-bold text-3xl mb-4">Start Your Journey Today</h2>
                     <p class="mb-6 text-lg text-[#ffffff]">Sign up, showcase your skills, and get matched with exciting projects that align with your career goals.</p>
                         <button onClick={handleLoginClick} className="bg-[#AC9155] text-white text-x font-medium py-[15px] px-[25px] rounded-md lift-up">Join Now</button>
                 </section>
 
-                <section id="overview" class="mb-16 p-8 bg-white rounded-md">
+                <section id="overview" class="mb-16 p-8 bg-white shadow-md rounded-md">
                     <h1 class="text-[#501214] text-4xl font-bold mb-6 pb-2 border-b-2 border-gray-300">How It Works</h1>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="p-4 bg-gray-100 rounded-md lift-up">
+                        <div class="p-4 bg-stone-100 rounded-md lift-up">
                             <h2 class="text-lg font-bold mb-2">1.Create Your Profile</h2>
                             <p class="text-base">Sign up and complete your student profile, including details about your skills, interests, availability, and academic background.</p>
                         </div>
-                        <div class="p-4 bg-gray-100 rounded-md lift-up">
+                        <div class="p-4 bg-stone-100 rounded-md lift-up">
                             <h2 class="text-lg font-bold mb-2">2.Interview & Skill Assessment</h2>
                             <p class="text-base">Participate in a one-on-one interview to discuss your skills in-depth and assess your readiness for projects.</p>
                         </div>
-                        <div class="p-4 bg-gray-100 rounded-md lift-up">
+                        <div class="p-4 bg-stone-100 rounded-md lift-up">
                             <h2 class="text-lg font-bold mb-2">3.Gain Experience</h2>
                             <p class="text-base">If selected, work on real-world projects, develop new skills, collaborate with faculty, and build your resume for future opportunities.</p>
                         </div>
                     </div>
                 </section>
 
-                <section id="benefits" class="bg-white p-12 my-8 rounded-md">
+                <section id="benefits" class="bg-white my-12 p-8 shadow-md rounded-md">
                     <h2 class="text-[#501214] text-4xl font-bold mb-6 pb-2 border-b-2 border-gray-300">Is This Right for Me?</h2>
                     <div class="space-y-6">
                         <div class="mb-6 text-lg">
@@ -82,41 +82,41 @@ const LandingPage = () => {
                     </div>
                 </section>
 
-                <section id="faq" class="max-w-[1200px] mx-auto bg-white p-8 mb-16 rounded-md">
+                <section id="faq" class="max-w-[1200px] mx-auto bg-white p-8 mb-16 shadow-md rounded-md">
                     <h2 class="text-[#501214] text-4xl font-bold mb-6 pb-2 border-b-2 border-gray-300">Frequently Asked Questions</h2>
 
                     <div class="space-y-6 text-lg">
                         <div class="mb-6">
                             <h3 class="text-[#501214] font-semibold mb-2">Who can join the platform?</h3>
-                            <div class="bg-gray-100 p-6 rounded">
+                            <div class="bg-stone-100 p-6 rounded">
                                 <p>Any student from any discipline interested in gaining hands-on project experience can apply.</p>
                             </div>
                         </div>
 
                         <div class="mb-6">
                             <h3 class="text-[#501214] font-semibold mb-2">Do I need prior experience?</h3>
-                            <div class="bg-gray-100 p-6 rounded">
+                            <div class="bg-stone-100 p-6 rounded">
                                 <p>No! We provide guidance and skill development opportunities for students at all levels.</p>
                             </div>
                         </div>
                         
                         <div class="mb-6">
                             <h3 class="text-[#501214] font-semibold mb-2">Is this a paid opportunity?</h3>
-                            <div class="bg-gray-100 p-6 rounded">
+                            <div class="bg-stone-100 p-6 rounded">
                                 <p>Some projects offer stipends, while others provide valuable experience and mentorship.</p>
                             </div>
                         </div>
 
                         <div class="mb-6">
                             <h3 class="text-[#501214] font-semibold mb-2">Can I use this experience on my resume or LinkedIn?</h3>
-                            <div class="bg-gray-100 p-6 rounded">
+                            <div class="bg-stone-100 p-6 rounded">
                                 <p>Absolutely! This is a great way to showcase your skills and hands-on experience.</p>
                             </div>
                         </div>
 
                         <div class="mb-6">
                             <h3 class="text-[#501214] font-semibold mb-2">What kind of skills can I gain?</h3>
-                            <div class="bg-gray-100 p-6 rounded">
+                            <div class="bg-stone-100 p-6 rounded">
                                 <p>Students develop technical, teamwork, communication, and problem-solving skills applicable to their future careers.</p>
                             </div>
                         </div>
