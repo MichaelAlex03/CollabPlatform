@@ -7,10 +7,14 @@ import FormStage3 from './FormStage3';
 
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import useAuth from '../../hooks/useAuth';
+
+const PROFILE_URL = '/api/student'
 
 const Form = () => {
 
     const navigate = useNavigate();
+    const { auth } = useAuth()
 
     const [formStage, setFormStage] = useState(1);
     const [errMsg, setErrMsg] = useState('');
@@ -102,10 +106,45 @@ const Form = () => {
         })
     }
 
-    const submitForm = (e) => {
+    const submitForm = async (e) => {
         e.preventDefault();
 
         const axiosPrivate = useAxiosPrivate(); //use private instance that sets header with access token
+        try {
+            await axiosPrivate.post(PROFILE_URL, {
+                id: auth.id,
+                skillsData,
+                formData
+            })
+
+            //After form submits sets all field in skillData object to false to reset
+            for (const key in skillsData) {
+                setSkillsData(prevData => ({
+                    ...prevData,
+                    [key]: false
+                }));
+            };
+
+            //After form submits sets all field in formData object to false to reset
+            for (const key in formData) {
+                setFormData(prevData => {
+                    if (key === 'degree' || key === 'degreeCompleted') {
+                        return {
+                            ...prevData,
+                            [key]: 'Select your degree'
+                        }
+                    } else {
+                        return {
+                            ...prevData,
+                            [key]: ''
+                        }
+                    }
+                });
+            };
+
+        } catch (error) {
+            setErrMsg('Profile creation could not be complete');
+        }
     }
 
 
@@ -132,6 +171,8 @@ const Form = () => {
                 {formStage === 1
                     ? <p className='xl:text-xl text-base mt-2 font-semibold text-center'>Select the following skills that you have</p>
                     : <p className='xl:text-xl text-base mt-2 font-semibold text-center'>Please fill out the information below</p>}
+
+                {errMsg && <p className='text-center text-sm md:text-base font-bold text-red-500 m-2'>{errMsg}</p>}
 
                 <div className='mt-4 w-full'>
                     {formStage === 1 && (<FormStage1 skillsData={skillsData} handleSkillsChange={handleSkillsChange} />)}
