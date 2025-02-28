@@ -65,6 +65,21 @@ const Form = () => {
                     ...prevData,
                     links: updatedLinks
                 };
+            }
+            else if (name === 'year') {
+                if (value !== 'graduate') {
+                    return {
+                        ...prevData,
+                        year: value,
+                        degreeCompleted: ''
+                    }
+                } else {
+                    return {
+                        ...prevData,
+                        year: value,
+                        degree: ''
+                    }
+                }
             } else {
                 return {
                     ...prevData,

@@ -11,7 +11,6 @@ import React from 'react'
  */
 const Skills1 = ({ skillsData, handleSkillsChange }) => {
 
-    console.log(skillsData.neural_networks)
     return (
         <div className='flex flex-col gap-4'>
 

@@ -32,7 +32,7 @@ const LoginPage = () => {
                         <label><a href="#" className="text-gray-700 float-right">Forgot Password?</a></label>
                     </div>
                     <button type="submit" className="w-full bg-[#501214] hover:bg-[#7d1c1f] text-white p-2 rounded">Log In</button>
-                    <label className="block text-center text-gray-700 mt-4">Don't have an account? <button onClick={handleSignUpClick} className="text-gray-700 mt-4">Sign Up</button> </label>
+                    <label className="block text-center text-gray-700 mt-4">Don't have an account? <button type='button' onClick={handleSignUpClick} className="text-gray-700 mt-4">Sign Up</button> </label>
                 </form>
             </div>
         </div>
