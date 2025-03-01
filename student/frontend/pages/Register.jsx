@@ -94,10 +94,8 @@ const Register = () => {
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No response from server');
-            } else if (err.response?.status === 409) {
-                setErrMsg('Student already exists');
             } else if (err.response?.status === 400) {
-                setErrMsg('Invalid Id Entry. Make sure your following format A########');
+                setErrMsg('Missing form fields');
             } else {
                 setErrMsg('Registration Failed');
             }
