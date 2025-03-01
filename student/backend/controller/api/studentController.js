@@ -20,8 +20,21 @@ const handleAddFormData = async (req, res) => {
     } = req.body.skillsData;
 
     //Get properties from form object
-    
-    
+    const {
+        studentName,
+        expectedGrad,
+        year,
+        degree,
+        degreeCompleted,
+        department,
+        phoneNum,
+        workedHrs,
+        projects,
+        jobs,
+        links,
+        reference
+    } = req.body.formData
+
 
     //Want to make sure at least one field is checked. Student should have at least one skill
     if (!neural_networks && !LLM && !data_analysis && !MERN && !web_designer && !jira && !cplus && !java && !python && !sql) {
@@ -29,22 +42,35 @@ const handleAddFormData = async (req, res) => {
     }
 
     //Want to check if any input from formData is not filled in
+    if (!studentName
+        || !year
+        || (year !== 'graduate' && degree === 'Select your degree' || !expectedGrad)
+        || (year === 'graduate' && degreeCompleted === 'Select your degree')
+        || !department
+        || !phoneNum
+        || !workedHrs
+        || !projects
+        || !jobs
+        || links[0] === ''
+        || !reference
+    ) {
+        return res.status(400).json({ 'message': 'Missing form fields' });
+    }
 
 
 
-
-     // Transform the skillsData object into an array of skill objects
-     const skills = [];
-     if (neural_networks) skills.push({ name: 'neural_networks', level: neural_networks });
-     if (LLM) skills.push({ name: 'LLM', level: LLM });
-     if (data_analysis) skills.push({ name: 'data_analysis', level: data_analysis });
-     if (MERN) skills.push({ name: 'MERN', level: MERN });
-     if (web_designer) skills.push({ name: 'web_designer', level: web_designer });
-     if (jira) skills.push({ name: 'jira', level: jira });
-     if (cplus) skills.push({ name: 'cplus', level: cplus });
-     if (java) skills.push({ name: 'java', level: java });
-     if (python) skills.push({ name: 'python', level: python });
-     if (sql) skills.push({ name: 'sql', level: sql });
+    // Transform the skillsData object into an array of skill objects
+    const skills = [];
+    if (neural_networks) skills.push('neural_networks');
+    if (LLM) skills.push('LLM');
+    if (data_analysis) skills.push('data_analysis');
+    if (MERN) skills.push('MERN');
+    if (web_designer) skills.push('web_designer');
+    if (jira) skills.push('jira');
+    if (cplus) skills.push('cplus');
+    if (java) skills.push('java');
+    if (python) skills.push('python');
+    if (sql) skills.push('sql');
 
 
 
