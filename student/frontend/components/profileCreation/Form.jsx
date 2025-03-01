@@ -4,6 +4,7 @@ import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import FormStage1 from './FormStage1';
 import FormStage2 from './FormStage2';
 import FormStage3 from './FormStage3';
+import useFormRegex from '../../hooks/useFormRegex';
 
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,7 +15,7 @@ const PROFILE_URL = '/api/student'
 const Form = () => {
 
     const navigate = useNavigate();
-    const { auth } = useAuth()
+    const { auth } = useAuth();
 
     const [formStage, setFormStage] = useState(1);
     const [errMsg, setErrMsg] = useState('');
@@ -106,15 +107,24 @@ const Form = () => {
         })
     }
 
-    console.log(formData)
-    console.log(skillsData)
     const submitForm = async (e) => {
         e.preventDefault();
 
+        const regexCheck = useFormRegex(formData);
+
+        if (regexCheck[0])
+
+        if (regexCheck[0] !== "None") {
+            setErrorMsg(regexCheck[0]);
+            setFormStage(regexCheck[1]);
+            return;
+        }
+
         const axiosPrivate = useAxiosPrivate(); //use private instance that sets header with access token
+        
         try {
             await axiosPrivate.post(PROFILE_URL, {
-                id: auth.id,
+                id: 'A12345678',
                 skillsData,
                 formData
             })
@@ -143,7 +153,6 @@ const Form = () => {
                     }
                 });
             };
-
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No response from server');

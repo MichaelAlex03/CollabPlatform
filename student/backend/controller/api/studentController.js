@@ -86,7 +86,7 @@ const handleAddFormData = async (req, res) => {
             degreeCompleted,
             department,
             phoneNum,
-            workedHrs,
+            workedHrs: parseInt(workedHrs),
             projects,
             jobs,
             links,
