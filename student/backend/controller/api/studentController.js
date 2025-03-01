@@ -44,8 +44,8 @@ const handleAddFormData = async (req, res) => {
     //Want to check if any input from formData is not filled in
     if (!studentName
         || !year
-        || (year !== 'graduate' && degree === 'Select your degree' || !expectedGrad)
-        || (year === 'graduate' && degreeCompleted === 'Select your degree')
+        || (year !== 'graduate' && (degree === 'Select your degree' || !expectedGrad))
+        || (year === 'graduate' && (degreeCompleted === 'Select your degree'))
         || !department
         || !phoneNum
         || !workedHrs
