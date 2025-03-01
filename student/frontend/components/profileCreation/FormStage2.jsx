@@ -140,7 +140,7 @@ const FormStage2 = ({ formData, handleFormChange }) => {
       {/*Only render this div if gradfuate is not selected*/}
       {formData.year !== 'graduate' && formData.year !== '' && (
         <div className='flex flex-col items-start w-full '>
-          <label htmlFor='Grad' className='text-sm md:text-base'>Semester and Year Graduating</label>
+          <label htmlFor='Grad' className='text-sm md:text-base'>Expected Graduation</label>
           <input type='date' id='Grad' className='border-1 border-gray-400 p-2 rounded-lg w-full mt-1' />
         </div>
       )}

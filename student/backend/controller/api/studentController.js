@@ -78,6 +78,19 @@ const handleAddFormData = async (req, res) => {
     try {
 
         await StudentProfile.create({
+            aNum,
+            studentName,
+            expectedGrad,
+            year,
+            degree,
+            degreeCompleted,
+            department,
+            phoneNum,
+            workedHrs,
+            projects,
+            jobs,
+            links,
+            reference,
             links: req.body.skillsData
         });
         res.status(201).json({ 'message': `skills added for student with the id ${id}` });

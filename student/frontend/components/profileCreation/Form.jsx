@@ -106,6 +106,8 @@ const Form = () => {
         })
     }
 
+    console.log(formData)
+    console.log(skillsData)
     const submitForm = async (e) => {
         e.preventDefault();
 
