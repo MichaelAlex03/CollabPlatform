@@ -121,13 +121,15 @@ const Form = () => {
         }
 
         const axiosPrivate = useAxiosPrivate(); //use private instance that sets header with access token
-        
+
         try {
             await axiosPrivate.post(PROFILE_URL, {
                 id: 'A12345678',
                 skillsData,
                 formData
-            })
+            });
+
+            navigate('/');
 
             //After form submits sets all field in skillData object to false to reset
             for (const key in skillsData) {
