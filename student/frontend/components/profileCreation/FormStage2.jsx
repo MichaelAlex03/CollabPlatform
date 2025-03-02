@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-const PHONE_NUM_REGEX = /^\(?\d{3}\)?[-]?\d{3}[-]?\d{4}$/
-const NAME_REGEX = /^[A-Z][a-z]+(?:[-' ][A-Z][a-z]+)*$/
-const DEPT_REGEX = /^[A-Za-z]+(?:[ '&-][A-Za-z]+)*$/
+import { formRegex } from '../../hooks/useFormRegex';
 
 const FormStage2 = ({ formData, handleFormChange }) => {
 
@@ -51,17 +48,17 @@ const FormStage2 = ({ formData, handleFormChange }) => {
 
   //Validates phone number
   useEffect(() => {
-    setValidPhone(PHONE_NUM_REGEX.test(formData.phoneNum));
+    setValidPhone(formRegex.phoneNum.test(formData.phoneNum));
   }, [formData.phoneNum]);
 
   //Validates name
   useEffect(() => {
-    setValidName(NAME_REGEX.test(formData.studentName));
+    setValidName(formRegex.studentName.test(formData.studentName));
   }, [formData.studentName]);
 
   //Validate department name
   useEffect(() => {
-    setValidDept(DEPT_REGEX.test(formData.department));
+    setValidDept(formRegex.department.test(formData.department));
   });
 
 

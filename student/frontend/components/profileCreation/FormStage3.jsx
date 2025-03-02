@@ -1,64 +1,93 @@
 import React, { useEffect, useState } from 'react'
 import { faTrash, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-const HOURS_REGEX = /^[0-9]+$/
+import { formRegex } from '../../hooks/useFormRegex';
 
 const FormStage3 = ({ formData, handleFormChange, deleteLink }) => {
     const [hoursFocus, setHoursFocus] = useState(false);
     const [validHours, setValidHours] = useState(false);
 
+    const [linkFocus, setLinkFocus] = useState(false);
+    const [validLink, setValidLink] = useState(false);
+
     const [numOfLinks, setNumOfLinks] = useState(1);
+
+    console.log(linkFocus);
+    console.log(validLink)
 
     //Validates that hours is a number
     useEffect(() => {
-        setValidHours(HOURS_REGEX.test(formData.workedHrs));
+        setValidHours(formRegex.workedHrs.test(formData.workedHrs));
     }, [formData.workedHrs]);
 
-    console.log(formData)
+    useEffect(() => {
+        for (let i = 0; i < formData.links.length; i++) {
+            if (!formRegex.links.test(formData.links[i])) {
+                setValidLink(false);
+            } else if (i === formData.links.length - 1) {
+                setValidLink(true);
+            }
+        }
+    }, [formData.links]);
+
+    console.log(formData);
 
 
     const renderLinkFields = () => {
         const linkFields = [];
         for (let i = 0; i < numOfLinks; i++) {
             linkFields.push(
-                <div key={i} className='w-full flex flex-col items-start mb-2'>
-                    <label htmlFor={i} className='text-sm mt-2 font-semibold'>Link {i + 1}</label>
-                    <div className='flex flex-row w-full items-center'>
-                        <input
-                            type='text'
-                            name='links'
-                            id={i}
-                            className={`border-1 border-gray-400 p-2 rounded-lg w-full mt-1 ${i === 0 ? 'mr-0' : 'mr-5'}`}
-                            value={formData.links[i] || ''}
-                            onChange={handleFormChange}
-                        />
-                        {i > 0 && (
-                            <button
-                                type='button'
-                                onClick={() => {
-                                    deleteLink(i);
-                                    setNumOfLinks(numOfLinks - 1)
-                                }}
-                            >
-                                <FontAwesomeIcon
-                                    icon={faTrash}
-                                    color='black'
+                <>
+                    <div key={i} className='w-full flex flex-col items-start mb-2'>
+                        <label htmlFor={i} className='text-sm mt-2 font-semibold'>Link {i + 1}</label>
+                        <div className='flex flex-row w-full items-center'>
+                            <input
+                                type='text'
+                                name='links'
+                                id={i}
+                                className={`border-1 border-gray-400 p-2 rounded-lg w-full mt-1 ${i === 0 ? 'mr-0' : 'mr-5'}`}
+                                value={formData.links[i] || ''}
+                                onChange={handleFormChange}
+                                onFocus={() => setLinkFocus(true)}
+                                onBlur={() => setLinkFocus(false)}
+                            />
+                            {i > 0 && (
+                                <button
+                                    type='button'
+                                    onClick={() => {
+                                        deleteLink(i);
+                                        setNumOfLinks(numOfLinks - 1)
+                                    }}
+                                >
+                                    <FontAwesomeIcon
+                                        icon={faTrash}
+                                        color='black'
 
-                                    className='h-[10px]'
+                                        className='h-[10px]'
+                                    />
+                                </button>
+                            )}
+                        </div>
+
+                        {/*Only render add another link p tag for the first and second field*/}
+                        {numOfLinks === 1 && i == 0
+                            ? <p className='text-xs mt-2 hover:underline font-semibold' onClick={() => setNumOfLinks(numOfLinks + 1)}>+ Add Another Link</p>
+                            : numOfLinks === 2 && i == 1
+                                ? <p className='text-xs mt-2 hover:underline font-semibold' onClick={() => setNumOfLinks(numOfLinks + 1)}>+ Add Another Link</p>
+                                : null
+                        }
+                        {linkFocus && !validLink && (
+                            <div className='bg-black text-white px-2 py-3 rounded-md mb-3 flex flex-row w-full mt-1 items-center'>
+                                <FontAwesomeIcon
+                                    icon={faInfoCircle}
+                                    className="mr-2"
+                                    size="lg"
                                 />
-                            </button>
+                                <p className='text-xs md:text-sm'> One or more links are not correctly formatted. No fully numeric top level domains</p>
+                            </div>
                         )}
                     </div>
-
-                    {/*Only render add another link p tag for the first and second field*/}
-                    {numOfLinks === 1 && i == 0
-                        ? <p className='text-xs mt-2 hover:underline font-semibold' onClick={() => setNumOfLinks(numOfLinks + 1)}>+ Add Another Link</p>
-                        : numOfLinks === 2 && i == 1
-                            ? <p className='text-xs mt-2 hover:underline font-semibold' onClick={() => setNumOfLinks(numOfLinks + 1)}>+ Add Another Link</p>
-                            : null
-                    }
-                </div>
+                </>
             )
         }
 
