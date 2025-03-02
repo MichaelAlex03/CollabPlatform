@@ -1,9 +1,8 @@
 const StudentProfile = require('../../model/StudentProfile');
 
-
 const handleAddFormData = async (req, res) => {
     //Get student id
-    const { aNum: id } = req.body;
+    const { id } = req.body;
 
     //Get properties from skillsData object
     const {
@@ -46,26 +45,27 @@ const handleAddFormData = async (req, res) => {
         || !workedHrs
         || !projects
         || !jobs
-        || links[0] === ''
+        || !links
         || !reference
     ) {
         return res.status(400).json({ 'message': 'Missing form fields' });
     }
 
-
-
+    console.log(req.body.skillsData);
+    console.log(req.body.formData);
+    
     // Transform the skillsData object into an array of skill objects
     const skills = [];
-    if (neural_networks) skills.push('neural_networks');
-    if (LLM) skills.push('LLM');
-    if (data_analysis) skills.push('data_analysis');
-    if (MERN) skills.push('MERN');
-    if (web_designer) skills.push('web_designer');
-    if (jira) skills.push('jira');
-    if (cplus) skills.push('cplus');
-    if (java) skills.push('java');
-    if (python) skills.push('python');
-    if (sql) skills.push('sql');
+    if (neural_networks) skills.push({ name: 'neural_networks'});
+    if (LLM) skills.push({ name: 'LLM'});
+    if (data_analysis) skills.push({ name: 'data_analysis' });
+    if (MERN) skills.push({ name: 'MERN'});
+    if (web_designer) skills.push({ name: 'web_designer'});
+    if (jira) skills.push({ name: 'jira'});
+    if (cplus) skills.push({ name: 'cplus'});
+    if (java) skills.push({ name: 'java'});
+    if (python) skills.push({ name: 'python'});
+    if (sql) skills.push({ name: 'sql'});
 
 
 
@@ -73,7 +73,7 @@ const handleAddFormData = async (req, res) => {
     try {
 
         await StudentProfile.create({
-            aNum,
+            aNum: id,
             studentName,
             expectedGrad,
             year,
@@ -86,14 +86,15 @@ const handleAddFormData = async (req, res) => {
             jobs,
             links,
             reference,
-            links: req.body.skillsData
+            skills: skills
         });
         res.status(201).json({ 'message': `skills added for student with the id ${id}` });
     } catch (error) {
-        res.sendStatus(500);
+        // res.sendStatus(500);
+        console.log(error)
+        res.status(500).json({ 'message': `skills added for student with the id ${id}` });
     }
 }
-
 module.exports = {
     handleAddFormData
 }

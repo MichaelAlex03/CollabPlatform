@@ -107,21 +107,14 @@ const Form = () => {
             }
         })
     }
+    console.log(skillsData)
 
     //Need to go back and make api call use axiosPrivate once we get authContext set up
     const submitForm = async (e) => {
         e.preventDefault();
 
-        if (!formData.neural_networks
-            && !formData.LLM
-            && !formData.data_analysis
-            && !formData.MERN
-            && !formData.web_designer
-            && !formData.jira
-            && !formData.cplus
-            && !formData.java
-            && !formData.python
-            && !formData.sql) {
+        //Makes sure at least one skill is selected
+        if (Object.values(skillsData).every(skill => skill === false)) {
             setErrMsg('Select at least one skill');
             setFormStage(1);
             return;
@@ -175,6 +168,7 @@ const Form = () => {
                 setErrMsg('Form fields missing');
             } else {
                 setErrMsg('Registration Failed');
+                console.log(err)
             }
         }
     }
