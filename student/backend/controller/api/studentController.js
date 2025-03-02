@@ -36,11 +36,6 @@ const handleAddFormData = async (req, res) => {
     } = req.body.formData
 
 
-    //Want to make sure at least one field is checked. Student should have at least one skill
-    if (!neural_networks && !LLM && !data_analysis && !MERN && !web_designer && !jira && !cplus && !java && !python && !sql) {
-        return res.status(400).json({ 'message': 'Please select at least one skill' });
-    }
-
     //Want to check if any input from formData is not filled in
     if (!studentName
         || !year

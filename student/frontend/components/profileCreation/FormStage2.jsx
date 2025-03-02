@@ -189,6 +189,7 @@ const FormStage2 = ({ formData, handleFormChange }) => {
         <input
           type='text'
           id='department'
+          name='department'
           className='border-1 border-gray-400 p-2 rounded-lg w-full mt-1'
           value={formData.department}
           onChange={handleFormChange}

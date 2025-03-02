@@ -5,6 +5,7 @@ import FormStage1 from './FormStage1';
 import FormStage2 from './FormStage2';
 import FormStage3 from './FormStage3';
 import useFormRegex from '../../hooks/useFormRegex';
+import axios from '../../api/axios';
 
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -107,23 +108,35 @@ const Form = () => {
         })
     }
 
+    //Need to go back and make api call use axiosPrivate once we get authContext set up
     const submitForm = async (e) => {
         e.preventDefault();
 
+        if (!formData.neural_networks
+            && !formData.LLM
+            && !formData.data_analysis
+            && !formData.MERN
+            && !formData.web_designer
+            && !formData.jira
+            && !formData.cplus
+            && !formData.java
+            && !formData.python
+            && !formData.sql) {
+            setErrMsg('Select at least one skill');
+            setFormStage(1);
+            return;
+        }
+
         const regexCheck = useFormRegex(formData);
 
-        if (regexCheck[0])
-
         if (regexCheck[0] !== "None") {
-            setErrorMsg(regexCheck[0]);
+            setErrMsg(regexCheck[0]);
             setFormStage(regexCheck[1]);
             return;
         }
 
-        const axiosPrivate = useAxiosPrivate(); //use private instance that sets header with access token
-
         try {
-            await axiosPrivate.post(PROFILE_URL, {
+            await axios.post(PROFILE_URL, {
                 id: 'A12345678',
                 skillsData,
                 formData
