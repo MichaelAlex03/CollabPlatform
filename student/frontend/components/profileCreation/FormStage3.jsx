@@ -22,8 +22,9 @@ const FormStage3 = ({ formData, handleFormChange, deleteLink }) => {
 
     useEffect(() => {
         for (let i = 0; i < formData.links.length; i++) {
-            if (!formRegex.links.test(formData.links[i])) {
+            if (!formRegex.links.test(formData.links[i]) || formData.links[i] === '') {
                 setValidLink(false);
+                return;
             } else if (i === formData.links.length - 1) {
                 setValidLink(true);
             }
@@ -76,7 +77,7 @@ const FormStage3 = ({ formData, handleFormChange, deleteLink }) => {
                                 ? <p className='text-xs mt-2 hover:underline font-semibold' onClick={() => setNumOfLinks(numOfLinks + 1)}>+ Add Another Link</p>
                                 : null
                         }
-                        {linkFocus && !validLink && (
+                        {linkFocus && !validLink && formData.links[0] && formData.links[1] && formData.links[2](
                             <div className='bg-black text-white px-2 py-3 rounded-md mb-3 flex flex-row w-full mt-1 items-center'>
                                 <FontAwesomeIcon
                                     icon={faInfoCircle}
