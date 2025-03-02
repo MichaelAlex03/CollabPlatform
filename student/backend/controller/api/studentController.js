@@ -90,9 +90,8 @@ const handleAddFormData = async (req, res) => {
         });
         res.status(201).json({ 'message': `skills added for student with the id ${id}` });
     } catch (error) {
-        // res.sendStatus(500);
+        res.sendStatus(500);
         console.log(error)
-        res.status(500).json({ 'message': `skills added for student with the id ${id}` });
     }
 }
 module.exports = {
