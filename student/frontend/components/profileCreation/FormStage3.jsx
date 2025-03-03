@@ -85,7 +85,7 @@ const FormStage3 = ({ formData, handleFormChange, deleteLink }) => {
                                     className="mr-2"
                                     size="lg"
                                 />
-                                <p className='text-xs md:text-sm'> One or more links are not correctly formatted. No fully numeric top level domains</p>
+                                <p className='text-xs md:text-sm'> One or more links are not correctly formatted. <br/> Ex. test.com, www.test, etc...</p>
                             </div>
                             : numOfLinks === 2 && i === 1 && linkFocus && !validLink
                                 ? <div className='bg-black text-white px-2 py-3 rounded-md mb-3 flex flex-row w-full mt-1 items-center'>
@@ -94,7 +94,7 @@ const FormStage3 = ({ formData, handleFormChange, deleteLink }) => {
                                         className="mr-2"
                                         size="lg"
                                     />
-                                    <p className='text-xs md:text-sm'> One or more links are not correctly formatted. No fully numeric top level domains</p>
+                                    <p className='text-xs md:text-sm'> One or more links are not correctly formatted. Ex. test.com, www.test, etc...</p>
                                 </div>
                                 : numOfLinks === 3 && i === 2 && linkFocus && !validLink ?
                                     <div className='bg-black text-white px-2 py-3 rounded-md mb-3 flex flex-row w-full mt-2 items-center'>
@@ -103,7 +103,7 @@ const FormStage3 = ({ formData, handleFormChange, deleteLink }) => {
                                             className="mr-2"
                                             size="lg"
                                         />
-                                        <p className='text-xs md:text-sm'> One or more links are not correctly formatted. No fully numeric top level domains</p>
+                                        <p className='text-xs md:text-sm'> One or more links are not correctly formatted. Ex. test.com, www.test, etc...</p>
                                     </div> : null
                         }
                     </div>
@@ -129,7 +129,7 @@ const FormStage3 = ({ formData, handleFormChange, deleteLink }) => {
                     onFocus={() => setHoursFocus(true)}
                     onBlur={() => setHoursFocus(false)}
                 />
-                {hoursFocus && !validHours && (
+                {/* {hoursFocus && !validHours && (
                     <div className='bg-black text-white px-2 py-3 rounded-md mb-3 flex flex-row w-full mt-1 items-center'>
                         <FontAwesomeIcon
                             icon={faInfoCircle}
@@ -138,7 +138,7 @@ const FormStage3 = ({ formData, handleFormChange, deleteLink }) => {
                         />
                         <p className='text-xs md:text-sm'> Numbers only</p>
                     </div>
-                )}
+                )} */}
             </div>
 
             <div className='flex flex-col items-start w-full '>
@@ -181,6 +181,16 @@ const FormStage3 = ({ formData, handleFormChange, deleteLink }) => {
                     value={formData.reference}
                     onChange={handleFormChange}
                 />
+
+                {/* <p className='text-sm mt-2 font-semibold'>Name</p>
+                <input
+                    type='text'
+                    id='reference'
+                    name='reference'
+                    className='border-1 border-gray-400 p-2 rounded-lg w-full mt-1'
+                    value={formData.reference}
+                    onChange={handleFormChange}
+                /> */}
             </div>
 
         </div>

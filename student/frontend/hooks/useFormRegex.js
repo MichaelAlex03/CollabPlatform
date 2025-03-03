@@ -1,5 +1,5 @@
 export const formRegex = {
-    phoneNum: /^\(?\d{3}\)?[-]?\d{3}[-]?\d{4}$/,
+    phoneNum: /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/,
     studentName: /^[A-Z][a-z]+(?:[-' ][A-Z][a-z]+)*$/,
     department: /^[A-Za-z]+(?:[ '&-][A-Za-z]+)*$/,
     workedHrs: /^[0-9]+$/,

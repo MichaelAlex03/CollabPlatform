@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const handleRefreshToken = async (req, res) => {
 
     const cookies = req.cookies;
+    console.log(req);
     // Check if there is a property of the cookie called jwt
     // Optional chaining (?.) allows reading the value of `cookies.jwt` without causing an error if `cookies` is undefined or null
     if (!cookies?.jwt) {

@@ -13,17 +13,19 @@ const app = express();
 
 connectDB();
 
+//Allows for credentials to be sent back (Cookies)
+app.use(credentials);
+
 //Verifies request is coming from accepted origin
 app.use(cors(corsOptions));
 
-//Allows for credentials to be sent back (Cookies)
-app.use(credentials);
+
+//Parses cookies from request
+app.use(cookieParser());
 
 //Parses request body into JSON for every request
 app.use(express.json());
 
-//Parses cookies from request
-app.use(cookieParser());
 
 //Public endpoints requiring no authentication
 app.use('/auth/login', require('./routes/auth/login'));

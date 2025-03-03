@@ -224,17 +224,19 @@ const FormStage2 = ({ formData, handleFormChange }) => {
           onFocus={() => setPhoneFocus(true)}
           onBlur={() => setPhoneFocus(false)}
         />
-        {phoneFocus && !validPhone && (
+        {phoneFocus && !validPhone && formData.phoneNum && (
           <div className='bg-black text-white px-2 py-3 rounded-md mb-3 flex flex-row w-full mt-1'>
             <FontAwesomeIcon
               icon={faInfoCircle}
               className="mr-2"
               size="lg"
             />
-            <p className='text-xs md:text-sm'>Invalid phone number format</p>
+            <p className='text-xs md:text-sm'>Invalid phone number format. Must be in format XXX-XXX-XXXX</p>
           </div>
         )}
       </div>
+
+      
     </div>
   )
 }

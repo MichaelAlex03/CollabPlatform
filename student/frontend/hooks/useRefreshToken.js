@@ -4,17 +4,21 @@ import useAuth from './useAuth';
 const REFRESH_URL = '/auth/refresh'
 
 const useRefreshToken = () => {
-  
+
     const { setAuth } = useAuth();
 
     const refresh = async () => {
-        const response = await axios.get(REFRESH_URL, {
-            withCredentials: true
-        });
-        setAuth(prevAuth => ({
-            ...prevAuth,
-            accessToken: response.data.accessToken,
-        }))
+        try {
+            const response = await axios.get(REFRESH_URL, {
+                withCredentials: true
+            });
+            setAuth(prevAuth => ({
+                ...prevAuth,
+                accessToken: response.data.accessToken,
+            }));
+        } catch (error) {
+            console.log(error)
+        }
 
         return response.data.accessToken;
     }

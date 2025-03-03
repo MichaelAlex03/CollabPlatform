@@ -28,11 +28,12 @@ const handleLogin = async (req, res) => {
             { expiresIn: '1d' }
         );
 
-        foundStudent.refreshToken = refreshToken
-        await foundStudent.save()
+        foundStudent.refreshToken = refreshToken;
+        await foundStudent.save();
 
         res.cookie('jwt', refreshToken, { httpOnly: true, sameSite: 'None', secure: true, maxAge: 24 * 60 * 60 * 1000 });
         res.status(200).json({ aNum: foundStudent.id, accessToken, firstTime: foundStudent.firstTime });
+        console.log(res);
 
 
     } else {

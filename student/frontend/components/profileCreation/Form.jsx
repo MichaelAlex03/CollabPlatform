@@ -18,7 +18,7 @@ const Form = () => {
     const axiosPrivate = useAxiosPrivate();
     
     const navigate = useNavigate();
-    const { setAuth } = useAuth();
+    const { setAuth, auth } = useAuth();
 
     const [formStage, setFormStage] = useState(1);
     const [errMsg, setErrMsg] = useState('');
@@ -158,7 +158,7 @@ const Form = () => {
 
         try {
             const response = await axiosPrivate.post(PROFILE_URL, {
-                id: 'A12345678',
+                id: auth.aNum,
                 skillsData,
                 formData
             });
