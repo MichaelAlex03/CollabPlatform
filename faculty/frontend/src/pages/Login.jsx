@@ -31,7 +31,7 @@ const LoginPage = () => {
             if (!err?.response) {
                 setErrMsg('No response from server');
             } else if (err.response?.status === 401) {
-                setErrMsg('Username and/or Password is wrong');
+                setErrMsg('Email and/or Password is wrong');
             } else if (err.response?.status === 400) {
                 setErrMsg('Email and Password required');
             } else {

@@ -7,7 +7,7 @@ import axios from '../../api/axios';
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const REGISTER_URL = 'auth/register'
+const REGISTER_URL = '/auth/register'
 
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@txstate\.edu$/;
