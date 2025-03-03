@@ -8,7 +8,7 @@ const FormStage3 = ({ formData, handleFormChange, deleteLink }) => {
     const [validHours, setValidHours] = useState(false);
 
     const [linkFocus, setLinkFocus] = useState(false);
-    const [validLink, setValidLink] = useState(false);
+    const [validLink, setValidLink] = useState(true);
 
     const [numOfLinks, setNumOfLinks] = useState(1);
 
