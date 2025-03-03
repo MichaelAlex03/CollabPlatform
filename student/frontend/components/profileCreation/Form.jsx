@@ -148,7 +148,6 @@ const Form = () => {
         }
 
 
-
         try {
             const response = await axiosPrivate.post(PROFILE_URL, {
                 id: 'A12345678',
@@ -161,7 +160,7 @@ const Form = () => {
                 firstTime: response.data.firstTime
             }));
 
-            navigate('/dashboard');
+            isSubmitted(true);
 
             //After form submits sets all field in skillData object to false to reset
             for (const key in skillsData) {
@@ -198,6 +197,13 @@ const Form = () => {
             }
         }
     }
+
+    useEffect(() => {
+        if(isSubmitted){
+            navigate('/dashboard');
+        }
+
+    }, [isSubmitted]);
 
 
     return (
