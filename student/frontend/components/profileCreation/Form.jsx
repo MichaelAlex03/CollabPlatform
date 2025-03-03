@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+// import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import FormStage1 from './FormStage1';
 import FormStage2 from './FormStage2';
 import FormStage3 from './FormStage3';
@@ -15,7 +15,7 @@ const PROFILE_URL = '/api/student'
 const LOGOUT_URL = '/auth/logout'
 
 const Form = () => {
-    const axiosPrivate = useAxiosPrivate();
+    // const axiosPrivate = useAxiosPrivate();
     
     const navigate = useNavigate();
     const { setAuth } = useAuth();
@@ -157,7 +157,7 @@ const Form = () => {
 
 
         try {
-            const response = await axiosPrivate.post(PROFILE_URL, {
+            const response = await axios.post(PROFILE_URL, {
                 id: 'A12345678',
                 skillsData,
                 formData
