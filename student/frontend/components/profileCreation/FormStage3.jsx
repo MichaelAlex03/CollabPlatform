@@ -20,18 +20,18 @@ const FormStage3 = ({ formData, handleFormChange, deleteLink }) => {
         setValidHours(formRegex.workedHrs.test(formData.workedHrs));
     }, [formData.workedHrs]);
 
+    //Validate links
     useEffect(() => {
         for (let i = 0; i < formData.links.length; i++) {
-            if (!formRegex.links.test(formData.links[i]) || formData.links[i] === '') {
+            if (!formRegex.links.test(formData.links[i]) && formData.links[i] !== '') {
                 setValidLink(false);
                 return;
             } else if (i === formData.links.length - 1) {
                 setValidLink(true);
             }
         }
-    }, [formData.links]);
+    }, [formData.links[0], formData.links[1], formData.links[2]]);
 
-    console.log(formData);
 
 
     const renderLinkFields = () => {
@@ -71,13 +71,14 @@ const FormStage3 = ({ formData, handleFormChange, deleteLink }) => {
                         </div>
 
                         {/*Only render add another link p tag for the first and second field*/}
-                        {numOfLinks === 1 && i == 0
+                        {numOfLinks === 1 && i === 0
                             ? <p className='text-xs mt-2 hover:underline font-semibold' onClick={() => setNumOfLinks(numOfLinks + 1)}>+ Add Another Link</p>
-                            : numOfLinks === 2 && i == 1
+                            : numOfLinks === 2 && i === 1
                                 ? <p className='text-xs mt-2 hover:underline font-semibold' onClick={() => setNumOfLinks(numOfLinks + 1)}>+ Add Another Link</p>
                                 : null
                         }
-                        {linkFocus && !validLink && formData.links[0] && formData.links[1] && formData.links[2](
+                        {numOfLinks === 1 && i === 0 && linkFocus && !validLink
+                            ?
                             <div className='bg-black text-white px-2 py-3 rounded-md mb-3 flex flex-row w-full mt-1 items-center'>
                                 <FontAwesomeIcon
                                     icon={faInfoCircle}
@@ -86,7 +87,25 @@ const FormStage3 = ({ formData, handleFormChange, deleteLink }) => {
                                 />
                                 <p className='text-xs md:text-sm'> One or more links are not correctly formatted. No fully numeric top level domains</p>
                             </div>
-                        )}
+                            : numOfLinks === 2 && i === 1 && linkFocus && !validLink
+                                ? <div className='bg-black text-white px-2 py-3 rounded-md mb-3 flex flex-row w-full mt-1 items-center'>
+                                    <FontAwesomeIcon
+                                        icon={faInfoCircle}
+                                        className="mr-2"
+                                        size="lg"
+                                    />
+                                    <p className='text-xs md:text-sm'> One or more links are not correctly formatted. No fully numeric top level domains</p>
+                                </div>
+                                : numOfLinks === 3 && i === 2 && linkFocus && !validLink ?
+                                    <div className='bg-black text-white px-2 py-3 rounded-md mb-3 flex flex-row w-full mt-2 items-center'>
+                                        <FontAwesomeIcon
+                                            icon={faInfoCircle}
+                                            className="mr-2"
+                                            size="lg"
+                                        />
+                                        <p className='text-xs md:text-sm'> One or more links are not correctly formatted. No fully numeric top level domains</p>
+                                    </div> : null
+                        }
                     </div>
                 </>
             )

@@ -3,7 +3,7 @@ export const formRegex = {
     studentName: /^[A-Z][a-z]+(?:[-' ][A-Z][a-z]+)*$/,
     department: /^[A-Za-z]+(?:[ '&-][A-Za-z]+)*$/,
     workedHrs: /^[0-9]+$/,
-    links: /^(https?:\/\/)?(www\.)?([a-zA-Z0-9][-a-zA-Z0-9]*[a-zA-Z0-9]\.)+([a-zA-Z0-9]*[a-zA-Z][a-zA-Z0-9]*)(\/[-a-zA-Z0-9@:%_\+.~#?&\/=]*)?$/
+    links: /^(https?:\/\/)?(www\.)?([a-zA-Z0-9][-a-zA-Z0-9]*[a-zA-Z0-9]\.)+([a-zA-Z0-9]*[a-zA-Z][a-zA-Z0-9]{1,})(\/[-a-zA-Z0-9@:%_\+.~#?&\/=]*)?$/
 }
 
 
@@ -28,12 +28,33 @@ const useFormRegex = (formData) => {
 
     //test each link
     for (let i = 0; i < formData.links.length; i++){
-        if (!formRegex.links.test(formData.links[i])){
-            return ["Invalid link format", 3]
+        if(formData.links[i] !== ''){
+            if (!formRegex.links.test(formData.links[i])){
+                return ["Invalid link format", 3]
+            }
         }
     }
    
     return ["None", 3];
 };
+
+export const formNullCheck = (formData) => {
+    if (!formData.studentName
+        || !formData.year
+        || (formData.year !== 'graduate' && (formData.degree === 'Select your degree' || !formData.expectedGrad))
+        || (formData.year === 'graduate' && (formData.degreeCompleted === 'Select your degree'))
+        || !formData.department
+        || !formData.phoneNum
+        || !formData.workedHrs
+        || !formData.projects
+        || !formData.jobs
+        || !formData.links
+        || !formData.reference
+    ) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 export default useFormRegex;
