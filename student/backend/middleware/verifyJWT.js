@@ -9,7 +9,7 @@ const verifyJWT = (req, res, next) => {
         process.env.ACCESS_TOKEN_SECRET,
         (err, decode) => {
             if (err) return res.sendStatus(403); //if there was an error validating token the error object will be defined so an error was encountered
-            req.user = decode.username;
+            req.user = decode.email;
             next();
         }
     )
