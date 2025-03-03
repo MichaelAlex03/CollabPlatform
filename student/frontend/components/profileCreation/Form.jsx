@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import FormStage1 from './FormStage1';
 import FormStage2 from './FormStage2';
 import FormStage3 from './FormStage3';
-import useFormRegex, {formNullCheck} from '../../hooks/useFormRegex';
-import axios from '../../api/axios';
+import useFormRegex, { formNullCheck } from '../../hooks/useFormRegex';
 
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,12 +13,16 @@ import useAuth from '../../hooks/useAuth';
 const PROFILE_URL = '/api/student'
 
 const Form = () => {
-
+    const axiosPrivate = useAxiosPrivate();
+    
     const navigate = useNavigate();
     const { setAuth } = useAuth();
 
     const [formStage, setFormStage] = useState(1);
     const [errMsg, setErrMsg] = useState('');
+
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
 
     //Skills data from checkboxes
     const [skillsData, setSkillsData] = useState({
@@ -97,17 +100,25 @@ const Form = () => {
 
     const deleteLink = (id) => {
         setFormData(prevData => {
-            const updatedLinks = formData.links || [];
-            if (updatedLinks.length >= id + 1) {
-                updatedLinks[id] = '';
-            }
+            const updatedLinks = formData.links;
+            updatedLinks[id] = '';
             return {
                 ...prevData,
                 links: updatedLinks
             }
         })
     }
-    console.log(formData)
+
+    const handleLogout = () => {
+
+    }
+
+    //useEffect ensuring auth state gets set before going back to dashboard to correctly render other components
+    useEffect(() => {
+        if (isSubmitted){
+            navigate('/dashboard');
+        }
+    }, [isSubmitted]);
 
     //Need to go back and make api call use axiosPrivate once we get authContext set up
     const submitForm = async (e) => {
@@ -122,22 +133,24 @@ const Form = () => {
 
         //Check if any non skills data is null
         const nullCheck = formNullCheck(formData)
-        if(nullCheck) {
+        if (nullCheck) {
             setErrMsg("Missing required fields");
             setFormStage(2);
             return;
         }
 
         const regexCheck = useFormRegex(formData);
-        
+
         if (regexCheck[0] !== "None") {
             setErrMsg(regexCheck[0]);
             setFormStage(regexCheck[1]);
             return;
         }
 
+
+
         try {
-            const response = await axios.post(PROFILE_URL, {
+            const response = await axiosPrivate.post(PROFILE_URL, {
                 id: 'A12345678',
                 skillsData,
                 formData

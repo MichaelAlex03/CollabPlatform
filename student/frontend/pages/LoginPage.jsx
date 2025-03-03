@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Footer from '../components/Footer';
 import LoginHeader from '../components/LoginHeader.jsx';
 import { useNavigate } from 'react-router-dom';
@@ -16,6 +16,14 @@ const LoginPage = () => {
     const [pass, setPass] = useState('');
 
     const [errMsg, setErrMsg] = useState('');
+
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
+    useEffect(() => {
+        if (isSubmitted) {
+            navigate('/dashboard');
+        }
+    }, [isSubmitted]);
 
 
     const handleSignUpClick = () => {
@@ -37,10 +45,12 @@ const LoginPage = () => {
                 accessToken: response.data.accessToken,
                 firstTime: response.data.firstTime,
             });
-            navigate('/dashboard');
+
+            setIsSubmitted(true);
+
             setEmail('');
             setPass('');
-            
+
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No response from server');
