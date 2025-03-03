@@ -191,7 +191,7 @@ const Form = () => {
         <>
             <button
                 className='absolute top-4 left-4 font-bold text-sm md:text-base xl:text-lg'
-                onClick={() => navigate('/register')}
+                onClick={() => navigate('/login')}
             >
                 <FontAwesomeIcon
                     icon={faArrowLeft}
