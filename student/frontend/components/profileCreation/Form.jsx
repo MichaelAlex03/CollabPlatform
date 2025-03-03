@@ -160,7 +160,7 @@ const Form = () => {
                 firstTime: response.data.firstTime
             }));
 
-            isSubmitted(true);
+            setIsSubmitted(true);
 
             //After form submits sets all field in skillData object to false to reset
             for (const key in skillsData) {
