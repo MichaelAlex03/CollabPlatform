@@ -33,23 +33,7 @@ const handleAddFormData = async (req, res) => {
         links,
         reference
     } = req.body.formData
-
-
-    //Want to check if any input from formData is not filled in
-    if (!studentName
-        || !year
-        || (year !== 'graduate' && (degree === 'Select your degree' || !expectedGrad))
-        || (year === 'graduate' && (degreeCompleted === 'Select your degree'))
-        || !department
-        || !phoneNum
-        || !workedHrs
-        || !projects
-        || !jobs
-        || !links
-        || !reference
-    ) {
-        return res.status(400).json({ 'message': 'Missing form fields' });
-    }
+    
 
     console.log(req.body.skillsData);
     console.log(req.body.formData);
@@ -66,6 +50,14 @@ const handleAddFormData = async (req, res) => {
     if (java) skills.push({ name: 'java'});
     if (python) skills.push({ name: 'python'});
     if (sql) skills.push({ name: 'sql'});
+
+    //Check if any of the links are empty
+    const validLinks = []
+    for (let i = 0; i < links.length; i++){
+        if(links[i] !== ''){
+            validLinks[i] = links[i]
+        }
+    }
 
 
 
@@ -84,9 +76,9 @@ const handleAddFormData = async (req, res) => {
             workedHrs: parseInt(workedHrs),
             projects,
             jobs,
-            links,
+            links: validLinks,
             reference,
-            skills: skills
+            skills,
         });
         res.status(201).json({ 'message': `skills added for student with the id ${id}` });
     } catch (error) {
