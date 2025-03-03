@@ -6,7 +6,7 @@ const verifyJWT = (req, res, next) => {
     const token = authHeader.split(' ')[1]
     jwt.verify(
         token,
-        ACCESS_TOKEN_SECRET,
+        process.env.ACCESS_TOKEN_SECRET,
         (err, decode) => {
             if (err) return res.sendStatus(403); //if there was an error validating token the error object will be defined so an error was encountered
             req.user = decode.username;

@@ -17,13 +17,13 @@ const handleLogin = async (req, res) => {
     if (match) {
         //create JWT tokens
         const accessToken = jwt.sign(
-            { username: foundStudent.username },
+            { email: foundStudent.email },
             process.env.ACCESS_TOKEN_SECRET,
             { expiresIn: '30s' }
         );
 
         const refreshToken = jwt.sign(
-            { username: foundStudent.username },
+            { email: foundStudent.email },
             process.env.REFRESH_TOKEN_SECRET,
             { expiresIn: '1d' }
         );

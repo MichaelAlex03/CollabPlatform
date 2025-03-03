@@ -20,15 +20,14 @@ const handleRefreshToken = async (req, res) => {
 
     jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, decoded) => {
         //checks if the user found with the refreshToken matches the user in the payload of the JWT token
-        if (err || user.username !== decoded.username) {
+        if (err || user.email !== decoded.email) {
             return res.status(403);
         }
 
         //If refresh token is valid create a new access token and send it back to the front end
-        const accessToken = jwt.sign({ username: user.username }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '1d' })
+        const accessToken = jwt.sign({ email: user.email }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30s' })
         return res.status(200).json(
             {
-                username: user.username,
                 accessToken
             }
         );
