@@ -13,12 +13,10 @@ const Dashboard = () => {
 
   const [errMsg, setErrMsg] = useState('');
 
-  const [isLoggedOut, setIsLoggedOut] = useState(false);
-
   const handleLogout = async () => {
     try {
       await axios.get(LOGOUT_URL);
-      setIsLoggedOut(true);
+      navigate('/login');
       setAuth({});
     } catch (err) {
       setErrMsg('Error logging out');
@@ -26,14 +24,6 @@ const Dashboard = () => {
     }
   }
 
-
-  useEffect(() => {
-    if (isLoggedOut) {
-      navigate('/login');
-    }
-
-  }, [isLoggedOut]);
-  console.log(auth?.accessToken)
 
   return (
     <div><button
@@ -45,7 +35,7 @@ const Dashboard = () => {
         className='mr-2'
       />
       Back To Login
-    </button></div>
+    </button>Testtt</div>
   )
 }
 

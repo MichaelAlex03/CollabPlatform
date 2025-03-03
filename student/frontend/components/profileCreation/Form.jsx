@@ -24,7 +24,6 @@ const Form = () => {
     const [errMsg, setErrMsg] = useState('');
 
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const [isLoggedOut, setIsLoggedOut] = useState(false);
 
 
     //Skills data from checkboxes
@@ -115,7 +114,7 @@ const Form = () => {
     const handleLogout = async () => {
         try {
             await axios.get(LOGOUT_URL);
-            setIsLoggedOut(true);
+            navigate('/login')
             setAuth({});
         } catch (err) {
             setErrMsg('Error logging out');
@@ -124,7 +123,7 @@ const Form = () => {
 
     //useEffect ensuring auth state gets set before going back to dashboard to correctly render other components
     useEffect(() => {
-        if (isSubmitted){
+        if(isSubmitted){
             navigate('/dashboard');
         }
     }, [isSubmitted]);
@@ -206,15 +205,6 @@ const Form = () => {
             }
         }
     }
-
-    useEffect(() => {
-        if(isSubmitted){
-            navigate('/dashboard');
-        } else if (isLoggedOut){
-            navigate('/login');
-        }
-
-    }, [isSubmitted, isLoggedOut]);
 
 
     return (
