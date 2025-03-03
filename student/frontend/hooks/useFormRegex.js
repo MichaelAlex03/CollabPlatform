@@ -26,7 +26,7 @@ const useFormRegex = (formData) => {
         return ["Worked hours must be numbers only", 3];
     }
 
-    //test each link
+    //test each link only if it is not empty
     for (let i = 0; i < formData.links.length; i++){
         if(formData.links[i] !== ''){
             if (!formRegex.links.test(formData.links[i])){
@@ -38,6 +38,7 @@ const useFormRegex = (formData) => {
     return ["None", 3];
 };
 
+//Check if form is missing any required fields
 export const formNullCheck = (formData) => {
     if (!formData.studentName
         || !formData.year

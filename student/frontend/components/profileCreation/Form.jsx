@@ -16,7 +16,7 @@ const PROFILE_URL = '/api/student'
 const Form = () => {
 
     const navigate = useNavigate();
-    const { auth } = useAuth();
+    const { setAuth } = useAuth();
 
     const [formStage, setFormStage] = useState(1);
     const [errMsg, setErrMsg] = useState('');
@@ -137,13 +137,18 @@ const Form = () => {
         }
 
         try {
-            await axios.post(PROFILE_URL, {
+            const response = await axios.post(PROFILE_URL, {
                 id: 'A12345678',
                 skillsData,
                 formData
             });
 
-            navigate('/');
+            setAuth(prevAuth => ({
+                ...prevAuth,
+                firstTime: response.data.firstTime
+            }));
+
+            navigate('/dashboard');
 
             //After form submits sets all field in skillData object to false to reset
             for (const key in skillsData) {

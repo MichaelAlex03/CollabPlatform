@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LoginHeader from '../components/LoginHeader'
 import Footer from '../components/Footer';
 
-const REGISTER_URL = 'auth/register'
+const REGISTER_URL = '/auth/register'
 
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@txstate\.edu$/;
@@ -84,7 +84,7 @@ const Register = () => {
                 email
             })
 
-            navigate('/');
+            navigate('/login');
 
             //Set all fields back to empty
             setName('');

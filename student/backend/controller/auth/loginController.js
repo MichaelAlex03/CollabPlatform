@@ -3,13 +3,13 @@ const bcrypt = require('bcrypt');
 const Student = require('../../model/Student')
 
 const handleLogin = async (req, res) => {
-    const { id, pass } = req.body;
+    const { email, pass } = req.body;
 
-    //If id or password field on client side not filled out return an error
-    if (!id || !pass) return res.status(400).json({ message: 'netId and password required' });
+    //If email or password field on client side not filled out return an error
+    if (!email || !pass) return res.sendStatus(400);
 
-    //Checks to see if the id entered in matches one in the DB
-    const foundStudent = await Student.findOne({ id }).exec();
+    //Checks to see if the email entered in matches one in the DB
+    const foundStudent = await Student.findOne({ email }).exec();
     if (!foundStudent) return res.sendStatus(401);
 
     //Compares the hashed value of the given password to the password in the DB that is already hashed
@@ -32,7 +32,7 @@ const handleLogin = async (req, res) => {
         await foundStudent.save()
 
         res.cookie('jwt', refreshToken, { httpOnly: true, sameSite: 'None', secure: true, maxAge: 24 * 60 * 60 * 1000 });
-        res.status(200).json({ accessToken });
+        res.status(200).json({ aNum: foundStudent.id, accessToken, firstTime: foundStudent.firstTime });
 
 
     } else {

@@ -1,4 +1,5 @@
 const StudentProfile = require('../../model/StudentProfile');
+const Student = require('../../model/Student');
 
 const handleAddFormData = async (req, res) => {
     //Get student id
@@ -80,7 +81,14 @@ const handleAddFormData = async (req, res) => {
             reference,
             skills,
         });
-        res.status(201).json({ 'message': `skills added for student with the id ${id}` });
+
+
+        //set first time property for student to false so they are not prompted to enter form data again
+        const student = await Student.findOne({ id }).exec();
+        student.firstTime = false;
+        await student.save();
+
+        res.status(201).json({ 'message': `skills added for student with the id ${id}`, firstTime: student.firstTime });
     } catch (error) {
         res.sendStatus(500);
         console.log(error)
