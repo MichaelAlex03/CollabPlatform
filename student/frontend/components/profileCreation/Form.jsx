@@ -9,8 +9,10 @@ import useFormRegex, { formNullCheck } from '../../hooks/useFormRegex';
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useAuth from '../../hooks/useAuth';
+import axios from '../../api/axios';
 
 const PROFILE_URL = '/api/student'
+const LOGOUT_URL = '/auth/logout'
 
 const Form = () => {
     const axiosPrivate = useAxiosPrivate();
@@ -22,6 +24,7 @@ const Form = () => {
     const [errMsg, setErrMsg] = useState('');
 
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isLoggedOut, setIsLoggedOut] = useState(false);
 
 
     //Skills data from checkboxes
@@ -109,8 +112,14 @@ const Form = () => {
         })
     }
 
-    const handleLogout = () => {
-
+    const handleLogout = async () => {
+        try {
+            await axios.get(LOGOUT_URL);
+            setIsLoggedOut(true);
+            setAuth({});
+        } catch (err) {
+            setErrMsg('Error logging out');
+        }
     }
 
     //useEffect ensuring auth state gets set before going back to dashboard to correctly render other components
@@ -201,16 +210,18 @@ const Form = () => {
     useEffect(() => {
         if(isSubmitted){
             navigate('/dashboard');
+        } else if (isLoggedOut){
+            navigate('/login');
         }
 
-    }, [isSubmitted]);
+    }, [isSubmitted, isLoggedOut]);
 
 
     return (
         <>
             <button
                 className='absolute top-4 left-4 font-bold text-sm md:text-base xl:text-lg'
-                onClick={() => navigate('/login')}
+                onClick={handleLogout}
             >
                 <FontAwesomeIcon
                     icon={faArrowLeft}

@@ -12,6 +12,8 @@ const LoginPage = () => {
 
     const { setAuth, auth } = useAuth();
 
+    console.log("Access Token: " + auth?.accessToken)
+
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
 
