@@ -19,13 +19,11 @@ app.use(credentials);
 //Verifies request is coming from accepted origin
 app.use(cors(corsOptions));
 
-
-//Parses cookies from request
-app.use(cookieParser());
-
 //Parses request body into JSON for every request
 app.use(express.json());
 
+//Parses cookies from request
+app.use(cookieParser());
 
 //Public endpoints requiring no authentication
 app.use('/auth/login', require('./routes/auth/login'));
@@ -35,7 +33,7 @@ app.use('/auth/logout', require('./routes/auth/logout'));
 
 
 //All routes past here are protected by JWT token
-// app.use(verifyJWT);
+app.use(verifyJWT);
 
 //Endpoints require authentication
 app.use('/api/student', require('./routes/api/student'));
