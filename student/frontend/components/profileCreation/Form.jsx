@@ -53,7 +53,10 @@ const Form = () => {
         projects: '',
         jobs: '',
         links: [],
-        reference: ''
+        referenceName: '',
+        referenceContactType: '',
+        referencePhone: '',
+        referenceEmail: '',
     });
 
     //Handles state changed for the skills sections
@@ -67,6 +70,7 @@ const Form = () => {
 
     //Handles state being changed for non skills section
     const handleFormChange = (e) => {
+        console.log("Handle E: ", e)
         const { name, value, id } = e.target;
         setFormData(prevData => {
             if (name === 'links') {
@@ -221,7 +225,7 @@ const Form = () => {
             </button>
 
             <form
-                className="text-gray-800 bg-white flex flex-col p-10 items-center w-full md:w-1/2 lg:w-1/2 xl:w-1/3 2xl:w-1/4 m-auto"
+                className="text-gray-800 bg-white flex flex-col p-10 items-center w-full md:w-1/2 lg:w-1/2 xl:w-2/5 2xl:w-1/4 m-auto"
                 onSubmit={submitForm}
             >
 

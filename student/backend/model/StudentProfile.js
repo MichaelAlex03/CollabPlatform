@@ -19,15 +19,6 @@ const studentsProfile = new Schema({
     },
     expectedGrad: {
         type: String,
-        validate: {
-            validator: function(value) {
-                const undergradYears = ['freshman', 'sophomore', 'junior', 'senior'];
-                if (undergradYears.includes(this.year)) {
-                    return value != null;
-                }
-                return true;
-            }
-        }
     },
     year: {
         type: String,
@@ -35,26 +26,9 @@ const studentsProfile = new Schema({
     },
     degree: {
         type: String,
-        validate: {
-            validator: function(value) {
-                const undergradYears = ['freshman', 'sophomore', 'junior', 'senior'];
-                if (undergradYears.includes(this.year)) {
-                    return value != null;
-                }
-                return true;
-            }
-        }
     },
     degreeCompleted: {
         type: String,
-        validate: {
-            validator: function(value) {
-                if (this.year === 'graduate') {
-                    return value != null;
-                }
-                return true;
-            }
-        }
     },
     department: {
         type: String,

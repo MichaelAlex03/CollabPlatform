@@ -4,6 +4,7 @@ export const formRegex = {
     department: /^[A-Za-z]+(?:[ '&-][A-Za-z]+)*$/,
     workedHrs: /^[0-9]+$/,
     links: /^(https?:\/\/)?(www\.)?([a-zA-Z0-9][-a-zA-Z0-9]*[a-zA-Z0-9]\.)+([a-zA-Z0-9]*[a-zA-Z][a-zA-Z0-9]{1,})(\/[-a-zA-Z0-9@:%_\+.~#?&\/=]*)?$/
+    
 }
 
 
@@ -50,7 +51,9 @@ export const formNullCheck = (formData) => {
         || !formData.projects
         || !formData.jobs
         || !formData.links
-        || !formData.reference
+        || !formData.referenceContactType
+        || (formData.referenceContactType === 'email' && !formData.referenceEmail)
+        || (formData.referenceContactType === 'phone' && !formData.referencePhone)
     ) {
         return true;
     } else {
