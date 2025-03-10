@@ -32,7 +32,10 @@ const handleAddFormData = async (req, res) => {
         projects,
         jobs,
         links,
-        reference
+        referenceName,
+        referenceContactType,
+        referenceEmail,
+        referencePhone
     } = req.body.formData
     
 
@@ -78,7 +81,10 @@ const handleAddFormData = async (req, res) => {
             projects,
             jobs,
             links: validLinks,
-            reference,
+            referenceName,
+            referenceContactType,
+            referenceEmail,
+            referencePhone,
             skills,
         });
 
