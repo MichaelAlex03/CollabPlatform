@@ -6,7 +6,7 @@ const skillSchema = new Schema({
         type: String,
         required: true
     }
-}, { _id: false }); 
+}, { _id: false });
 
 const studentsProfile = new Schema({
     aNum: {
@@ -54,9 +54,19 @@ const studentsProfile = new Schema({
         type: [String],
         required: true
     },
-    reference: {
+    referenceName: {
         type: String,
         required: true
+    },
+    referenceContactType: {
+        type: String,
+        required: true
+    },
+    referenceEmail: {
+        type: String,
+    },
+    referencePhone: {
+        type: String,
     },
     skills: {
         type: [skillSchema],
