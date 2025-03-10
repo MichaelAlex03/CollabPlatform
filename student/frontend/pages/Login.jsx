@@ -105,7 +105,7 @@ const LoginPage = () => {
                             />
                         </div>
                         <div className="mb-4">
-                            <input type="checkbox" className="mr-2" onChange={togglePersist} value={persist}/>
+                            <input type="checkbox" className="mr-2" onChange={togglePersist} checked={persist}/>
                             <label className="text-gray-700">Trust This Device</label>
                             <label><a href="#" className="text-gray-700 float-right">Forgot Password?</a></label>
                         </div>

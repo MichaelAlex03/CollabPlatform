@@ -8,6 +8,8 @@ const PersistLogin = () => {
     const { auth, persist } = useAuth();
     const refresh = useRefreshToken();
 
+    console.log(" I AM BEING RENDERRRRED")
+
     useEffect(() => {
         const verifyRefreshToken = async () => {
             try {
