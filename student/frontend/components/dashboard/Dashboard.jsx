@@ -3,7 +3,7 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useAuth from '../../hooks/useAuth';
 import axios from '../../api/axios';
-import { useNavigate } from 'react-router-dom';
+import { replace, useNavigate } from 'react-router-dom';
 
 const LOGOUT_URL = '/auth/logout'
 
@@ -15,9 +15,12 @@ const Dashboard = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.get(LOGOUT_URL);
-      navigate('/login');
       setAuth({});
+      console.log(auth)
+      await axios.get(LOGOUT_URL, {
+        withCredentials: true
+      });
+      navigate('/login', { replace: true });
     } catch (err) {
       setErrMsg('Error logging out');
       console.log(err)
@@ -35,7 +38,8 @@ const Dashboard = () => {
         className='mr-2'
       />
       Back To Login
-    </button>Testtt</div>
+    </button>
+    </div>
   )
 }
 

@@ -5,7 +5,7 @@ import useRefreshToken from "../hooks/useRefreshToken";
 
 const PersistLogin = () => {
     const [isLoading, setIsLoading] = useState(true);
-    const { auth } = useAuth();
+    const { auth, persist } = useAuth();
     const refresh = useRefreshToken();
 
     useEffect(() => {
@@ -19,7 +19,7 @@ const PersistLogin = () => {
             }
         }
 
-        !auth?.accessToken ? verifyRefreshToken() : setIsLoading(false);
+        !auth?.accessToken && persist ? verifyRefreshToken() : setIsLoading(false);
     });
 
     useEffect(() => {
@@ -29,9 +29,11 @@ const PersistLogin = () => {
 
     return (
         <>
-            {isLoading ?
-                <p>...Loading</p> :
-                <Outlet />
+            {!persist
+                ? <Outlet />
+                : isLoading ?
+                    <p>...Loading</p> :
+                    <Outlet />
             }
         </>
     )

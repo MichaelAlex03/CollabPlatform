@@ -16,9 +16,9 @@ const LOGOUT_URL = '/auth/logout'
 
 const Form = () => {
     const axiosPrivate = useAxiosPrivate();
-    
+
     const navigate = useNavigate();
-    const { setAuth, auth } = useAuth();
+    const { auth, setAuth } = useAuth();
 
     const [formStage, setFormStage] = useState(1);
     const [errMsg, setErrMsg] = useState('');
@@ -117,9 +117,12 @@ const Form = () => {
 
     const handleLogout = async () => {
         try {
-            await axios.get(LOGOUT_URL);
-            navigate('/login')
             setAuth({});
+            await axios.get(LOGOUT_URL, {
+                withCredentials: true,
+            });
+            navigate('/login', { replace: true })
+            console.log("Auth")
         } catch (err) {
             setErrMsg('Error logging out');
         }
@@ -127,7 +130,7 @@ const Form = () => {
 
     //useEffect ensuring auth state gets set before going back to dashboard to correctly render other components
     useEffect(() => {
-        if(isSubmitted){
+        if (isSubmitted) {
             navigate('/dashboard');
         }
     }, [isSubmitted]);

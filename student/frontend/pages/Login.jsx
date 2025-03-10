@@ -10,8 +10,8 @@ const LOGIN_URL = '/auth/login';
 const LoginPage = () => {
     const navigate = useNavigate();
 
-    const { setAuth, auth } = useAuth();
-
+    const { setAuth, auth, setPersist, persist } = useAuth();
+    console.log("AUTH: ", auth)
     console.log("Access Token: " + auth?.accessToken)
 
     const [email, setEmail] = useState('');
@@ -27,9 +27,16 @@ const LoginPage = () => {
         }
     }, [isSubmitted]);
 
-
+    useEffect(() => {
+        localStorage.setItem("persist", persist)
+    }, [persist])
+    
     const handleSignUpClick = () => {
         navigate('/register');
+    }
+
+    const togglePersist = () => {
+        setPersist(prev => !prev)
     }
 
     const handleLogin = async (e) => {
@@ -98,8 +105,8 @@ const LoginPage = () => {
                             />
                         </div>
                         <div className="mb-4">
-                            <input type="checkbox" className="mr-2" />
-                            <label className="text-gray-700">Remember Me</label>
+                            <input type="checkbox" className="mr-2" onChange={togglePersist} value={persist}/>
+                            <label className="text-gray-700">Trust This Device</label>
                             <label><a href="#" className="text-gray-700 float-right">Forgot Password?</a></label>
                         </div>
                         <button type="submit" className="w-full bg-[#501214] hover:bg-[#7d1c1f] text-white p-2 rounded" onClick={handleLogin}>Log In</button>
