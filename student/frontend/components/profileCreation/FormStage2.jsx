@@ -93,7 +93,7 @@ const FormStage2 = ({ formData, handleFormChange }) => {
     <div className='flex flex-col items-center w-full gap-4'>
 
       <div className='flex flex-col items-start w-full '>
-        <label htmlFor='name' className='text-sm md:text-base '>Full Name</label>
+        <label htmlFor='name' className='text-md md:text-base '>Full Name</label>
         <input
           type='text'
           id='name'
@@ -117,7 +117,7 @@ const FormStage2 = ({ formData, handleFormChange }) => {
       </div>
 
       <div className='flex flex-col items-start w-full '>
-        <label htmlFor='year' className='text-sm md:text-base'>Year</label>
+        <label htmlFor='year' className='text-md md:text-base'>Year</label>
         <select
           className="border-1 border-gray-400 p-2 rounded-lg w-full mt-1"
           id="year"
@@ -137,7 +137,7 @@ const FormStage2 = ({ formData, handleFormChange }) => {
       {/*Only render this div if gradfuate is not selected*/}
       {formData.year !== 'graduate' && formData.year !== '' && (
         <div className='flex flex-col items-start w-full '>
-          <label htmlFor='Grad' className='text-sm md:text-base'>Expected Graduation</label>
+          <label htmlFor='Grad' className='text-md md:text-base'>Expected Graduation</label>
           <input 
           type='date' 
           name='expectedGrad' 
@@ -152,7 +152,7 @@ const FormStage2 = ({ formData, handleFormChange }) => {
       {/*Only render this div if gradfuate is not selected*/}
       {formData.year !== 'graduate' && formData.year !== '' && (
         <div className='flex flex-col items-start w-full '>
-          <label htmlFor='degree' className='text-sm md:text-base'>Degree Sought</label>
+          <label htmlFor='degree' className='text-md md:text-base'>Degree Sought</label>
           <input
             type='text'
             name='degree'
@@ -171,7 +171,7 @@ const FormStage2 = ({ formData, handleFormChange }) => {
 
       {formData.year === 'graduate' && (
         <div className='flex flex-col items-start w-full '>
-          <label htmlFor='degree' className='text-sm md:text-base'>Degree Completed</label>
+          <label htmlFor='degree' className='text-md md:text-base'>Degree Completed</label>
           <input
             type='text'
             name='degree'
@@ -189,7 +189,7 @@ const FormStage2 = ({ formData, handleFormChange }) => {
       )}
 
       <div className='flex flex-col items-start w-full '>
-        <label htmlFor='department' className='text-sm md:text-base '>Department Name</label>
+        <label htmlFor='department' className='text-md md:text-base '>Department Name</label>
         <input
           type='text'
           id='department'
@@ -213,7 +213,7 @@ const FormStage2 = ({ formData, handleFormChange }) => {
       </div>
 
       <div className='flex flex-col items-start w-full '>
-        <label htmlFor='phoneNum' className='text-sm md:text-base '>Phone Number</label>
+        <label htmlFor='phoneNum' className='text-md md:text-base '>Phone Number</label>
         <input
           type='text'
           name='phoneNum'

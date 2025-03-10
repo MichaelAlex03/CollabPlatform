@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Footer from '../components/Footer';
 import LoginHeader from '../components/LoginHeader.jsx';
-import { useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from '../api/axios.js';
 import useAuth from '../hooks/useAuth.js';
 
@@ -9,6 +9,8 @@ const LOGIN_URL = '/auth/login';
 
 const LoginPage = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/dashboard";
 
     const { setAuth, auth } = useAuth();
 
@@ -23,7 +25,7 @@ const LoginPage = () => {
 
     useEffect(() => {
         if (isSubmitted) {
-            navigate('/dashboard');
+            navigate(from, {replace: true}); //Makes it so students cant click back to login. Need to press logout button
         }
     }, [isSubmitted]);
 

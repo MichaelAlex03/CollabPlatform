@@ -123,7 +123,7 @@ const FormStage3 = ({ formData, handleFormChange, deleteLink }) => {
         <div className="flex flex-col items-center w-full gap-4">
 
             <div className="flex flex-col items-start w-full ">
-                <label htmlFor="hours" className="text-sm md:text-base ">Number of hours currently worked per week</label>
+                <label htmlFor="hours" className="text-md md:text-base ">Number of hours currently worked per week</label>
                 <input
                     type="text"
                     id="hours"
@@ -147,7 +147,7 @@ const FormStage3 = ({ formData, handleFormChange, deleteLink }) => {
             </div>
 
             <div className="flex flex-col items-start w-full ">
-                <label htmlFor="projects" className="text-sm md:text-base">Projects Done? Please explain them</label>
+                <label htmlFor="projects" className="text-md md:text-base">Projects Done? Please explain them</label>
                 <textarea
                     id="projects"
                     name="projects"
@@ -158,7 +158,7 @@ const FormStage3 = ({ formData, handleFormChange, deleteLink }) => {
             </div>
 
             <div className="flex flex-col items-start w-full ">
-                <label htmlFor="jobs" className="text-sm md:text-base">Jobs that you have done that will help be a team player</label>
+                <label htmlFor="jobs" className="text-md md:text-base">Jobs that you have done that will help be a team player</label>
                 <textarea
                     id="jobs"
                     name="jobs"
@@ -169,13 +169,13 @@ const FormStage3 = ({ formData, handleFormChange, deleteLink }) => {
             </div>
 
             <div className="flex flex-col items-start w-full">
-                <label className="text-sm md:text-base ">Links? Github, LinkedIn, Personal Site, etc...</label>
+                <label className="text-md md:text-base ">Links? Github, LinkedIn, Personal Site, etc...</label>
                 {renderLinkFields()}
             </div>
 
             {/*Reference section **** Go in an make it so that if you swap to another method or back to none empty out states*/}
             <div className="flex flex-col items-start w-full ">
-                <label htmlFor="reference" className="text-md md:text-base font-semibold">
+                <label htmlFor="reference" className="text-md md:text-base">
                     Any faculty that can speak highly of your work ethic?
                     If so please provide their name and contact
                 </label>
