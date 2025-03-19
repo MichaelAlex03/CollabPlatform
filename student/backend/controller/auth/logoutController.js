@@ -4,7 +4,6 @@ const handleLogout = async (req, res) => {
     // Make sure to clear the accessToken on the client side
 
     const cookies = req.cookies;
-    console.log(req.cookies)
 
     // Check if cookies exist with jwt property which contains the refreshToken
     if (!cookies?.jwt) {

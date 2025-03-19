@@ -18,11 +18,11 @@ const useRefreshToken = () => {
                 firstTime: response.data.firstTime,
                 accessToken: response.data.accessToken,
             }));
-        } catch (error) {
-            console.log(error)
-        }
 
-        return response.data.accessToken;
+            return response.data.accessToken;
+        } catch (error) {
+            console.log("ERRRRR" , error)
+        }
     }
 
     return refresh;

@@ -17,7 +17,8 @@ const useAxiosPrivate = () => {
                 }
                 return config;
             }, 
-            (error) => Promise.reject(error)
+            (error) => { Promise.reject(error) 
+                console.log(err)}
         );
 
         const responseIntercept = axiosPrivate.interceptors.response.use(
@@ -29,10 +30,13 @@ const useAxiosPrivate = () => {
                     prevRequest.sent = true;
                     console.log('new tokennnn')
                     const newAccessToken = await refresh();
+                    console.log("NEW TOKEN", newAccessToken)
                     prevRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
+                    console.log("retryinggg");
                     return axiosPrivate(prevRequest);
                 }
                 // If the response status is not 403 or the request has already been retried, reject the error
+                console.log("ERRRRRRRRRRRR", error)
                 return Promise.reject(error);
             }
         );

@@ -117,7 +117,6 @@ const FormStage3 = ({ formData, handleFormChange, deleteLink }) => {
 
         return linkFields
     }
-    console.log(formData)
 
     return (
         <div className="flex flex-col items-center w-full gap-4">
