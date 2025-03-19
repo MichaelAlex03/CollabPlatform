@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const handleRefreshToken = async (req, res) => {
 
     const cookies = req.cookies;
+    
     // Check if there is a property of the cookie called jwt
     // Optional chaining (?.) allows reading the value of `cookies.jwt` without causing an error if `cookies` is undefined or null
     if (!cookies?.jwt) {
@@ -15,13 +16,13 @@ const handleRefreshToken = async (req, res) => {
     const user = await Student.findOne({ refreshToken }).exec();
 
     if (!user) {
-        return res.status(403).json({"message": "errorrrrr"});
+        return res.sendStatus(403);
     }
 
     jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, decoded) => {
         //checks if the user found with the refreshToken matches the user in the payload of the JWT token
         if (err || user.email !== decoded.email) {
-            res.status(403).json({"message": "error her"});
+            return res.sendStatus(403);
         }
 
         //If refresh token is valid create a new access token and send it back to the front end
