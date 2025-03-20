@@ -13,6 +13,12 @@ const FormStage3 = ({ formData, handleFormChange, deleteLink }) => {
     const [selectEmail, setSelectEmail] = useState(false);
     const [selectPhone, setSelectPhone] = useState(false);
 
+    const [phoneFocus, setPhoneFocus] = useState(false);
+    const [validPhone, setValidPhone] = useState(false);
+
+    const [emailFocus, setEmailFocus] = useState(false);
+    const [validEmail, setValidEmail] = useState(false);
+
     const [numOfLinks, setNumOfLinks] = useState(1);
 
     console.log(linkFocus);
@@ -22,6 +28,16 @@ const FormStage3 = ({ formData, handleFormChange, deleteLink }) => {
     useEffect(() => {
         setValidHours(formRegex.workedHrs.test(formData.workedHrs));
     }, [formData.workedHrs]);
+
+    //Validates email
+    useEffect(() => {
+        setValidEmail(formRegex.referenceEmail.test(formData.referenceEmail));
+    }, [formData.referenceEmail]);
+
+    //Validates phone number
+    useEffect(() => {
+        setValidPhone(formRegex.phoneNum.test(formData.referencePhone));
+    }, [formData.referencePhone]);
 
     //Validate links
     useEffect(() => {
@@ -222,12 +238,26 @@ const FormStage3 = ({ formData, handleFormChange, deleteLink }) => {
                             <label htmlFor="email" className="text-sm mt-2 font-semibold">Email</label>
                             <input
                                 type="text"
-                                id="email" 
+                                id="email"
                                 name="referenceEmail"
-                                className="border-1 border-gray-400 p-2 rounded-lg mt-1" 
+                                className="border-1 border-gray-400 p-2 rounded-lg mt-1"
                                 value={formData.referenceEmail}
                                 onChange={handleFormChange}
+                                onFocus={() => setEmailFocus(true)}
+                                onBlur={() => setEmailFocus(false)}
                             />
+                            {emailFocus && !validEmail && (
+
+                                <div className='bg-black text-white px-2 py-3 rounded-md mb-3 flex flex-row'>
+                                    <FontAwesomeIcon
+                                        icon={faInfoCircle}
+                                        className="mr-2"
+                                        size="lg"
+                                    />
+                                    <p className='text-xs md:text-sm'>Email must end in @txstate.edu <br />
+                                        Allowed characters: letters, numbers, . _ % + - </p>
+                                </div>
+                            )}
                         </div>
                     )}
                     {selectPhone && (
@@ -236,11 +266,23 @@ const FormStage3 = ({ formData, handleFormChange, deleteLink }) => {
                             <input
                                 type="text"
                                 id="phone"
-                                name="referencePhone" 
-                                className="border-1 border-gray-400 p-2 rounded-lg mt-1" 
+                                name="referencePhone"
+                                className="border-1 border-gray-400 p-2 rounded-lg mt-1"
                                 value={formData.referencePhone}
                                 onChange={handleFormChange}
+                                onFocus={() => setPhoneFocus(true)}
+                                onBlur={() => setPhoneFocus(false)}
                             />
+                            {phoneFocus && !validPhone && formData.referencePhone && (
+                                <div className='bg-black text-white px-2 py-3 rounded-md mb-3 flex flex-row w-full mt-1'>
+                                    <FontAwesomeIcon
+                                        icon={faInfoCircle}
+                                        className="mr-2"
+                                        size="lg"
+                                    />
+                                    <p className='text-xs md:text-sm'>Invalid phone number format. Must be in format XXX-XXX-XXXX</p>
+                                </div>
+                            )}
                         </div>
                     )}
                 </div>

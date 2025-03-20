@@ -104,7 +104,7 @@ const FormStage2 = ({ formData, handleFormChange }) => {
           onFocus={() => setNameFocus(true)}
           onBlur={() => setNameFocus(false)}
         />
-        {nameFocus && !validName && (
+        {/* {nameFocus && !validName && (
           <div className='bg-black text-white px-2 py-3 rounded-md mb-3 flex flex-row w-full mt-1 items-center'>
             <FontAwesomeIcon
               icon={faInfoCircle}
@@ -113,7 +113,7 @@ const FormStage2 = ({ formData, handleFormChange }) => {
             />
             <p className='text-xs md:text-sm'> Letters, spaces, apostrophes, and hyphens allowed.</p>
           </div>
-        )}
+        )} */}
       </div>
 
       <div className='flex flex-col items-start w-full '>
@@ -207,7 +207,7 @@ const FormStage2 = ({ formData, handleFormChange }) => {
               className="mr-2"
               size="lg"
             />
-            <p className='text-xs md:text-sm'> Letters, spaces, commas, ampersands, apostrophes, and hyphens allowed. Ex. Computer Science</p>
+            <p className='text-xs md:text-sm'> Ex. Computer Science</p>
           </div>
         )}
       </div>
