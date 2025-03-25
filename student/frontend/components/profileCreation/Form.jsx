@@ -57,6 +57,7 @@ const Form = () => {
         referenceContactType: '',
         referencePhone: '',
         referenceEmail: '',
+        resume: '',
     });
 
     //Handles state changed for the skills sections
@@ -70,9 +71,14 @@ const Form = () => {
 
     //Handles state being changed for non skills section
     const handleFormChange = (e) => {
-        console.log("Handle E: ", e)
-        const { name, value, id } = e.target;
+        const { name, value, id, type, files } = e.target;
         setFormData(prevData => {
+            if (type === 'file') {
+                return {
+                    ...prevData,
+                    [name]: files[0] // Store the file object
+                };
+            }
             if (name === 'links') {
                 const updatedLinks = prevData.links || [];
                 updatedLinks[id] = value;

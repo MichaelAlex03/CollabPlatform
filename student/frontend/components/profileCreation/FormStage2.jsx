@@ -92,6 +92,27 @@ const FormStage2 = ({ formData, handleFormChange }) => {
   return (
     <div className='flex flex-col items-center w-full gap-4'>
 
+      <div className="flex flex-col items-start w-full">
+        <label htmlFor="fileUpload" className="text-md md:text-base">Upload Resume/CV</label>
+        <div className="w-full mt-1">
+          <input
+            type="file"
+            id="fileUpload"
+            name="resume"
+            accept=".pdf,.doc,.docx"
+            className="w-full text-sm text-gray-500
+                            file:mr-4 file:py-2 file:px-4
+                            file:rounded-md file:border-0
+                            file:text-sm file:font-semibold
+                            file:bg-[#501214] file:text-white
+                            hover:file:bg-[#3d0e0f]
+                            cursor-pointer"
+            onChange={handleFormChange}
+          />
+          <p className="text-xs text-gray-500 mt-1">Accepted formats: PDF, DOC, DOCX (Max size: 5MB)</p>
+        </div>
+      </div>
+
       <div className='flex flex-col items-start w-full '>
         <label htmlFor='name' className='text-md md:text-base '>Full Name</label>
         <input
@@ -138,13 +159,13 @@ const FormStage2 = ({ formData, handleFormChange }) => {
       {formData.year !== 'graduate' && formData.year !== '' && (
         <div className='flex flex-col items-start w-full '>
           <label htmlFor='Grad' className='text-md md:text-base'>Expected Graduation</label>
-          <input 
-          type='date' 
-          name='expectedGrad' 
-          id='Grad' 
-          className='border-1 border-gray-400 p-2 rounded-lg w-full mt-1' 
-          value={formData.expectedGrad}
-          onChange={handleFormChange}
+          <input
+            type='date'
+            name='expectedGrad'
+            id='Grad'
+            className='border-1 border-gray-400 p-2 rounded-lg w-full mt-1'
+            value={formData.expectedGrad}
+            onChange={handleFormChange}
           />
         </div>
       )}
@@ -236,7 +257,7 @@ const FormStage2 = ({ formData, handleFormChange }) => {
         )}
       </div>
 
-      
+
     </div>
   )
 }
