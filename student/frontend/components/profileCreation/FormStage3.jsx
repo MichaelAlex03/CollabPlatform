@@ -188,27 +188,6 @@ const FormStage3 = ({ formData, handleFormChange, deleteLink }) => {
                 {renderLinkFields()}
             </div>
 
-            <div className="flex flex-col items-start w-full">
-                <label htmlFor="fileUpload" className="text-md md:text-base">Upload Resume/CV (Optional)</label>
-                <div className="w-full mt-1">
-                    <input
-                        type="file"
-                        id="fileUpload"
-                        name="resume"
-                        accept=".pdf,.doc,.docx"
-                        className="w-full text-sm text-gray-500
-                            file:mr-4 file:py-2 file:px-4
-                            file:rounded-md file:border-0
-                            file:text-sm file:font-semibold
-                            file:bg-[#501214] file:text-white
-                            hover:file:bg-[#3d0e0f]
-                            cursor-pointer"
-                        onChange={handleFormChange}
-                    />
-                    <p className="text-xs text-gray-500 mt-1">Accepted formats: PDF, DOC, DOCX (Max size: 5MB)</p>
-                </div>
-            </div>
-
             {/*Reference section **** Go in an make it so that if you swap to another method or back to none empty out states*/}
             <div className="flex flex-col items-start w-full ">
                 <label htmlFor="reference" className="text-md md:text-base">
