@@ -252,9 +252,9 @@ const Form = () => {
                 {errMsg && <p className='text-center text-sm md:text-base font-bold text-red-500 m-2'>{errMsg}</p>}
 
                 <div className='mt-4 w-full'>
-                    {formStage === 1 && (<FormStage1 skillsData={skillsData} handleSkillsChange={handleSkillsChange} />)}
-                    {formStage === 2 && (<FormStage2 formData={formData} handleFormChange={handleFormChange} />)}
-                    {formStage === 3 && (<FormStage3 formData={formData} handleFormChange={handleFormChange} deleteLink={deleteLink} />)}
+                    {formStage === 1 && (<FormStage1 formData={formData} handleFormChange={handleFormChange} />)}
+                    {formStage === 2 && (<FormStage2 formData={formData} handleFormChange={handleFormChange} deleteLink={deleteLink} />)}
+                    {formStage === 3 && (<FormStage3 skillsData={skillsData} handleSkillsChange={handleSkillsChange} />)}
                 </div>
 
                 <div className={`flex flex-row gap-8 ${formStage === 1 ? 'justify-end' : 'justify-evenly'} mt-8 w-full`}>
