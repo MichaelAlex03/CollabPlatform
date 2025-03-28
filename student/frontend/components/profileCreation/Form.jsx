@@ -276,9 +276,9 @@ const Form = () => {
 
                 <h1 className='text-2xl md:text-3xl xl:text-4xl font-bold text-[#501214] text-center mt-4 md:mt-0'> Profile Creation</h1>
 
-                {formStage === 1
-                    ? <p className='xl:text-xl text-base mt-2 font-semibold text-center'>Select the following skills that you have</p>
-                    : <p className='xl:text-xl text-base mt-2 font-semibold text-center'>Please fill out the information below</p>}
+                {formStage === 3
+                    ? <p className='xl:text-lg text-base mt-2 font-semibold text-center'>Select the following skills that will be able to demonstrate</p>
+                    : <p className='xl:text-lg text-base mt-2 font-semibold text-center'>Please fill out the information below</p>}
 
                 {errMsg && <p className='text-center text-sm md:text-base font-bold text-red-500 m-2'>{errMsg}</p>}
 
