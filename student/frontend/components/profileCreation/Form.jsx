@@ -57,8 +57,8 @@ const Form = () => {
         referenceContactType: '',
         referencePhone: '',
         referenceEmail: '',
-        resume: '',
-        letterOfRec: ''
+        resume: null,
+        letterOfRec: null
     });
 
     //Handles state changed for the skills sections
@@ -149,7 +149,7 @@ const Form = () => {
         //Makes sure at least one skill is selected
         if (Object.values(skillsData).every(skill => skill === false)) {
             setErrMsg('Select at least one skill');
-            setFormStage(1);
+            setFormStage(3);
             return;
         }
 
@@ -157,12 +157,13 @@ const Form = () => {
         const nullCheck = formNullCheck(formData)
         if (nullCheck) {
             setErrMsg("Missing required fields");
-            setFormStage(2);
+            setFormStage(1);
             return;
         }
 
         const regexCheck = useFormRegex(formData);
 
+        //If there is a field with invalid format go to the stage of the form where that field is located
         if (regexCheck[0] !== "None") {
             setErrMsg(regexCheck[0]);
             setFormStage(regexCheck[1]);
@@ -171,11 +172,40 @@ const Form = () => {
 
 
         try {
-            const response = await axiosPrivate.post(PROFILE_URL, {
-                id: auth.aNum,
-                skillsData,
-                formData
+
+            const formDataToSend = new FormData();
+
+            // Add files if they exist
+            if (formData.resume) {
+                formDataToSend.append('resume', formData.resume);
+            }
+            if (formData.letterOfRec) {
+                formDataToSend.append('letterOfRec', formData.letterOfRec);
+            }
+
+            // Create a copy of formData without the file objects
+            const formDataWithoutFiles = {
+                ...formData,
+                resume: undefined,
+                letterOfRec: undefined
+            };
+
+            // Stringify JSON to access it from req.body in backend
+            formDataToSend.append('id', auth.aNum);
+            formDataToSend.append('skillsData', JSON.stringify(skillsData));
+            formDataToSend.append('formData', JSON.stringify(formDataWithoutFiles));
+
+            const response = await axiosPrivate.post(PROFILE_URL, formDataToSend, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
             });
+
+            // const response = await axiosPrivate.post(PROFILE_URL, {
+            //     id: auth.aNum,
+            //     skillsData,
+            //     formDataWithoutFiles
+            // });
 
             setAuth(prevAuth => ({
                 ...prevAuth,
@@ -211,7 +241,7 @@ const Form = () => {
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No response from server');
-                console.log("TESTTTT",err)
+                console.log("TESTTTT", err)
             } else if (err.response?.status === 403) {
                 // Handle 403 specifically - likely auth issue
                 setErrMsg('Authentication failed. Please try logging in again.');

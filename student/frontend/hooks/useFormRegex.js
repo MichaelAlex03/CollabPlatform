@@ -19,16 +19,16 @@ const useFormRegex = (formData) => {
     const v6 = formRegex.referencePhone.test(formData.referencePhone);
 
     if (!v1) {
-        return ["Phone Number is invalid.", 2];
+        return ["Phone Number is invalid.", 1];
     }
     if (!v2) {
-        return ["Student name is invalid.", 2];
+        return ["Student name is invalid.", 1];
     }
     if (!v3) {
-        return ["Department name is invalid", 2];
+        return ["Department name is invalid", 1];
     }
     if (!v4) {
-        return ["Worked hours must be numbers only", 3];
+        return ["Worked hours must be numbers only", 2];
     }
 
     //test each link only if it is not empty
@@ -40,12 +40,12 @@ const useFormRegex = (formData) => {
         }
     }
 
-    if (!v5) {
-        return ["Invalid email format", 3];
-    }
+    if (formData.referenceEmail && !v5) {
+        return ["Invalid email format", 2];
+    } 
 
-    if (!v6) {
-        return ["Invalid phone number format", 3];
+    if (formData.referencePhone && !v6) {
+        return ["Invalid phone number format", 2];
     }
 
     return ["None", 3];
