@@ -58,6 +58,7 @@ const Form = () => {
         referencePhone: '',
         referenceEmail: '',
         resume: '',
+        letterOfRec: ''
     });
 
     //Handles state changed for the skills sections

@@ -66,6 +66,7 @@ export const formNullCheck = (formData) => {
         || !formData.referenceContactType
         || (formData.referenceContactType === 'email' && !formData.referenceEmail)
         || (formData.referenceContactType === 'phone' && !formData.referencePhone)
+        || !formData.resume
     ) {
         return true;
     } else {
