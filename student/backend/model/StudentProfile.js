@@ -71,6 +71,21 @@ const studentsProfile = new Schema({
     skills: {
         type: [skillSchema],
         required: true
+    },
+    resume: {
+        type: {
+            data: Buffer,
+            contentType: String,
+            filename: String
+        },
+        required: true
+    },
+    letterOfRec: {
+        type: {
+            data: Buffer,
+            contentType: String,
+            filename: String
+        }
     }
 });
 

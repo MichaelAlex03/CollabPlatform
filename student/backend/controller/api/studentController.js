@@ -2,94 +2,75 @@ const StudentProfile = require('../../model/StudentProfile');
 const Student = require('../../model/Student');
 
 const handleAddFormData = async (req, res) => {
-    //Get student id
-    const { id } = req.body;
+    // Parse JSON strings from FormData
+    const id = req.body.id;
+    const skillsData = JSON.parse(req.body.skillsData);
+    const formData = JSON.parse(req.body.formData);
 
-    //Get properties from skillsData object
-    const {
-        neural_networks,
-        LLM,
-        data_analysis,
-        MERN,
-        web_designer,
-        jira,
-        cplus,
-        java,
-        python,
-        sql
-    } = req.body.skillsData;
+    // Get files if they exist
+    const resumeFile = req.files?.resume?.[0];
+    const letterOfRecFile = req.files?.letterOfRec?.[0];
 
-    //Get properties from form object
-    const {
-        studentName,
-        expectedGrad,
-        year,
-        degree,
-        degreeCompleted,
-        department,
-        phoneNum,
-        workedHrs,
-        projects,
-        jobs,
-        links,
-        referenceName,
-        referenceContactType,
-        referenceEmail,
-        referencePhone
-    } = req.body.formData
-    
+    console.log("Resume", resumeFile);
+    console.log("Letter", letterOfRecFile);
 
-    console.log(req.body.skillsData);
-    console.log(req.body.formData);
-    
-    // Transform the skillsData object into an array of skill objects
+    // Create file data objects for MongoDB
+    const resumeData = resumeFile ? {
+        data: resumeFile.buffer,
+        contentType: resumeFile.mimetype,
+        filename: resumeFile.originalname
+    } : undefined;
+
+    const letterOfRecData = letterOfRecFile ? {
+        data: letterOfRecFile.buffer,
+        contentType: letterOfRecFile.mimetype,
+        filename: letterOfRecFile.originalname
+    } : undefined;
+
+    // Transform skillsData into array of skill objects
     const skills = [];
-    if (neural_networks) skills.push({ name: 'neural_networks'});
-    if (LLM) skills.push({ name: 'LLM'});
-    if (data_analysis) skills.push({ name: 'data_analysis' });
-    if (MERN) skills.push({ name: 'MERN'});
-    if (web_designer) skills.push({ name: 'web_designer'});
-    if (jira) skills.push({ name: 'jira'});
-    if (cplus) skills.push({ name: 'cplus'});
-    if (java) skills.push({ name: 'java'});
-    if (python) skills.push({ name: 'python'});
-    if (sql) skills.push({ name: 'sql'});
+    if (skillsData.neural_networks) skills.push({ name: 'neural_networks'});
+    if (skillsData.LLM) skills.push({ name: 'LLM'});
+    if (skillsData.data_analysis) skills.push({ name: 'data_analysis' });
+    if (skillsData.MERN) skills.push({ name: 'MERN'});
+    if (skillsData.web_designer) skills.push({ name: 'web_designer'});
+    if (skillsData.jira) skills.push({ name: 'jira'});
+    if (skillsData.cplus) skills.push({ name: 'cplus'});
+    if (skillsData.java) skills.push({ name: 'java'});
+    if (skillsData.python) skills.push({ name: 'python'});
+    if (skillsData.sql) skills.push({ name: 'sql'});
 
-    //Check if any of the links are empty
-    const validLinks = []
-    for (let i = 0; i < links.length; i++){
-        if(links[i] !== ''){
-            validLinks[i] = links[i]
+    // Handle links
+    const validLinks = [];
+    for (let i = 0; i < formData.links.length; i++) {
+        if(formData.links[i] !== '') {
+            validLinks[i] = formData.links[i];
         }
     }
 
-
-
-    //After passing all validation try creating mongo db document
     try {
-
         await StudentProfile.create({
             aNum: id,
-            studentName,
-            expectedGrad,
-            year,
-            degree,
-            degreeCompleted,
-            department,
-            phoneNum,
-            workedHrs: parseInt(workedHrs),
-            projects,
-            jobs,
+            studentName: formData.studentName,
+            expectedGrad: formData.expectedGrad,
+            year: formData.year,
+            degree: formData.degree,
+            degreeCompleted: formData.degreeCompleted,
+            department: formData.department,
+            phoneNum: formData.phoneNum,
+            workedHrs: parseInt(formData.workedHrs),
+            projects: formData.projects,
+            jobs: formData.jobs,
             links: validLinks,
-            referenceName,
-            referenceContactType,
-            referenceEmail,
-            referencePhone,
+            referenceName: formData.referenceName,
+            referenceContactType: formData.referenceContactType,
+            referenceEmail: formData.referenceEmail,
+            referencePhone: formData.referencePhone,
             skills,
+            resume: resumeData,
+            letterOfRec: letterOfRecData
         });
 
-
-        //set first time property for student to false so they are not prompted to enter form data again
         const student = await Student.findOne({ id }).exec();
         student.firstTime = false;
         await student.save();
@@ -97,7 +78,7 @@ const handleAddFormData = async (req, res) => {
         res.status(201).json({ 'message': `skills added for student with the id ${id}`, firstTime: student.firstTime });
     } catch (error) {
         res.sendStatus(500);
-        console.log(error)
+        console.log(error);
     }
 }
 module.exports = {

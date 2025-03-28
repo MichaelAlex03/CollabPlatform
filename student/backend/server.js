@@ -22,6 +22,9 @@ app.use(cors(corsOptions));
 //Parses request body into JSON for every request
 app.use(express.json());
 
+//handles form data
+app.use(express.urlencoded({ extended: true }));
+
 //Parses cookies from request
 app.use(cookieParser());
 
