@@ -270,7 +270,11 @@ const Form = () => {
             </button>
 
             <form
-                className="text-gray-800 bg-white flex flex-col p-10 items-center w-full md:w-1/2 lg:w-1/2 xl:w-2/5 2xl:w-1/4 m-auto"
+                className={`text-gray-800 bg-white flex flex-col p-10 items-center m-auto
+                    ${formStage === 3 
+                        ? 'w-full md:w-3/4 lg:w-3/4 xl:w-3/5 2xl:w-1/2' // wider for skills
+                        : 'w-full md:w-1/2 lg:w-1/2 xl:w-2/5 2xl:w-1/4'  // original width
+                    }`}
                 onSubmit={submitForm}
             >
 
