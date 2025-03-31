@@ -38,20 +38,30 @@ const ProjectCreation = () => {
             <div className="max-w-7xl mx-auto p-8">
                 <section id="overview" className="mb-16 p-8 bg-white">
                     <h1 className="text-[#501214] text-4xl font-bold mb-6 pb-2 border-b-2 border-gray-300">Faculty Project Creation</h1>
-                    <p className="mb-6">Welcome, faculty members! This form is exclusively for Texas State University faculty to submit research projects and collaborate with talented students. Please fill out all fields with detailed information to ensure we can match your project with the best student contributors, 
+                    <p className="text-base mb-6">Welcome, faculty members! This form is exclusively for Texas State University faculty to submit research projects and collaborate with talented students. Please fill out all fields with detailed information to ensure we can match your project with the best student contributors, 
                         particularly in STEM fields such as computer science, mathematics, and beyond.</p>
         
                     <h4 className="font-bold text-xl mb-2">Project Title</h4>
-                    <input type="text" className="w-full p-2 border border-gray-300 rounded mb-2" placeholder="Enter project title" />
+                    <input 
+                        type="text" 
+                        className="w-full p-2 border border-gray-300 rounded mb-2" 
+                        placeholder="Enter Project Title" 
+                        required 
+                    />
                     <p className="text-sm mb-6">Enter a clear and concise title that encapsulates the main objective or focus of your research project (e.g., "Developing a Machine Learning Model for Climate Prediction"). Avoid vague titles like "Research Project."</p>
 
                     <h4 className="font-bold text-xl mb-2">Project Description</h4>
-                    <input type="text" className="w-full p-2 border border-gray-300 rounded mb-2" placeholder="Enter project Description" />
+                    <input 
+                        type="text" 
+                        className="w-full p-2 border border-gray-300 rounded mb-2" 
+                        placeholder="Enter Project Description" 
+                        required 
+                    />
                     <p className="text-sm mb-6">Provide a comprehensive overview of your project. Include the specific research question or problem you aim to address, the methodology or approach you plan to use, anticipated outcomes or deliverables, and any relevant background context or prior work. This helps students understand the scope and purpose of your work.</p>
 
                     <h4 className="font-bold text-xl mb-2">Project Type</h4>
                     <select className="w-full p-2 border border-gray-300 rounded" defaultValue="">
-                        <option value="" disabled>Select project type</option>
+                        <option value="" disabled>Select Project Type</option>
                         {projectTypes.map((type, index) => (
                             <option key={index} value={type.value}>
                                 {type.label}
@@ -61,19 +71,39 @@ const ProjectCreation = () => {
                     <p className="text-sm mb-6">Select the category that most accurately represents the primary focus or discipline of your project. This helps us align your project with students who have relevant expertise or interest in the specified STEM field.</p>
 
                     <h4 className="font-bold text-xl mb-2">Funding Requirements</h4>
-                    <input type="text" className="w-full p-2 border border-gray-300 rounded mb-2" placeholder="Enter funding requirements" />
+                    <input 
+                        type="text" 
+                        className="w-full p-2 border border-gray-300 rounded mb-2" 
+                        placeholder="Enter Funding Requirements" 
+                        required 
+                    />
                     <p className="text-sm mb-6">Detail any financial needs for your project, such as costs for equipment (e.g., sensors, computers), software licenses, travel for fieldwork or conferences, or stipends for student researchers. If no external funding is needed, explicitly state "No funding required" to clarify resource availability.</p>
 
                     <h4 className="font-bold text-xl mb-2">Required Technical Skills (comma-separated)</h4>
-                    <input type="text" className="w-full p-2 border border-gray-300 rounded mb-2" placeholder="Enter technical skills requirements" />
+                    <input 
+                        type="text" 
+                        className="w-full p-2 border border-gray-300 rounded mb-2" 
+                        placeholder="Enter Technical Skills Requirements" 
+                        required 
+                    />
                     <p className="text-sm mb-6">Detail any financial needs for your project, such as costs for equipment (e.g., sensors, computers), software licenses, travel for fieldwork or conferences, or stipends for student researchers. If no external funding is needed, explicitly state "No funding required" to clarify resource availability.</p>
                     
                     <h4 className="font-bold text-xl mb-2">Required Non-Technical Skills (comma-separated)</h4>
-                    <input type="text" className="w-full p-2 border border-gray-300 rounded mb-2" placeholder="Enter non-technical skills requirements" />
+                    <input 
+                        type="text" 
+                        className="w-full p-2 border border-gray-300 rounded mb-2" 
+                        placeholder="Enter Non-Technical Skills Requirements" 
+                        required 
+                    />
                     <p className="text-sm mb-6">Specify any soft skills or non-technical abilities that would enhance student participation, such as scientific writing, public speaking, project management, collaboration, or critical thinking. These skills can be crucial for project success.</p>
 
                     <h4 className="font-bold text-xl mb-2">Project Timeline</h4>
-                    <input type="text" className="w-full p-2 border border-gray-300 rounded mb-2" placeholder="Enter Project Timeline" />
+                    <input 
+                        type="text" 
+                        className="w-full p-2 border border-gray-300 rounded mb-2" 
+                        placeholder="Enter Project Timeline" 
+                        required 
+                    />
                     <p className="text-sm mb-6">Specify any soft skills or non-technical abilities that would enhance student participation, such as scientific writing, public speaking, project management, collaboration, or critical thinking. These skills can be crucial for project success.</p>
 
                     <div className="mb-3">
@@ -85,7 +115,7 @@ const ProjectCreation = () => {
                             className="w-full p-2 border border-gray-300 rounded mb-2"
                             placeholder="Enter Project Milestones (e.g., 'Prototype completed by March 2025')"
                             rows="4"
-                            aria-describedby="milestones-help"
+                            required
                         ></textarea>
                         <p id="milestones-help" className="text-sm text-gray-600">
                             Outline the key milestones or deliverables of your project, along with their estimated completion dates (e.g., "Prototype completed by March 2025," "Final report submitted by November 2025"). This provides a clear roadmap for students and evaluators.
@@ -124,12 +154,10 @@ const ProjectCreation = () => {
                         </div>
 
                         <div className="space-y-6">
-                            <div className="mb-6">
                                 <h3 className="text-[#501214] font-semibold mb-2">Am I allowed to submit more than one project?</h3>
                                 <div className="bg-gray-100 p-6 rounded">
                                     <p>Yes, faculty can submit multiple projects. Each will be processed and matched with students independently based on its requirements.</p>
                                 </div>
-                            </div>
                         </div>
                     </section>
 
