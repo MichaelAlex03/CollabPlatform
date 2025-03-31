@@ -142,12 +142,12 @@ const Form = () => {
         }
     }, [isSubmitted]);
 
-    //Need to go back and make api call use axiosPrivate once we get authContext set up
+    
     const submitForm = async (e) => {
         e.preventDefault();
 
         //Makes sure at least one skill is selected
-        if (Object.values(skillsData).every(skill => skill === false)) {
+        if (Object.values(skillsData).every(skill => skill === "none")) {
             setErrMsg('Select at least one skill');
             setFormStage(3);
             return;
@@ -291,7 +291,7 @@ const Form = () => {
                         (
                             <button
                                 type='button'
-                                className='bg-[#501214] p-2 w-1/3 text-white transition transform duration-300 hover:scale-110 rounded-lg '
+                                className={`bg-[#501214] p-2 ${formStage === 3 ? 'w-1/3 lg:w-1/4' : 'w-1/3'} text-white text-center transition transform duration-300 hover:scale-110 rounded-lg`}
                                 onClick={() => setFormStage(prevStage => prevStage - 1)}
                             >
                                 Previous
@@ -303,7 +303,7 @@ const Form = () => {
                         (
                             <button
                                 type='button'
-                                className='bg-[#501214] p-2 w-1/3 text-white transition duration-300 rounded-lg'
+                                className='bg-[#501214] text-center p-2 w-1/3 text-white transition duration-300 rounded-lg'
                                 onClick={() => setFormStage(prevStage => prevStage + 1)}
                             >
                                 Next
@@ -315,7 +315,7 @@ const Form = () => {
                         (
                             <button
                                 type='submit'
-                                className='bg-[#501214] p-2 w-1/3 text-white transition transform duration-500 hover:scale-110 rounded-lg'
+                                className='bg-[#501214] text-center p-2 w-1/3 lg:w-1/4 text-white transition transform duration-500 hover:scale-110 rounded-lg'
                             >
                                 Done
                             </button>
