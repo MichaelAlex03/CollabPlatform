@@ -11,9 +11,9 @@ const LandingPage = () => {
 
             <div className="max-w-6xl mx-auto p-8">
                 <section id="overview" className="mb-16 p-8 bg-white">
-                    <h1 className="text-[#501214] text-3xl mb-6 pb-2 border-b-2 border-gray-300">Faculty Project Collaboration
+                    <h1 className="text-[#501214] font-semibold text-3xl mb-6 pb-2 border-b-2 border-gray-300">Faculty Project Collaboration
                         Platform</h1>
-                    <p className="mb-4">A comprehensive solution addressing critical challenges in research project resource
+                    <p className="text-lg mb-4">A comprehensive solution addressing critical challenges in research project resource
                         allocation, technical expertise, and interdisciplinary collaboration.</p>
                     <ul className="list-none space-y-2">
                         <li className="relative pl-6 before:content-['•'] before:text-[#501214] before:absolute before:left-0">
@@ -29,7 +29,7 @@ const LandingPage = () => {
                 </section>
 
                 <section className="bg-gray-100 text-center p-12 my-8">
-                    <h2 className="text-[#501214] text-3xl mb-4">Transform Your Research Today</h2>
+                    <h2 className="text-[#501214] font-semibold text-3xl mb-4">Transform Your Research Today</h2>
                     <p className="mb-6">Bridge technical gaps, access diverse student talent, and accelerate your project's
                         potential.</p>
                     <Link to="/projectcreate"
@@ -39,7 +39,7 @@ const LandingPage = () => {
                 </section>
 
                 <section id="process" className="mb-16 p-8 bg-white">
-                    <h2 className="text-[#501214] text-3xl mb-6 pb-2 border-b-2 border-gray-300">Project Submission and Engagement
+                    <h2 className="text-[#501214] font-semibold text-3xl mb-6 pb-2 border-b-2 border-gray-300">Project Submission and Engagement
                         Process</h2>
                     <div className="grid md:grid-cols-3 gap-8 mt-8">
                         <div className="bg-gray-100 p-6 rounded-md transition transform hover:translate-y-[-2px]">
@@ -98,11 +98,11 @@ const LandingPage = () => {
                 </section>
 
                 <section id="faq" className="max-w-[1200px] mx-auto p-8 mb-16">
-                    <h2 className="text-[#501214] text-4xl mb-6 pb-2 border-b-2 border-gray-300">Frequently Asked Questions</h2>
+                    <h2 className="text-[#501214] font-semibold text-4xl mb-6 pb-2 border-b-2 border-gray-300">Frequently Asked Questions</h2>
 
                     <div className="space-y-6">
                         <div className="mb-6">
-                            <h3 className="text-[#501214] font-semibold mb-2">Who can use the platform?</h3>
+                            <h3 className="text-[#501214] font-semibold text-lg mb-2">Who can use the platform?</h3>
                             <div className="bg-gray-100 p-6 rounded">
                                 <p>Open to all faculty across disciplines, with special support for non-technical researchers
                                     seeking to
@@ -111,7 +111,7 @@ const LandingPage = () => {
                         </div>
 
                         <div className="mb-6">
-                            <h3 className="text-[#501214] font-semibold mb-2">How are student skills developed?</h3>
+                            <h3 className="text-[#501214] font-semibold text-lg mb-2">How are student skills developed?</h3>
                             <div className="bg-gray-100 p-6 rounded">
                                 <p>Students undergo a comprehensive skill evaluation process:</p>
                                 <ul className="mt-4 space-y-4">
@@ -139,7 +139,7 @@ const LandingPage = () => {
                         </div>
 
                         <div className="mb-6">
-                            <h3 className="text-[#501214] font-semibold mb-2">My project is not technical. Can I still apply?</h3>
+                            <h3 className="text-[#501214] font-semibold text-lg mb-2">My project is not technical. Can I still apply?</h3>
                             <div className="bg-gray-100 p-6 rounded">
                                 <p>Of course. You might not know how data and computer science can be applied to your project.
                                     In the
@@ -148,7 +148,7 @@ const LandingPage = () => {
                         </div>
 
                         <div className="mb-6">
-                            <h3 className="text-[#501214] font-semibold mb-2">I understand data science well so why should I engage
+                            <h3 className="text-[#501214] font-semibold text-lg mb-2">I understand data science well so why should I engage
                                 with
                                 you?</h3>
                             <div className="bg-gray-100 p-6 rounded">
@@ -161,7 +161,7 @@ const LandingPage = () => {
                         </div>
 
                         <div className="mb-6">
-                            <h3 className="text-[#501214] font-semibold mb-2">My project is only one semester long. Is that okay?
+                            <h3 className="text-[#501214] font-semibold text-lg mb-2">My project is only one semester long. Is that okay?
                             </h3>
                             <div className="bg-gray-100 p-6 rounded">
                                 <p>We are currently collaborating on projects of all lengths.</p>
@@ -169,7 +169,7 @@ const LandingPage = () => {
                         </div>
 
                         <div className="mb-6">
-                            <h3 className="text-[#501214] font-semibold mb-2">Will you management my project for me?</h3>
+                            <h3 className="text-[#501214] font-semibold text-lg mb-2">Will you management my project for me?</h3>
                             <div className="bg-gray-100 p-6 rounded">
                                 <p>We will not but we can assist you in effectively planning your project, scoping work, and
                                     help with
@@ -178,7 +178,7 @@ const LandingPage = () => {
                         </div>
 
                         <div className="mb-6">
-                            <h3 className="text-[#501214] font-semibold mb-2">Do I have to pay the students?</h3>
+                            <h3 className="text-[#501214] font-semibold text-lg mb-2">Do I have to pay the students?</h3>
                             <div className="bg-gray-100 p-6 rounded">
                                 <p>We believe that it is important to provide compensation to our hard working students since in
                                     the
