@@ -7,12 +7,67 @@ const SkillCard = ({ name, skillsData, handleSkillsChange, description }) => {
 
     //Handles property names that dont match language names
     const nameMapping = {
+
+        //Programming Languages
         "C#": "csharp",
-        "C++": "cplus"
+        "C++": "cplus",
+        "Python": "python",
+        "Javascript": "javascript",
+        "Java": "java",
+        "CSS": "css",
+        "HTML": "html",
+        "C": "c",
+        "SQL": "sql",
+
+        //Tech Stacks
+        "MERN Stack": "MERN",
+        "MEAN Stack": "MEAN",
+        "PERN Stack": "PERN",
+        "MEVN Stack": "MEVN",
+        "LAMP Stack": "LAMP",
+        "JAMstack": "JAM",
+        ".NET": "NET",
+
+        //AI and Data Science
+        "Machine Learning": "machineLearning",
+        "Deep Learning": "deepLearning",
+        "Natural Language Processing": "naturalLanguageProccessing",
+        "Computer Vision": "computerVision",
+        "Reinforcement Learning": "reinforcementLearning",
+        "Neural Networks": "neuralNetworks",
+        "Data Engineering": "dataEngineering",
+
+        //Project Management
+        "Agile/Scrum methodology": "agile",
+        "JIRA": "jira",
+        "Trello": "trello",
+
+        //Databases
+        "MySQL": "mySQL",
+        "PostgreSQL": "postgreSQL",
+        "MongoDB": "mongoDB",
+        "Oracle Database": "oracleDB",
+        "Amazon DynamoDB": "dynamoDB",
+
+        //Frameworks
+        "React": "react",
+        "Angular": "angular",
+        "Vue.js": "vue",
+        "Node.js": "node",
+        "Express.js": "express",
+        "Django": "django",
+        "Spring Boot": "springBoot",
+        "Flask" : "flask",
+        "ASP.NET Core" : "aspNet",
+        "TensorFlow" : "tensorFlow",
+        "PyTorch" : "pyTorch",
+        "Next.js" : "nextJs"
+
     }
 
+    //gets corresponding property name in the skillsData object given the name prop
     const getSkillKey = (name) => {
-        return nameMapping[name] || name.toLowerCase();
+        return nameMapping[name];
     }
 
     const skillKey = getSkillKey(name)

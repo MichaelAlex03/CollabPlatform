@@ -12,9 +12,6 @@ const AiDataScienceList = ({ skillsData, handleSkillsChange }) => {
         "Reinforcement Learning",
         "Neural Networks",
         "Data Engineering",
-        "Big Data Analytics",
-        "Statistical Modeling",
-        "MLOps"
     ];
     
 

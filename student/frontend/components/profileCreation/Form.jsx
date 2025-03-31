@@ -26,8 +26,10 @@ const Form = () => {
     const [isSubmitted, setIsSubmitted] = useState(false);
 
 
-    //Skills data from checkboxes
+    //Skills data
     const [skillsData, setSkillsData] = useState({
+
+        //Programming languages
         css: 'none',
         javascript: 'none',
         html: 'none',
@@ -36,7 +38,53 @@ const Form = () => {
         cplus: 'none',
         java: 'none',
         python: 'none',
-        sql: 'none'
+        sql: 'none',
+
+        //Tech stacks
+        MERN: 'none',
+        MEAN: 'none',
+        PERN: 'none',
+        MEVN: 'none',
+        LAMP: 'none',
+        JAM: 'none',
+        NET: 'none',
+
+        //AI and Data Science
+        machineLearning: 'none',
+        deepLearning: 'none',
+        naturalLanguageProccessing: 'none',
+        computerVision: 'none',
+        reinforcementLearning: 'none',
+        neuralNetworks: 'none',
+        dataEngineering: 'none',
+
+        //Project Management
+        agile: 'none',
+        jira: 'none',
+        trello: 'none',
+
+
+        //Databases
+        mySQL: 'none',
+        postgreSQL: 'none',
+        mongoDB: 'none',
+        oracleDB: 'none',
+        dynamoDB: 'none',
+
+        //Frameworks and Libraries
+        react: 'none',
+        angular: 'none',
+        vue: 'none',
+        node: 'none',
+        express: 'none',
+        django: 'none',
+        springBoot: 'none',
+        flask: 'none',
+        aspNet: 'none',
+        tensorFlow: 'none',
+        pyTorch:'none',
+        nextJs: 'none'
+
     });
 
     //Form data not relating to skills

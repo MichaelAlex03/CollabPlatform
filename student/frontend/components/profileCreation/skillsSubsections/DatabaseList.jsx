@@ -8,7 +8,6 @@ const DatabaseList = ({ skillsData, handleSkillsChange }) => {
         "MySQL",
         "PostgreSQL",
         "MongoDB",
-        "Microsoft SQL Server",
         "Oracle Database",
         "Amazon DynamoDB",
     ];
