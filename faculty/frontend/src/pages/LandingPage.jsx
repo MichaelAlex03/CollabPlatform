@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
@@ -31,9 +32,10 @@ const LandingPage = () => {
                     <h2 className="text-[#501214] text-3xl mb-4">Transform Your Research Today</h2>
                     <p className="mb-6">Bridge technical gaps, access diverse student talent, and accelerate your project's
                         potential.</p>
-                    <a href="#"
-                        className="inline-block px-6 py-3 bg-[#501214] text-white text-lg rounded-md hover:bg-[#3d0e0f] transition">Start
-                        Your Research Project</a>
+                    <Link to="/projectcreate"
+                        className="inline-block px-6 py-3 bg-[#501214] text-white text-lg rounded-md hover:bg-[#3d0e0f] transition">
+                        Start Your Research Project
+                    </Link>
                 </section>
 
                 <section id="process" className="mb-16 p-8 bg-white">
