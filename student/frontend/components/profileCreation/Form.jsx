@@ -28,16 +28,16 @@ const Form = () => {
 
     //Skills data from checkboxes
     const [skillsData, setSkillsData] = useState({
-        neural_networks: false,
-        LLM: false,
-        data_analysis: false,
-        MERN: false,
-        web_designer: false,
-        jira: false,
-        cplus: false,
-        java: false,
-        python: false,
-        sql: false
+        neural_networks: 'none',
+        LLM: 'none',
+        data_analysis: 'none',
+        MERN: 'none',
+        web_designer: 'none',
+        jira: 'none',
+        cplus: 'none',
+        java: 'none',
+        python: 'none',
+        sql: 'none'
     });
 
     //Form data not relating to skills
@@ -200,12 +200,6 @@ const Form = () => {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-
-            // const response = await axiosPrivate.post(PROFILE_URL, {
-            //     id: auth.aNum,
-            //     skillsData,
-            //     formDataWithoutFiles
-            // });
 
             setAuth(prevAuth => ({
                 ...prevAuth,

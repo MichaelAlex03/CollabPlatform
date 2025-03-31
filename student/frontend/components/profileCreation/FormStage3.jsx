@@ -1,24 +1,37 @@
 import React, { useState } from 'react'
-import Skills1 from './skillsCheckbox/Skills1'
-import Skills2 from './skillsCheckbox/Skills2'
+import ProgramLang from './skillsSubsections/ProgramLang';
 
-const FormStage1 = ({ skillsData, handleSkillsChange }) => {
+const FormStage3 = ({ skillsData, handleSkillsChange }) => {
 
+  //Lists of group of skills
+  const categories = ["Programming Languages", "Tech Stacks", "AI & Data Science", "Project Management", "Databases"];
+
+  const [activeCategory, setActiveCategory] = useState("Programming Languages")
 
   return (
     <div className='flex flex-col w-full items-center'>
-      <div className='grid grid-cols-2 gap-x-20 gap-y-6 mt-4'>
-        <div className="col-span-1">
-          <h3 className="font-semibold mb-4 text-center text-[#501214]">Technical Skills</h3>
-          <Skills1 skillsData={skillsData} handleSkillsChange={handleSkillsChange}/>
-        </div>
-        <div className="col-span-1">
-          <h3 className="font-semibold mb-4 text-center text-[#501214]">Development Tools</h3>
-          <Skills2 skillsData={skillsData} handleSkillsChange={handleSkillsChange}/>
-        </div>
+
+      {/*Skill Categories*/}
+      <div className='flex flex-row rounded-xl w-full gap-2'>
+        {categories.map(category => {
+          return (
+            <button className={
+              activeCategory === category
+                ? `bg-[#501214] text-white rounded-xl w-full text-base transform transition duration-200 scale-125 p-1 lift-up` : `border-2 border-black text-black rounded-xl w-full text-base p-1 lift-up`}
+              onClick={() => setActiveCategory(category)}
+            >
+              {category}
+            </button>
+          )
+        })}
       </div>
+      {
+        activeCategory === "Programming Languages" && (
+          <ProgramLang />
+        )
+      }
     </div>
   )
 }
 
-export default FormStage1
+export default FormStage3

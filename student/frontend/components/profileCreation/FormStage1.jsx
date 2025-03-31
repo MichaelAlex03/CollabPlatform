@@ -3,7 +3,7 @@ import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formRegex } from '../../hooks/useFormRegex';
 
-const FormStage2 = ({ formData, handleFormChange }) => {
+const FormStage1 = ({ formData, handleFormChange }) => {
 
   const degrees = [
     "Computer Science",
@@ -341,4 +341,4 @@ const FormStage2 = ({ formData, handleFormChange }) => {
   )
 }
 
-export default FormStage2
+export default FormStage1

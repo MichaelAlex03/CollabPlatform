@@ -3,7 +3,7 @@ import { faTrash, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formRegex } from "../../hooks/useFormRegex";
 
-const FormStage3 = ({ formData, handleFormChange, deleteLink }) => {
+const FormStage2 = ({ formData, handleFormChange, deleteLink }) => {
     const [hoursFocus, setHoursFocus] = useState(false);
     const [validHours, setValidHours] = useState(false);
 
@@ -293,4 +293,4 @@ const FormStage3 = ({ formData, handleFormChange, deleteLink }) => {
     )
 }
 
-export default FormStage3
+export default FormStage2
