@@ -23,7 +23,7 @@ const LoginPage = () => {
                 pass
             });
             console.log(response);
-            navigate('/');
+            navigate('/projectcreate');
             setEmail('');
             setPass('');
         } catch (err) {
