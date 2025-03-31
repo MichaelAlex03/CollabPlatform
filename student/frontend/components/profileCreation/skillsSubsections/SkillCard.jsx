@@ -1,13 +1,14 @@
 import React from 'react'
 
-const SkillCard = ({ name, skillsData, handleSkillsChange }) => {
+//Component for each skill with proficieny levels
+const SkillCard = ({ name, skillsData, handleSkillsChange, description }) => {
 
     console.log("skills", skillsData)
 
     //Handles property names that dont match language names
     const nameMapping = {
-        "C#" : "csharp",
-        "C++" : "cplus"
+        "C#": "csharp",
+        "C++": "cplus"
     }
 
     const getSkillKey = (name) => {
@@ -17,8 +18,13 @@ const SkillCard = ({ name, skillsData, handleSkillsChange }) => {
     const skillKey = getSkillKey(name)
 
     return (
-        <div className='flex flex-row border-2 border-black items-center justify-between w-full p-6 rounded-xl enlarge'>
-            <h1 className='font-bold text-xl text-[#501214]'>{name}</h1>
+        <div className='flex flex-row border-1 border-gray-400 items-center justify-between w-full p-6 rounded-xl enlarge'>
+
+            {/*Skill name and description if provided*/}
+            <div className='flex flex-col items-center'>
+                <h1 className='font-bold text-xl text-[#501214]'>{name}</h1>
+                {description && <p className='text-xs'>({description})</p>}
+            </div>
 
             {/*Proficiency*/}
             <div className='flex flex-row gap-4'>

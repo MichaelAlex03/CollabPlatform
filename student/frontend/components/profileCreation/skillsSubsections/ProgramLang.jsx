@@ -1,7 +1,7 @@
 import React from 'react'
 import SkillCard from './SkillCard'
 
-
+//Lists all programming languages to select from
 const ProgramLang = ({ skillsData, handleSkillsChange }) => {
 
     const langugaes = ["Python", "Javascript", "Java", "CSS", "HTML", "C++", "C#", "C", "SQL"]

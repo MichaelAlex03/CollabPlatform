@@ -266,7 +266,7 @@ const Form = () => {
             <form
                 className={`text-gray-800 bg-white flex flex-col p-10 items-center m-auto
                     ${formStage === 3 
-                        ? 'w-full md:w-3/4 lg:w-3/4 xl:w-3/5 2xl:w-1/2' // wider for skills
+                        ? 'w-full md:w-3/4 lg:w-3/4 xl:w-4/5 2xl:w-1/2' // wider for skills
                         : 'w-full md:w-1/2 lg:w-1/2 xl:w-2/5 2xl:w-1/4'  // original width
                     }`}
                 onSubmit={submitForm}
@@ -291,7 +291,7 @@ const Form = () => {
                         (
                             <button
                                 type='button'
-                                className={`bg-[#501214] p-2 ${formStage === 3 ? 'w-1/3 lg:w-1/4' : 'w-1/3'} text-white text-center transition transform duration-300 hover:scale-110 rounded-lg`}
+                                className={`bg-[#501214] p-2 ${formStage === 3 ? 'w-1/3 lg:w-1/5' : 'w-1/3'} text-white text-center transition transform duration-300 hover:scale-110 rounded-lg`}
                                 onClick={() => setFormStage(prevStage => prevStage - 1)}
                             >
                                 Previous
@@ -315,7 +315,7 @@ const Form = () => {
                         (
                             <button
                                 type='submit'
-                                className='bg-[#501214] text-center p-2 w-1/3 lg:w-1/4 text-white transition transform duration-500 hover:scale-110 rounded-lg'
+                                className='bg-[#501214] text-center p-2 w-1/3 lg:w-1/5 text-white transition transform duration-500 hover:scale-110 rounded-lg'
                             >
                                 Done
                             </button>
