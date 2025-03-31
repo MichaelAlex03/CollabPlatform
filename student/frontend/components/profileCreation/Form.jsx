@@ -28,12 +28,11 @@ const Form = () => {
 
     //Skills data from checkboxes
     const [skillsData, setSkillsData] = useState({
-        neural_networks: 'none',
-        LLM: 'none',
-        data_analysis: 'none',
-        MERN: 'none',
-        web_designer: 'none',
-        jira: 'none',
+        css: 'none',
+        javascript: 'none',
+        html: 'none',
+        csharp: 'none',
+        c: 'none',
         cplus: 'none',
         java: 'none',
         python: 'none',
@@ -63,15 +62,16 @@ const Form = () => {
 
     //Handles state changed for the skills sections
     const handleSkillsChange = (e) => {
-        const { name, checked } = e.target;
+        const { name, value } = e.target;
         setSkillsData(prevSkills => ({
             ...prevSkills,
-            [name]: checked
+            [name]: value
         }));
     }
 
     //Handles state being changed for non skills section
     const handleFormChange = (e) => {
+        console.log(e.target)
         const { name, value, id, type, files } = e.target;
         setFormData(prevData => {
             if (type === 'file') {

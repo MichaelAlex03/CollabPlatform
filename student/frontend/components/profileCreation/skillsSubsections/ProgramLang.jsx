@@ -8,9 +8,9 @@ const ProgramLang = ({ skillsData, handleSkillsChange }) => {
 
     return (
         <div className='flex flex-col gap-4 mt-8 w-3/4'>
-            {langugaes.map(item => {
+            {langugaes.map((item, i) => {
                 return (
-                    <SkillCard name={item} skillsData={skillsData} handleSkillsChange={handleSkillsChange}/>
+                    <SkillCard key={i} name={item} skillsData={skillsData} handleSkillsChange={handleSkillsChange}/>
                 )
             })}
         </div>

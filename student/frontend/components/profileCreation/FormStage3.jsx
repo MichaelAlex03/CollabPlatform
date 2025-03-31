@@ -6,6 +6,8 @@ const FormStage3 = ({ skillsData, handleSkillsChange }) => {
   //Lists of group of skills
   const categories = ["Programming Languages", "Tech Stacks", "AI & Data Science", "Project Management", "Databases"];
 
+  console.log("skilldata", skillsData)
+
   const [activeCategory, setActiveCategory] = useState("Programming Languages")
 
   return (
@@ -15,9 +17,12 @@ const FormStage3 = ({ skillsData, handleSkillsChange }) => {
       <div className='flex flex-row rounded-xl w-full gap-2'>
         {categories.map(category => {
           return (
-            <button className={
-              activeCategory === category
-                ? `bg-[#501214] text-white rounded-xl w-full text-base transform transition duration-200 scale-125 p-1 lift-up` : `border-2 border-black text-black rounded-xl w-full text-base p-1 lift-up`}
+            <button 
+              key={category}
+              className={
+                activeCategory === category
+                  ? `bg-[#501214] text-white rounded-xl w-full text-base transform transition duration-200 p-1 lift-up` 
+                  : `border-2 border-black text-black rounded-xl w-full text-base p-1 lift-up`}
               onClick={() => setActiveCategory(category)}
             >
               {category}
@@ -27,7 +32,7 @@ const FormStage3 = ({ skillsData, handleSkillsChange }) => {
       </div>
       {
         activeCategory === "Programming Languages" && (
-          <ProgramLang />
+          <ProgramLang skillsData={skillsData} handleSkillsChange={handleSkillsChange}/>
         )
       }
     </div>
