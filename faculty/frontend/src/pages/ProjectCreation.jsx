@@ -76,7 +76,7 @@ const ProjectCreation = () => {
                     <input type="text" className="w-full p-2 border border-gray-300 rounded mb-2" placeholder="Enter Project Timeline" />
                     <p className="text-sm mb-6">Specify any soft skills or non-technical abilities that would enhance student participation, such as scientific writing, public speaking, project management, collaboration, or critical thinking. These skills can be crucial for project success.</p>
 
-                    <div className="mb-6">
+                    <div className="mb-3">
                         <label htmlFor="milestones" className="block font-bold text-xl mb-2">
                             Milestones (one per line)
                         </label>
@@ -91,10 +91,51 @@ const ProjectCreation = () => {
                             Outline the key milestones or deliverables of your project, along with their estimated completion dates (e.g., "Prototype completed by March 2025," "Final report submitted by November 2025"). This provides a clear roadmap for students and evaluators.
                         </p>
                     </div>
+
+                    <button className="bg-[#501214] text-white py-2 px-4 rounded hover:bg-[#501214] mt-4">Submit Project</button>
                     
-                </section>
-            </div>
-            <Footer />
+                    <section id="faq" className="mt-16">
+                        <h2 className="text-[#501214] text-4xl font-bold mb-6 pb-2 border-b-2 border-gray-300">Frequently Asked Questions</h2>
+                        <div className="space-y-6">
+                            <div className="mb-6">
+                                <h3 className="text-[#501214] font-semibold mb-2">Who is eligible to submit a project?</h3>
+                                <div className="bg-gray-100 p-6 rounded">
+                                    <p>Only faculty members at Texas State University may submit research projects through this platform.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="space-y-6">
+                            <div className="mb-6">
+                                <h3 className="text-[#501214] font-semibold mb-2">What kinds of projects can I submit?</h3>
+                                <div className="bg-gray-100 p-6 rounded">
+                                    <p>We accept a wide range of STEM-focused projects, including those in computer science, mathematics, engineering, natural sciences, and interdisciplinary fields like bioinformatics or quantum computing.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="space-y-6">
+                            <div className="mb-6">
+                                <h3 className="text-[#501214] font-semibold mb-2">How are students assigned to my project?</h3>
+                                <div className="bg-gray-100 p-6 rounded">
+                                    <p>Students are matched using a series of interviews that evaluate the technical and non-technical skills you specify, alongside their academic background, skills, and interests, ensuring a strong fit for your project’s needs.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="space-y-6">
+                            <div className="mb-6">
+                                <h3 className="text-[#501214] font-semibold mb-2">Am I allowed to submit more than one project?</h3>
+                                <div className="bg-gray-100 p-6 rounded">
+                                    <p>Yes, faculty can submit multiple projects. Each will be processed and matched with students independently based on its requirements.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    </section>
+                </div>
+                <Footer />
         </main>
     );
 }
