@@ -219,6 +219,7 @@ const Form = () => {
         }
 
 
+
         try {
 
             const formDataToSend = new FormData();
@@ -231,16 +232,32 @@ const Form = () => {
                 formDataToSend.append('letterOfRec', formData.letterOfRec);
             }
 
-            // Create a copy of formData without the file objects
+            //Only send link fields that have value
+            const updatedLinks = formData.links.filter(link => link != '');
+
+            // Create a copy of formData without the file objects and updated links
             const formDataWithoutFiles = {
                 ...formData,
+                links: updatedLinks,
                 resume: undefined,
                 letterOfRec: undefined
             };
 
+            //Filter out the skills that were none
+            const skills = []
+            Object.entries(skillsData).forEach(([key, value]) => {
+                console.log(value)
+                if (value !== 'none') {
+                    skills.push({
+                        name: key,
+                        proficiency: value
+                    });
+                }
+            });
+
             // Stringify JSON to access it from req.body in backend
             formDataToSend.append('id', auth.aNum);
-            formDataToSend.append('skillsData', JSON.stringify(skillsData));
+            formDataToSend.append('skillsData', JSON.stringify(skills));
             formDataToSend.append('formData', JSON.stringify(formDataWithoutFiles));
 
             const response = await axiosPrivate.post(PROFILE_URL, formDataToSend, {

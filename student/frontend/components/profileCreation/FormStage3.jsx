@@ -23,11 +23,11 @@ const FormStage3 = ({ skillsData, handleSkillsChange }) => {
         {categories.map(category => {
           return (
             <button
-            type='button'
+              type='button'
               key={category}
               className={
                 activeCategory === category
-                  ? `bg-[#501214] text-white rounded-xl w-full text-base transform transition duration-200 p-1 lift-up` 
+                  ? `bg-[#501214] text-white rounded-xl w-full text-base transform transition duration-200 p-1 lift-up`
                   : `border-1 border-black text-black rounded-xl w-full text-base p-1 lift-up`}
               onClick={() => setActiveCategory(category)}
             >
@@ -39,7 +39,7 @@ const FormStage3 = ({ skillsData, handleSkillsChange }) => {
       {/*Content for each corresponding category*/}
       {
         activeCategory === "Programming Languages" && (
-          <ProgramLang skillsData={skillsData} handleSkillsChange={handleSkillsChange}/>
+          <ProgramLang skillsData={skillsData} handleSkillsChange={handleSkillsChange} />
         )
       }
       {
