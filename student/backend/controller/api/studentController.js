@@ -25,13 +25,6 @@ const handleAddFormData = async (req, res) => {
     } : undefined;
 
     //Go through all skills
-    console.log(skillsData)
-    const skills = skillsData.map(skill => {
-        return {
-            name: skill.name,
-            proficiency: skill.proficiency
-        }
-    });
 
     try {
         await StudentProfile.create({
@@ -51,7 +44,7 @@ const handleAddFormData = async (req, res) => {
             referenceContactType: formData.referenceContactType,
             referenceEmail: formData.referenceEmail,
             referencePhone: formData.referencePhone,
-            skills,
+            skills: skillsData,
             resume: resumeData,
             letterOfRec: letterOfRecData
         });
