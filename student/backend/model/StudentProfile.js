@@ -5,6 +5,10 @@ const skillSchema = new Schema({
     name: {
         type: String,
         required: true
+    }, 
+    proficiency: {
+        type: String,
+        required: true
     }
 }, { _id: false });
 

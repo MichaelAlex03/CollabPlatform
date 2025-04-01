@@ -11,9 +11,6 @@ const handleAddFormData = async (req, res) => {
     const resumeFile = req.files?.resume?.[0];
     const letterOfRecFile = req.files?.letterOfRec?.[0];
 
-    console.log("Resume", resumeFile);
-    console.log("Letter", letterOfRecFile);
-
     // Create file data objects for MongoDB
     const resumeData = resumeFile ? {
         data: resumeFile.buffer,
@@ -27,26 +24,14 @@ const handleAddFormData = async (req, res) => {
         filename: letterOfRecFile.originalname
     } : undefined;
 
-    // Transform skillsData into array of skill objects
-    const skills = [];
-    if (skillsData.neural_networks) skills.push({ name: 'neural_networks'});
-    if (skillsData.LLM) skills.push({ name: 'LLM'});
-    if (skillsData.data_analysis) skills.push({ name: 'data_analysis' });
-    if (skillsData.MERN) skills.push({ name: 'MERN'});
-    if (skillsData.web_designer) skills.push({ name: 'web_designer'});
-    if (skillsData.jira) skills.push({ name: 'jira'});
-    if (skillsData.cplus) skills.push({ name: 'cplus'});
-    if (skillsData.java) skills.push({ name: 'java'});
-    if (skillsData.python) skills.push({ name: 'python'});
-    if (skillsData.sql) skills.push({ name: 'sql'});
-
-    // Handle links
-    const validLinks = [];
-    for (let i = 0; i < formData.links.length; i++) {
-        if(formData.links[i] !== '') {
-            validLinks[i] = formData.links[i];
+    //Go through all skills
+    console.log(skillsData)
+    const skills = skillsData.map(skill => {
+        return {
+            name: skill.name,
+            proficiency: skill.proficiency
         }
-    }
+    });
 
     try {
         await StudentProfile.create({
@@ -61,7 +46,7 @@ const handleAddFormData = async (req, res) => {
             workedHrs: parseInt(formData.workedHrs),
             projects: formData.projects,
             jobs: formData.jobs,
-            links: validLinks,
+            links: formData.links,
             referenceName: formData.referenceName,
             referenceContactType: formData.referenceContactType,
             referenceEmail: formData.referenceEmail,
