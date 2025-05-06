@@ -1,7 +1,7 @@
 import React from 'react'
 import Form from '../components/profileCreation/Form'
 import Dashboard from '../components/dashboard/Dashboard'
-import useAuth from '../hooks/useAuth'
+import useAuth from '../../hooks/useAuth'
 
 const Home = () => {
 

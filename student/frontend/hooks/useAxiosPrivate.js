@@ -28,11 +28,8 @@ const useAxiosPrivate = () => {
                 // If the response status is 403 (accessToken invalid) and the request has not been retried yet
                 if (error?.response?.status === 403 && !prevRequest?.sent) {
                     prevRequest.sent = true;
-                    console.log('new tokennnn')
                     const newAccessToken = await refresh();
-                    console.log("NEW TOKEN", newAccessToken)
                     prevRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
-                    console.log("retryinggg");
                     return axiosPrivate(prevRequest);
                 }
                 // If the response status is not 403 or the request has already been retried, reject the error
