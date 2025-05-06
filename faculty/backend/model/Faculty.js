@@ -22,6 +22,10 @@ const facultySchema = new Schema({
         type: String,
         required: true,
     },
+    firstTime: {
+        type: Boolean,
+        required: true
+    },
     refreshToken: String
 })
 

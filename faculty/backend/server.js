@@ -5,6 +5,8 @@ const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose');
 const connectDB = require('./config/dbConn');
 const credentials = require('./middleware/credentials');
+const verifyJWT = require('./middleware/verifyJWT');
+
 require('dotenv').config();
 const PORT = process.env.PORT || 3001;
 
@@ -28,6 +30,10 @@ app.use('/auth/login', require('./routes/auth/login'));
 app.use('/auth/register', require('./routes/auth/register'));
 app.use('/auth/logout', require('./routes/auth/logout'));
 app.use('/auth/refresh', require('./routes/auth/refresh'));
+
+app.use(verifyJWT);
+
+app.use('/api/faculty', require('./routes/api/faculty'));
 
 
 mongoose.connection.once('open', () => {
