@@ -27,6 +27,7 @@ const handleRefreshToken = async (req, res) => {
         //If valid token then create new one and send back the username and token
         const accessToken = jwt.sign({ 'email': faculty.email }, process.env.REFRESH_TOKEN_SECRET, {'expiresIn': '1d'});
         return res.status(200).json({
+            id: faculty.id,
             username: faculty.username,
             accessToken
         })
