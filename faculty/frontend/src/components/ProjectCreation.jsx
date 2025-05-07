@@ -2,10 +2,14 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { useState } from 'react'
 import useAxiosPrivate from '../../hooks/useAxiosPrivate'
+import useAuth from "../../hooks/useAuth";
+
+const FACULTY_URL = '/api/faculty'
 
 const ProjectCreation = () => {
 
     const axiosPrivate = useAxiosPrivate();
+    const { auth, setAuth } = useAuth();
 
     const projectTypes = [
         { value: "research", label: "Research" },
@@ -48,6 +52,7 @@ const ProjectCreation = () => {
         milestones: '' // Will handle splitting new line milestones in backend
     })
 
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setProjectData({
@@ -56,8 +61,36 @@ const ProjectCreation = () => {
         })
     }
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
 
+        e.preventDefault();
+
+        try {
+            await axiosPrivate.post(FACULTY_URL, {
+                projectData,
+                id: auth.id
+            });
+
+            console.log("Hello33333");
+
+            setAuth({
+                ...auth,
+                firstTime: false
+            })
+
+            setProjectData({
+                title: '',
+                description: '',
+                type: '',
+                cost: '',
+                technicalSkills: '', 
+                nonTechnicalSkills: '',
+                timeline: '',
+                milestones: ''
+            })
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     console.log("Project", projectData)
