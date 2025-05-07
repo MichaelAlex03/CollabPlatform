@@ -32,7 +32,7 @@ app.use('/auth/register', require('./routes/auth/register'));
 app.use('/auth/logout', require('./routes/auth/logout'));
 app.use('/auth/refresh', require('./routes/auth/refresh'));
 
-app.use(verifyJWT);
+// app.use(verifyJWT);
 
 app.use('/api/faculty', require('./routes/api/faculty'));
 
