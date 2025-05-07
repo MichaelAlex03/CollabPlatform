@@ -28,7 +28,7 @@ const handleLogin = async (req, res) => {
         await foundFaculty.save();
 
         res.cookie('jwt', refreshToken, { httpOnly: true, sameSite: 'None', secure: true, maxAge: 24 * 60 * 60 * 1000 });
-        res.status(200).json({ accessToken });
+        res.status(200).json({ id: foundFaculty.facultyId, firstTime: foundFaculty.firstTime, accessToken });
 
     } else {
         res.sendStatus(401);

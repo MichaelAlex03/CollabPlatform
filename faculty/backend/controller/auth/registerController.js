@@ -34,11 +34,13 @@ const handleNewFaculty = async (req, res) => {
             password: hashedPwd,
             department: department,
             email: email,
+            firstTime: true
         });
 
         res.status(201).json({message: `New faculty ${name} was created`});
     } catch (error) {
         res.sendStatus(500)
+        console.log(error)
     }
 }
 

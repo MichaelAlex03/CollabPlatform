@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const handleRefreshToken = async (req, res) => {
 
     const cookie = req.cookies;
-
+    
     //Send a 401 since there is no refresh token which means faculty is not logged in(Unauthorized)
     if (!cookie?.jwt) {
         return res.sendStatus(401);
@@ -24,11 +24,11 @@ const handleRefreshToken = async (req, res) => {
             return res.sendStatus(403);
         };
 
-        //If valid token then create new one and send back the username and token
+        //If valid token then create new one and send back the id, firstTime and token
         const accessToken = jwt.sign({ 'email': faculty.email }, process.env.REFRESH_TOKEN_SECRET, {'expiresIn': '1d'});
         return res.status(200).json({
-            id: faculty.id,
-            username: faculty.username,
+            id: faculty.facultyId,
+            firstTime: faculty.firstTime,
             accessToken
         })
     });

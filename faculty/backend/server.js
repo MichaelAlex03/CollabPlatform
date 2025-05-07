@@ -14,11 +14,12 @@ const app = express();
 
 connectDB();
 
+//Allows for credentials to be sent back to the client
+app.use(credentials);
+
 //makes sure request is coming from an accepted origin
 app.use(cors(corsOptions));
 
-//Allows for credentials to be sent back to the client
-app.use(credentials);
 
 //parses all incoming request body's into json
 app.use(express.json());
