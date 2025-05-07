@@ -195,7 +195,7 @@ const Form = () => {
         e.preventDefault();
 
         //Makes sure at least one skill is selected
-        if (Object.values(skillsData).every(skill => skill === "none")) {
+        if (Object.values(skillsData).some(skill => skill === "none")) {
             setErrMsg('Select at least one skill');
             setFormStage(3);
             return;
@@ -301,12 +301,6 @@ const Form = () => {
             if (!err?.response) {
                 setErrMsg('No response from server');
                 console.log("TESTTTT", err)
-            } else if (err.response?.status === 403) {
-                // Handle 403 specifically - likely auth issue
-                setErrMsg('Authentication failed. Please try logging in again.');
-                console.error("Auth error details:", err);
-            } else if (err.response?.status === 400) {
-                setErrMsg('Form fields missing');
             } else {
                 setErrMsg('Registration Failed');
                 console.log("ERRRRRY", err)
