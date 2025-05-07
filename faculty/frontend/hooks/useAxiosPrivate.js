@@ -1,5 +1,5 @@
 import { axiosPrivate } from '../api/axios'
-import useAuth from '../../../student/frontend/hooks/useAuth'
+import useAuth from './useAuth'
 import useRefreshToken from './useRefreshToken'
 import { useEffect } from 'react'
 

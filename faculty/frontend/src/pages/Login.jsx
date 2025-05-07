@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
 import LogHeader from '../components/LoginHeader';
 import { useNavigate } from 'react-router-dom';
 import axios from '../../api/axios';
+import useAuth from '../../hooks/useAuth'
 
 const LOGIN_URL = '/auth/login';
 
@@ -14,6 +15,12 @@ const LoginPage = () => {
 
     const [errMsg, setErrMsg] = useState('');
 
+    const { setAuth, persist, setPersist } = useAuth();
+
+    useEffect(() => {
+        localStorage.setItem("persist", persist)
+    },[persist])
+
     const handleLogin = async (e) => {
         e.preventDefault();
 
@@ -21,9 +28,16 @@ const LoginPage = () => {
             const response = await axios.post(LOGIN_URL, {
                 email,
                 pass
+            }, {
+                withCredentials: true
             });
             console.log(response);
-            navigate('/projectcreate');
+            navigate('/home');
+            setAuth({
+                id: response.data.id,
+                firstTime: response.data.firstTime,
+                accessToken: response.data.accessToken
+            })
             setEmail('');
             setPass('');
         } catch (err) {
@@ -44,6 +58,10 @@ const LoginPage = () => {
 
     const handleSignUpClick = () => {
         navigate('/signup');
+    }
+
+    const togglePersist = () => {
+        setPersist(prev => !prev)
     }
 
     return (
@@ -75,7 +93,7 @@ const LoginPage = () => {
                             />
                         </div>
                         <div className="mb-4 flex flex-row items-center w-full">
-                            <input type="checkbox" className="mr-2" />
+                            <input type="checkbox" className="mr-2" checked={persist} onChange={togglePersist}/>
                             <label className="text-black text-sm mr-auto md:text-base lg:text-lg">Remember Me</label>
                             <label><a href="#" className="text-black text-sm mr-auto md:text-base lg:text-lg">Forgot Password?</a></label>
                         </div>

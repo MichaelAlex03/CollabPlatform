@@ -87,7 +87,7 @@ const SignUpPage = () => {
             })
 
             console.log('success')
-            navigate('/');
+            navigate('/login');
 
             //Set all fields back to empty
             setName('');
@@ -105,6 +105,7 @@ const SignUpPage = () => {
             } else {
                 setErrMsg('Registration Failed');
             }
+            console.log(err)
         }
 
     }
