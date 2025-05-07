@@ -3,6 +3,6 @@ const router = express.Router();
 const facultyController = require('../../controller/api/facultyController')
 
 router.route('/')
-    .post()
+    .post(facultyController.handleAddProject)
 
 module.exports = router

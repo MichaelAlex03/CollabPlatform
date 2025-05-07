@@ -1,8 +1,12 @@
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { useState } from 'react'
+import useAxiosPrivate from '../../hooks/useAxiosPrivate'
 
 const ProjectCreation = () => {
+
+    const axiosPrivate = useAxiosPrivate();
+
     const projectTypes = [
         { value: "research", label: "Research" },
         { value: "commercialization", label: "Commercialization" },
@@ -52,12 +56,16 @@ const ProjectCreation = () => {
         })
     }
 
+    const handleSubmit = async () => {
+
+    }
+
     console.log("Project", projectData)
 
     return (
         <main className="font-fam text-gray-800 bg-white">
             <Navbar />
-            <div className="max-w-7xl mx-auto p-8">
+            <form className="max-w-7xl mx-auto p-8" onSubmit={handleSubmit}>
                 <section id="overview" className="mb-16 p-8 bg-white">
                     <h1 className="text-[#501214] text-4xl font-semibold mb-6 pb-2 border-b-2 border-gray-300">Faculty Project Creation</h1>
                     <p className="text-base mb-6">Welcome, faculty members! This form is exclusively for Texas State University faculty to submit research projects and collaborate with talented students. Please fill out all fields with detailed information to ensure we can match your project with the best student contributors,
@@ -165,7 +173,7 @@ const ProjectCreation = () => {
                         </p>
                     </div>
 
-                    <button className="bg-[#501214] text-white py-2 px-4 rounded hover:bg-[#BF8C35] mt-4 cursor-pointer">Submit Project</button>
+                    <button className="bg-[#501214] text-white py-2 px-4 rounded hover:bg-[#BF8C35] mt-4 cursor-pointer" >Submit Project</button>
 
                     <section id="faq" className="mt-16">
                         <h2 className="text-[#501214] text-4xl font-semibold mb-6 pb-2 border-b-2 border-gray-300">Frequently Asked Questions</h2>
@@ -205,7 +213,7 @@ const ProjectCreation = () => {
                     </section>
 
                 </section>
-            </div>
+            </form>
             <Footer />
         </main>
     );
