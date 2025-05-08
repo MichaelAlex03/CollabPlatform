@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { faTrash, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { formRegex } from "../../hooks/useFormRegex";
+import { formRegex } from "../../../hooks/useFormRegex";
 
 const FormStage2 = ({ formData, handleFormChange, deleteLink }) => {
     const [hoursFocus, setHoursFocus] = useState(false);

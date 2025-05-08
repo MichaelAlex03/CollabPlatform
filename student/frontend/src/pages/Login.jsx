@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Footer from '../components/Footer';
 import LoginHeader from '../components/LoginHeader.jsx';
 import { useNavigate } from 'react-router-dom';
-import axios from '../api/axios.js';
-import useAuth from '../hooks/useAuth.js';
+import axios from '../../api/axios.js';
+import useAuth from '../../hooks/useAuth.js';
 
 const LOGIN_URL = '/auth/login';
 

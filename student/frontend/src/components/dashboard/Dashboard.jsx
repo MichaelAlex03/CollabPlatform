@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import useAuth from '../../hooks/useAuth';
-import axios from '../../api/axios';
+import useAuth from '../../../hooks/useAuth';
+import axios from '../../../api/axios';
 import { replace, useNavigate } from 'react-router-dom';
 
 const LOGOUT_URL = '/auth/logout'

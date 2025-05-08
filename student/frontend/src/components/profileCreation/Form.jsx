@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 import FormStage1 from './FormStage1';
 import FormStage2 from './FormStage2';
 import FormStage3 from './FormStage3';
-import useFormRegex, { formNullCheck } from '../../hooks/useFormRegex';
+import useFormRegex, { formNullCheck } from '../../../hooks/useFormRegex';
 
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import useAuth from '../../hooks/useAuth';
-import axios from '../../api/axios';
+import useAuth from '../../../hooks/useAuth';
+import axios from '../../../api/axios';
 
 const PROFILE_URL = '/api/student'
 const LOGOUT_URL = '/auth/logout'

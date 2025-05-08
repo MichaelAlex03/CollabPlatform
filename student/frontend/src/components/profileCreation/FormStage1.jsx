@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { formRegex } from '../../hooks/useFormRegex';
+import { formRegex } from '../../../hooks/useFormRegex';
 
 const FormStage1 = ({ formData, handleFormChange }) => {
 

@@ -1,12 +1,12 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { AuthProvider } from '../context/AuthProvider'
-import Register from '../pages/Register'
-import Home from '../pages/Home'
-import LandingPage from '../pages/LandingPage'
-import Login from '../pages/Login'
-import Layout from '../components/Layout'
-import RequireAuth from '../components/RequireAuth'
-import PersistLogin from '../components/PersistLogin'
+import Register from './pages/Register'
+import Home from './pages/Home'
+import LandingPage from './pages/LandingPage'
+import Login from './pages/Login'
+import Layout from './components/Layout'
+import RequireAuth from './components/RequireAuth'
+import PersistLogin from './components/PersistLogin'
 
 
 function App() {
