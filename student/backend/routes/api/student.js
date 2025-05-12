@@ -28,4 +28,7 @@ router.route('/')
         studentController.handleAddFormData
     );
 
+router.route('/:id')
+    .get(studentController.fetchUser)
+
 module.exports = router

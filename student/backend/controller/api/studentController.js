@@ -59,6 +59,29 @@ const handleAddFormData = async (req, res) => {
         console.log(error);
     }
 }
+
+const fetchUser = async (req, res) => {
+
+    const { id } = req.params;
+    try {
+        const student = await StudentProfile.findOne({ aNum: id }).exec();
+
+        if (!student) {
+            return res.status(404).json({ "message": "user not found" })
+        }
+
+        return res.status(200).json({ student });
+    } catch (error) {
+        res.sendStatus(500);
+        console.log(error)
+    }
+
+
+
+
+}
+
 module.exports = {
-    handleAddFormData
+    handleAddFormData,
+    fetchUser,
 }
