@@ -6,18 +6,7 @@ import axios from '../../../api/axios';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 
-const EditProfile = ({ localProfile, handleChange }) => {
-
-
-    const [student, setStudent] = useState({});
-
-
-    useEffect(() => {
-        setStudent(localProfile)
-
-    }, [])
-
-    console.log(student)
+const EditProfile = ({ localProfile, serverProfile, handleChange }) => {
 
     return (
         <div className='flex flex-row w-full gap-8'>
@@ -40,73 +29,113 @@ const EditProfile = ({ localProfile, handleChange }) => {
                     <input
                         type='text'
                         className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
-                        value={student.studentName}
+                        value={localProfile.studentName}
                         onChange={handleChange}
                     />
                     <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Full Name</label>
                 </div>
+
                 <div className='relative p-4'>
                     <input
                         type='text'
+                        name='aNum'
                         className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
-                        value={student.aNum}
+                        value={localProfile.aNum}
                         onChange={handleChange}
                     />
                     <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>A#</label>
                 </div>
+
+                {serverProfile.year !== 'graduate'
+                    ? (
+                        <div className='relative p-4'>
+                            <input
+                            name='expectedGrad'
+                                type='text'
+                                className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
+                                value={localProfile.expectedGrad}
+                                onChange={handleChange}
+                            />
+                            <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Expected Graduation</label>
+                        </div>
+                    ) : (
+                        <div className='relative p-4'>
+                            <input
+                                type='text'
+                                name='degreeCompleted'
+                                className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
+                                value={localProfile.degreeCompleted}
+                                onChange={handleChange}
+                            />
+                            <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Degree Completed</label>
+                        </div>
+                    )
+
+                }
+
                 <div className='relative p-4'>
                     <input
                         type='text'
+                        name='year'
                         className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
-                    />
-                    <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Expected Graduation</label>
-                </div>
-                <div className='relative p-4'>
-                    <input
-                        type='text'
-                        className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
+                        value={localProfile.year}
+                        onChange={handleChange}
                     />
                     <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Year</label>
                 </div>
+
+                {serverProfile.year !== "graduate" && (
+                    <div className='relative p-4'>
+                        <input
+                            type='text'
+                            name='degree'
+                            className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
+                            value={localProfile.degree}
+                        />
+                        <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Degree Sought</label>
+                    </div>
+                )}
+
                 <div className='relative p-4'>
                     <input
                         type='text'
+                        name='department'
                         className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
-                    />
-                    <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Degree</label>
-                </div>
-                <div className='relative p-4'>
-                    <input
-                        type='text'
-                        className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
-                    />
-                    <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Degree Completed</label>
-                </div>
-                <div className='relative p-4'>
-                    <input
-                        type='text'
-                        className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
+                        value={localProfile.department}
+                        onChange={handleChange}
                     />
                     <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Department</label>
                 </div>
+
                 <div className='relative p-4'>
                     <input
                         type='text'
+                        name='phoneNum'
                         className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
+                        value={localProfile.phoneNum}
+                        onChange={handleChange}
                     />
                     <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Phone Number</label>
                 </div>
+
                 <div className='relative p-4'>
                     <input
                         type='text'
+                        name='workedHrs'
                         className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
+                        value={localProfile.workedHrs}
+                        onChange={handleChange}
                     />
                     <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Worked Hours</label>
                 </div>
+
                 <div className='relative p-4'>
                     <input
                         type='text'
+                        name='projects'
                         className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
+                        value={localProfile.projects}
+                        onChange={handleChange}
                     />
                     <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Projects</label>
                 </div>
