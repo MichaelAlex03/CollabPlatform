@@ -5,9 +5,8 @@ import useAuth from '../../../hooks/useAuth';
 import axios from '../../../api/axios';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
-import Navbar from '../Navbar'
-
-
+import EditProfile from './EditProfile';
+import SkillsSection from './SkillsSection';
 
 const LOGOUT_URL = '/auth/logout'
 const STUDENT_URL = '/api/student'
@@ -18,21 +17,28 @@ const Dashboard = () => {
   const axiosPrivate = useAxiosPrivate();
 
   const [errMsg, setErrMsg] = useState('');
-  const [studentProfile, setStudentProfile] = useState({});
+  const [localProfile, setLocalProfile] = useState({});
+  const [serverProfile, setServerProfile] = useState({});
   const [refresh, setRefresh] = useState(0)
+  const [readyToSubmit, setReadyToSubmit] = useState(false);
+  const [showProfile, setShowProfile] = useState(true);
+  const [showSkills, setShowSkills] = useState(false);
+  const [skills, setSkills] = useState({});
+
 
   console.log(auth)
 
   const fetchUser = async () => {
     try {
       const response = await axiosPrivate.get(STUDENT_URL + `/${auth.aNum}`);
-      setStudentProfile(response.data)
+      setServerProfile(response.data.student);
+      setLocalProfile(response.data.student);
     } catch (error) {
       console.log(error)
     }
   }
 
-  const handleUpdate = async () => {
+  const handleSave = async () => {
     try {
 
     } catch (error) {
@@ -53,11 +59,27 @@ const Dashboard = () => {
     }
   }
 
+  const handleFormChange = (e) => {
+    setLocalProfile({ ...localProfile, [e.target.name]: e.target.value });
+  }
+
+  const handleSkillsChange = (e) => {
+
+  } 
+
+  const handleShowSkills = () => {
+    setShowProfile(false);
+    setShowSkills(true)
+  }
+
+  useEffect(() => {
+    setReadyToSubmit(localProfile !== serverProfile);
+  }, [localProfile])
+
   useEffect(() => {
     fetchUser();
   }, [refresh])
 
-  console.log(studentProfile)
 
 
   return (
@@ -67,102 +89,44 @@ const Dashboard = () => {
           Test
         </div>
       </div>
-      <div className='flex flex-col items-center justify-center pb-10 pl-10 pr-10 w-full h-full gap-8'>
 
-        <h1 className='w-full text-left text-3xl font-bold mb-10'>Edit Your Profile</h1>
+      <div className='flex flex-col items-center justify-center w-full p-6 gap-4'>
 
-        <div className='flex flex-row w-full gap-8'>
-          <div className="bg-white/80 backdrop-blur-md shadow-2xl border border-gray-200 rounded-xl p-6 flex flex-col items-center flex-1/3 h-1/3">
-            <div className="bg-gray-500 rounded-full p-6 flex items-center justify-center cursor-pointer hover:bg-gray-600 transition relative h-1/3">
-              <FontAwesomeIcon icon={faCamera} className="text-white text-2xl" />
-            </div>
-            <div className='flex flex-col items-center absolute'>
-              <input type='file' className='opacity-0 h-0' id='fileUpload' />
-              <label htmlFor='fileUpload'>Upload Photo</label>
-            </div>
-          </div>
+        <div className='w-full'>
+          <h1 className='text-left text-3xl font-bold mb-10'>Edit Your Profile</h1>
+        </div>
 
-          <div className='bg-white/80 backdrop-blur-md shadow-2xl border border-gray-400 rounded-xl p-6 grid grid-cols-2 w-2/3 gap-2'>
+        <div className='flex flex-row w-full'>
+          {/* Form and Skills Section */}
+          {showProfile && (<EditProfile localProfile={localProfile} handleChange={handleFormChange} />)}
 
-            <div className='relative p-4'>
-              <input
-                type='text'
-                className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
-              />
-              <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Full Name</label>
-            </div>
-            <div className='relative p-4'>
-              <input
-                type='text'
-                className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
-              />
-              <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>A#</label>
-            </div>
-            <div className='relative p-4'>
-              <input
-                type='text'
-                className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
-              />
-              <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Expected Graduation</label>
-            </div>
-            <div className='relative p-4'>
-              <input
-                type='text'
-                className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
-              />
-              <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Year</label>
-            </div>
-            <div className='relative p-4'>
-              <input
-                type='text'
-                className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
-              />
-              <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Degree</label>
-            </div>
-            <div className='relative p-4'>
-              <input
-                type='text'
-                className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
-              />
-              <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Degree Completed</label>
-            </div>
-            <div className='relative p-4'>
-              <input
-                type='text'
-                className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
-              />
-              <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Department</label>
-            </div>
-            <div className='relative p-4'>
-              <input
-                type='text'
-                className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
-              />
-              <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Phone Number</label>
-            </div>
-            <div className='relative p-4'>
-              <input
-                type='text'
-                className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
-              />
-              <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Worked Hours</label>
-            </div>
-            <div className='relative p-4'>
-              <input
-                type='text'
-                className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
-              />
-              <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Projects</label>
-            </div>
-
-
-
-          </div>
-
+          {showSkills && (<SkillsSection skills={skills} handleChange={handleSkillsChange}/>)}
         </div>
 
 
+        <div className='w-full flex flex-row justify-end gap-4'>
+          <div
+            className={readyToSubmit
+              ? 'w-1/8 flex flex-row justify-center bg-[#501214] border border-gray-400 rounded-xl p-2'
+              : 'w-1/8 flex flex-row justify-center bg-[#501214] border-2 border-gray-400 rounded-xl p-2 opacity-70'
+            }
+          >
+            <button disabled={readyToSubmit} className='text-white'>Save</button>
+          </div>
+          <div className='w-1/8 flex flex-row justify-center bg-[#501214] border border-gray-400 rounded-xl p-2'>
+            <button
+              className='text-white'
+              onClick={handleShowSkills}
+            >
+              Edit Skills Section
+            </button>
+          </div>
+        </div>
+
       </div>
+
+
+
     </>
   )
 }
