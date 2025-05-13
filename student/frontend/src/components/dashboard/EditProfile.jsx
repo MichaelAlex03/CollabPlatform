@@ -8,6 +8,37 @@ import { faCamera } from "@fortawesome/free-solid-svg-icons";
 
 const EditProfile = ({ localProfile, serverProfile, handleChange }) => {
 
+    console.log("Test", localProfile)
+
+
+    const degrees = [
+        "Computer Science",
+        "Business",
+        "Computer Engineering",
+        "Electrical Engineering",
+        "Mechanical Engineering",
+        "Civil Engineering",
+        "Chemical Engineering",
+        "Industrial Engineering",
+        "Information Technology",
+        "Information Systems",
+        "Software Engineering",
+        "Data Science",
+        "Mathematics",
+        "Physics",
+        "Chemistry",
+        "Biology",
+        "Psychology",
+        "Economics",
+        "Finance",
+        "Marketing",
+        "Management",
+        "Accounting",
+        "Communication",
+        "English",
+        "History"
+    ]
+
     return (
         <div className='flex flex-row w-full gap-8'>
 
@@ -24,6 +55,114 @@ const EditProfile = ({ localProfile, serverProfile, handleChange }) => {
             </div>
 
             <div className='bg-white/80 backdrop-blur-md shadow-2xl border border-gray-400 rounded-xl p-6 grid grid-cols-2 w-2/3 gap-2'>
+
+                {/*Resume*/}
+                <div className="flex flex-col items-start w-full px-4 py-2">
+                    <label htmlFor="fileUpload" className="text-md md:text-base">Upload Resume/CV</label>
+                    <div className="w-full mt-1">
+                        {!localProfile.resume ? (
+                            <input
+                                type="file"
+                                id="fileUpload"
+                                name="resume"
+                                accept=".pdf,.doc,.docx"
+                                className="w-full text-sm text-gray-500
+                            file:mr-4 file:py-2 file:px-4
+                            file:rounded-md file:border-0
+                            file:text-sm file:font-semibold
+                            file:bg-[#501214] file:text-white
+                            hover:file:bg-[#3d0e0f]
+                            cursor-pointer"
+                                onChange={handleChange}
+                            />
+                        ) : (
+                            <div className="flex items-center gap-2">
+                                <p className="text-sm text-green-600">
+                                    Selected: {localProfile.resume.filename}
+                                </p>
+                                <input
+                                    type="file"
+                                    id="fileUploadChange"
+                                    name="resume"
+                                    accept=".pdf,.doc,.docx"
+                                    className="hidden"
+                                    onChange={handleChange}
+                                />
+                                <div className="flex gap-2">
+                                    <button
+                                        type="button"
+                                        className="bg-[#501214] p-2 w-1/2 text-sm text-white flex flex-row justify-center items-center rounded-lg"
+                                        onClick={() => document.getElementById('fileUploadChange').click()}
+                                    >
+                                        Change
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className="bg-[#501214] p-2 w-1/2 text-sm text-white flex flex-row justify-center items-center rounded-lg"
+                                        onClick={() => handleChange({ target: { name: 'resume', value: null } })}
+                                    >
+                                        Remove
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                        <p className="text-xs text-gray-500 mt-1">Accepted formats: PDF, DOC, DOCX (Max size: 5MB)</p>
+                    </div>
+                </div>
+
+                {/*Letter of Recommendation*/}
+                <div className="flex flex-col items-start w-full px-4 py-2">
+                    <label htmlFor="fileUploadRec" className="text-md md:text-base">Letter Of Recommendation(Optional)</label>
+                    <div className="w-full mt-1">
+                        {!localProfile.letterOfRec ? (
+                            <input
+                                type="file"
+                                id="fileUploadRec"
+                                name="letterOfRec"
+                                accept=".pdf,.doc,.docx"
+                                className="w-full text-sm text-gray-500
+                            file:mr-4 file:py-2 file:px-4
+                            file:rounded-md file:border-0
+                            file:text-sm file:font-semibold
+                            file:bg-[#501214] file:text-white
+                            hover:file:bg-[#3d0e0f]
+                            cursor-pointer"
+                                onChange={handleChange}
+                            />
+                        ) : (
+                            <div className="flex items-center gap-2">
+                                <p className="text-sm text-green-600">
+                                    Selected: {localProfile.letterOfRec.filename}
+                                </p>
+                                <input
+                                    type="file"
+                                    id="fileUploadRecChange"
+                                    name="letterOfRec"
+                                    accept=".pdf,.doc,.docx"
+                                    className="hidden"
+                                    onChange={handleChange}
+                                />
+                                <div className="flex gap-2">
+                                    <button
+                                        type="button"
+                                        className="bg-[#501214] p-2 w-1/2 text-sm text-white flex flex-row justify-center items-center rounded-lg"
+                                        onClick={() => document.getElementById('fileUploadRecChange').click()}
+                                    >
+                                        Change
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className="bg-[#501214] p-2 w-1/2 text-sm text-white flex flex-row justify-center items-center rounded-lg"
+                                        onClick={() => handleChange({ target: { name: 'letterOfRec', value: null } })}
+                                    >
+                                        Remove
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                        <p className="text-xs text-gray-500 mt-1">Accepted formats: PDF, DOC, DOCX (Max size: 5MB)</p>
+                    </div>
+                </div>
 
                 <div className='relative p-4'>
                     <input
@@ -46,27 +185,35 @@ const EditProfile = ({ localProfile, serverProfile, handleChange }) => {
                     <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>A#</label>
                 </div>
 
-                {serverProfile.year !== 'graduate'
+                {localProfile.year !== 'graduate'
                     ? (
                         <div className='relative p-4'>
-                            <input
-                            name='expectedGrad'
+                            <select
                                 type='text'
+                                name='degree'
                                 className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
-                                value={localProfile.expectedGrad}
+                                value={localProfile.degree}
                                 onChange={handleChange}
-                            />
-                            <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Expected Graduation</label>
+                            >
+                                {degrees.map((degree) => (
+                                    <option value={degree}>{degree}</option>
+                                ))}
+                            </select>
+                            <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Degree Sought</label>
                         </div>
                     ) : (
                         <div className='relative p-4'>
-                            <input
+                            <select
                                 type='text'
-                                name='degreeCompleted'
+                                name='degree'
                                 className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
                                 value={localProfile.degreeCompleted}
                                 onChange={handleChange}
-                            />
+                            >
+                                {degrees.map((degree) => (
+                                    <option value={degree}>{degree}</option>
+                                ))}
+                            </select>
                             <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Degree Completed</label>
                         </div>
                     )
@@ -74,26 +221,35 @@ const EditProfile = ({ localProfile, serverProfile, handleChange }) => {
                 }
 
                 <div className='relative p-4'>
-                    <input
+                    <select
                         type='text'
                         name='year'
                         className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
                         value={localProfile.year}
                         onChange={handleChange}
-                    />
+                    >
+                        <option value="freshman">Freshman</option>
+                        <option value="sophmore">Sophmore</option>
+                        <option value="junior">Junior</option>
+                        <option value="senior">Senior</option>
+                        <option value="graduate">Graduate</option>
+                    </select>
                     <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Year</label>
                 </div>
 
-                {serverProfile.year !== "graduate" && (
+                {localProfile.year !== "graduate" && (
+
                     <div className='relative p-4'>
                         <input
+                            name='expectedGrad'
                             type='text'
-                            name='degree'
                             className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
-                            value={localProfile.degree}
+                            value={localProfile.expectedGrad}
+                            onChange={handleChange}
                         />
-                        <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Degree Sought</label>
+                        <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Expected Graduation</label>
                     </div>
+
                 )}
 
                 <div className='relative p-4'>
@@ -139,6 +295,78 @@ const EditProfile = ({ localProfile, serverProfile, handleChange }) => {
                     />
                     <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Projects</label>
                 </div>
+
+                <div className='relative p-4'>
+                    <input
+                        type='text'
+                        name='jobs'
+                        className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
+                        value={localProfile.jobs}
+                        onChange={handleChange}
+                    />
+                    <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Jobs</label>
+                </div>
+
+                <div className='relative p-4'>
+                    <input
+                        type='text'
+                        name='links'
+                        className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
+                        value={localProfile.links}
+                        onChange={handleChange}
+                    />
+                    <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Links</label>
+                </div>
+                <div className='relative p-4'>
+                    <input
+                        type='text'
+                        name='referenceName'
+                        className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
+                        value={localProfile.referenceName}
+                        onChange={handleChange}
+                    />
+                    <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Reference Name</label>
+                </div>
+                <div className='relative p-4'>
+                    <select
+                        type='text'
+                        name='referenceContactType'
+                        className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
+                        value={localProfile.referenceContactType}
+                        onChange={handleChange}
+                    >
+                        <option value="email">Email</option>
+                        <option value="phone">Phone</option>
+                    </select>
+                    <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Reference Type</label>
+                </div>
+
+                {localProfile.referenceContactType === 'phone'
+                    ? (
+                        <div className='relative p-4'>
+                            <input
+                                type='text'
+                                name='referencePhone'
+                                className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
+                                value={localProfile.referencePhone}
+                                onChange={handleChange}
+                            />
+                            <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Reference Phone Number</label>
+                        </div>
+                    ) :
+                    (
+                        <div className='relative p-4'>
+                            <input
+                                type='text'
+                                name='referenceEmail'
+                                className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
+                                value={localProfile.referenceEmail}
+                                onChange={handleChange}
+                            />
+                            <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Reference Email</label>
+                        </div>
+                    )
+                }
 
             </div>
 
