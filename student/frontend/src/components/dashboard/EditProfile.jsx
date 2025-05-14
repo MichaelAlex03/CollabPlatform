@@ -44,13 +44,25 @@ const EditProfile = ({ localProfile, handleChange }) => {
 
 
             {/* Profile Picture Selector*/}
-            <div className="bg-white/80 backdrop-blur-md shadow-2xl border border-gray-200 rounded-xl p-6 flex flex-col items-center flex-1/3 h-1/3">
-                <div className="bg-gray-500 rounded-full p-6 flex items-center justify-center cursor-pointer hover:bg-gray-600 transition relative h-1/3">
-                    <FontAwesomeIcon icon={faCamera} className="text-white text-2xl" />
+            <div className="bg-white/80 backdrop-blur-md shadow-2xl border border-gray-200 rounded-xl p-6 flex flex-col items-center flex-1/3 h-2/5">
+                <div className="bg-gray-500 rounded-full p-24 flex items-center justify-center relative h-1/3">
+                    <FontAwesomeIcon icon={faCamera} size="6xl" className="text-white text-2xl" />
+                    <div className='flex flex-col items-center absolute bottom-10'>
+                    </div>
                 </div>
-                <div className='flex flex-col items-center absolute'>
+
+                <div className='flex flex-col items-center mt-2'>
                     <input type='file' className='opacity-0 h-0' id='fileUpload' />
-                    <label htmlFor='fileUpload'>Upload Photo</label>
+                    <button
+                        className='cursor-pointer bg-gray-700 border-2 border-gray-400 px-6 py-1 rounded-xl text-white'
+                        onClick={() => {
+                            document.getElementById("fileUpload").click()
+                        }}
+                    >
+                        Upload Photo
+                    </button>
+                    <p className="text-sm text-gray-500 mt-1">Allowed *.jpeg, *.jpg, *.png, *.gif</p>
+                    <p className="text-sm text-gray-500">Max Size of 5.00 MB</p>
                 </div>
             </div>
 
