@@ -92,7 +92,7 @@ const Dashboard = () => {
       const response = await axiosPrivate.get(STUDENT_URL + `/${auth.aNum}`);
       setServerProfile(response.data.student);
       setLocalProfile(response.data.student);
-      setStudentSkills(response.data.student.skills);
+      setSkillsObject(response.data.student.skills)
 
 
     } catch (error) {
@@ -126,7 +126,11 @@ const Dashboard = () => {
   }
 
   const handleSkillsChange = (e) => {
-
+    const {name, value} = e.target;
+    setSkillsData(prev => ({
+      ...prev,
+      [name]: value
+    }))
   }
 
   const handleShowSkills = () => {
@@ -138,6 +142,19 @@ const Dashboard = () => {
     setShowProfile(true);
     setShowSkills(false);
   }
+
+  const setSkillsObject = (skills) => {
+   
+    for(let i = 0; i < skills.length; i++){
+      const skillName = skills[i].name
+      const proficiency = skills[i].proficiency
+      setSkillsData({...skillsData, [skillName]: proficiency});
+    }
+  }
+
+  console.log(skillsData)
+
+ 
 
   const compareLocalVsServer = (local, server) => {
     for(let key in local){
@@ -186,7 +203,6 @@ const Dashboard = () => {
             <div className='flex flex-col w-full'>
               <EditProfile
                 localProfile={localProfile}
-                serverProfile={serverProfile}
                 handleChange={handleFormChange}
               />
               <div className='w-full flex flex-row justify-end gap-4 mt-4 p-4'>

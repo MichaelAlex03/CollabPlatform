@@ -6,7 +6,7 @@ import axios from '../../../api/axios';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 
-const EditProfile = ({ localProfile, serverProfile, handleChange }) => {
+const EditProfile = ({ localProfile, handleChange }) => {
 
     console.log("Test", localProfile)
 
