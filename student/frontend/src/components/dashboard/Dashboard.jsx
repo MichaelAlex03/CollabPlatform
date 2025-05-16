@@ -8,7 +8,6 @@ import EditProfile from './EditProfile';
 import EditSkills from './EditSkills';
 import Dropdown from './headerDropdown/Dropdown';
 
-const LOGOUT_URL = '/auth/logout'
 const STUDENT_URL = '/api/student'
 
 const Dashboard = () => {
@@ -24,6 +23,7 @@ const Dashboard = () => {
   const [showProfile, setShowProfile] = useState(true);
   const [showSkills, setShowSkills] = useState(false);
   const [readyToSubmit, setReadyToSubmit] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   //Object for local state to compare to db state
   const [localSkillsData, setLocalSkillsData] = useState({
@@ -194,19 +194,6 @@ const Dashboard = () => {
     }
   };
 
-  const handleLogout = async () => {
-    try {
-      setAuth({});
-      await axios.get(LOGOUT_URL, {
-        withCredentials: true,
-      });
-      navigate("/login", { replace: true });
-    } catch (err) {
-      setErrMsg("Error logging out");
-      console.log(err);
-    }
-  };
-
   const handleFormChange = (e) => {
     setLocalProfile({ ...localProfile, [e.target.name]: e.target.value });
   };
@@ -273,23 +260,28 @@ const Dashboard = () => {
     <div className='flex flex-col items-center justify-center w-full p-6 gap-4'>
 
       <div className='flex flex-row w-full items-center justify-end gap-4 relative'>
-        <button className='flex flex-row items-center gap-2 cursor-pointer'>
+        <button className='flex flex-row items-center gap-2 cursor-pointer' onClick={() => setShowDropdown(prev => !prev)}>
           <h1 className='text-lg'>{serverProfile.studentName}</h1>
           <FontAwesomeIcon icon={faAngleDown} />
         </button>
         <FontAwesomeIcon icon={faUserCircle} size='3x' />
 
         {/* Dropdown */}
-        <div className='absolute top-12 right-15 w-30'>
-          <Dropdown />
-        </div>
+        {showDropdown &&
+          (
+
+            <div className='absolute top-12 right-15 w-30'>
+              <Dropdown />
+            </div>
+          )
+        }
       </div>
 
 
       <div className='w-full'>
         {showProfile
-          ? <h1 className='text-left text-3xl font-bold mb-10'>Edit Your Profile</h1>
-          : <h1 className='text-left text-3xl font-bold mb-5'>Edit Your Skills</h1>
+          ? <h1 className='text-center text-3xl font-bold mb-10'>Edit Your Profile</h1>
+          : <h1 className='text-center text-3xl font-bold mb-5'>Edit Your Skills</h1>
         }
 
       </div>
@@ -311,12 +303,12 @@ const Dashboard = () => {
                     : "w-1/8 flex flex-row justify-center bg-[#501214] border-2 border-gray-400 rounded-xl p-2 opacity-70"
                 }
               >
-                <button disabled={readyToSubmit} className="text-white">
+                <button disabled={readyToSubmit} className="text-white cursor-pointer">
                   Save
                 </button>
               </div>
               <div className="w-1/8 flex flex-row justify-center bg-[#501214] border border-gray-400 rounded-xl p-2">
-                <button className="text-white" onClick={handleShowSkills}>
+                <button className="text-white cursor-pointer" onClick={handleShowSkills}>
                   Edit Skills Section
                 </button>
               </div>
@@ -333,7 +325,7 @@ const Dashboard = () => {
             />
             <div className="w-full flex flex-row justify-end gap-4 mt-4 p-4">
               <div className="w-1/8 flex flex-row justify-center bg-[#501214] border border-gray-400 rounded-xl p-2">
-                <button className="text-white" onClick={handleShowProfile}>
+                <button className="text-white cursor-pointer" onClick={handleShowProfile}>
                   Back to Profile
                 </button>
               </div>

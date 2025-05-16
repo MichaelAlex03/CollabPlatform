@@ -40,33 +40,9 @@ const EditProfile = ({ localProfile, handleChange }) => {
     ]
 
     return (
-        <div className='flex flex-row w-full gap-8'>
+        <div className='flex flex-row justify-center w-full gap-8'>
 
-
-            {/* Profile Picture Selector*/}
-            <div className="bg-white/80 backdrop-blur-md shadow-2xl border border-gray-200 rounded-xl p-6 flex flex-col items-center flex-1/3 h-2/5">
-                <div className="bg-gray-500 rounded-full p-24 flex items-center justify-center relative h-1/3">
-                    <FontAwesomeIcon icon={faCamera} size="2xl" className="text-white text-2xl" />
-                    <div className='flex flex-col items-center absolute bottom-10'>
-                    </div>
-                </div>
-
-                <div className='flex flex-col items-center mt-2'>
-                    <input type='file' className='opacity-0 h-0' id='fileUpload' />
-                    <button
-                        className='cursor-pointer bg-gray-700 border-2 border-gray-400 px-6 py-1 rounded-xl text-white'
-                        onClick={() => {
-                            document.getElementById("fileUpload").click()
-                        }}
-                    >
-                        Upload Photo
-                    </button>
-                    <p className="text-sm text-gray-500 mt-1">Allowed *.jpeg, *.jpg, *.png, *.gif</p>
-                    <p className="text-sm text-gray-500">Max Size of 5.00 MB</p>
-                </div>
-            </div>
-
-            <div className='bg-white/80 backdrop-blur-md shadow-2xl border border-gray-400 rounded-xl p-6 grid grid-cols-2 w-2/3 gap-2'>
+            <div className='bg-white/80 backdrop-blur-md shadow-2xl border border-gray-400 rounded-xl p-6 grid grid-cols-2 w-4/5 gap-2'>
 
                 {/*Resume*/}
                 <div className="flex flex-col items-start w-full px-4 py-2">
@@ -84,7 +60,7 @@ const EditProfile = ({ localProfile, handleChange }) => {
                             file:text-sm file:font-semibold
                             file:bg-[#501214] file:text-white
                             hover:file:bg-[#3d0e0f]
-                            cursor-pointer"
+                            file:cursor-pointer"
                                 onChange={handleChange}
                             />
                         ) : (
@@ -103,14 +79,14 @@ const EditProfile = ({ localProfile, handleChange }) => {
                                 <div className="flex gap-2">
                                     <button
                                         type="button"
-                                        className="bg-[#501214] p-2 w-1/2 text-sm text-white flex flex-row justify-center items-center rounded-lg"
+                                        className="bg-[#501214] p-2 w-1/2 text-sm text-white flex flex-row justify-center items-center cursor-pointer rounded-lg"
                                         onClick={() => document.getElementById('fileUploadChange').click()}
                                     >
                                         Change
                                     </button>
                                     <button
                                         type="button"
-                                        className="bg-[#501214] p-2 w-1/2 text-sm text-white flex flex-row justify-center items-center rounded-lg"
+                                        className="bg-[#501214] p-2 w-1/2 text-sm text-white flex flex-row justify-center items-center cursor-pointer rounded-lg"
                                         onClick={() => handleChange({ target: { name: 'resume', value: null } })}
                                     >
                                         Remove
@@ -138,7 +114,7 @@ const EditProfile = ({ localProfile, handleChange }) => {
                             file:text-sm file:font-semibold
                             file:bg-[#501214] file:text-white
                             hover:file:bg-[#3d0e0f]
-                            cursor-pointer"
+                            file:cursor-pointer"
                                 onChange={handleChange}
                             />
                         ) : (
@@ -157,14 +133,14 @@ const EditProfile = ({ localProfile, handleChange }) => {
                                 <div className="flex gap-2">
                                     <button
                                         type="button"
-                                        className="bg-[#501214] p-2 w-1/2 text-sm text-white flex flex-row justify-center items-center rounded-lg"
+                                        className="bg-[#501214] p-2 w-1/2 text-sm text-white flex flex-row justify-center items-center rounded-lg cursor-pointer"
                                         onClick={() => document.getElementById('fileUploadRecChange').click()}
                                     >
                                         Change
                                     </button>
                                     <button
                                         type="button"
-                                        className="bg-[#501214] p-2 w-1/2 text-sm text-white flex flex-row justify-center items-center rounded-lg"
+                                        className="bg-[#501214] p-2 w-1/2 text-sm text-white flex flex-row justify-center items-center rounded-lg cursor-pointer"
                                         onClick={() => handleChange({ target: { name: 'letterOfRec', value: null } })}
                                     >
                                         Remove
@@ -203,7 +179,7 @@ const EditProfile = ({ localProfile, handleChange }) => {
                             <select
                                 type='text'
                                 name='degree'
-                                className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
+                                className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0 cursor-pointer'
                                 value={localProfile.degree}
                                 onChange={handleChange}
                             >
@@ -218,7 +194,7 @@ const EditProfile = ({ localProfile, handleChange }) => {
                             <select
                                 type='text'
                                 name='degree'
-                                className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
+                                className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0 cursor-pointer'
                                 value={localProfile.degreeCompleted}
                                 onChange={handleChange}
                             >
@@ -236,7 +212,7 @@ const EditProfile = ({ localProfile, handleChange }) => {
                     <select
                         type='text'
                         name='year'
-                        className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
+                        className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0 cursor-pointer'
                         value={localProfile.year}
                         onChange={handleChange}
                     >
@@ -343,7 +319,7 @@ const EditProfile = ({ localProfile, handleChange }) => {
                     <select
                         type='text'
                         name='referenceContactType'
-                        className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0'
+                        className='border-[#501214] border-2 w-full rounded-lg p-4 outline-0 cursor-pointer'
                         value={localProfile.referenceContactType}
                         onChange={handleChange}
                     >

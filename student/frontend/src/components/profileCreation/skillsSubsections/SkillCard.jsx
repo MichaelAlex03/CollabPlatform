@@ -92,6 +92,7 @@ const SkillCard = ({ name, skillsData, handleSkillsChange, description }) => {
                         value='none'
                         checked={skillsData[skillKey] === "none"}
                         onChange={handleSkillsChange}
+                        className='cursor-pointer'
                     />
                 </div>
                 <div className='flex flex-col gap-2 items-center justify-center'>
@@ -103,6 +104,7 @@ const SkillCard = ({ name, skillsData, handleSkillsChange, description }) => {
                         value='basic'
                         checked={skillsData[skillKey] === "basic"}
                         onChange={handleSkillsChange}
+                        className='cursor-pointer'
                     />
                 </div>
                 <div className='flex flex-col gap-2 items-center justify-center'>
@@ -114,6 +116,7 @@ const SkillCard = ({ name, skillsData, handleSkillsChange, description }) => {
                         value='intermediate'
                         checked={skillsData[skillKey] === "intermediate"}
                         onChange={handleSkillsChange}
+                        className='cursor-pointer'
                     />
                 </div>
                 <div className='flex flex-col gap-2 items-center justify-center'>
@@ -125,6 +128,7 @@ const SkillCard = ({ name, skillsData, handleSkillsChange, description }) => {
                         value='advanced'
                         checked={skillsData[skillKey] === "advanced"}
                         onChange={handleSkillsChange}
+                        className='cursor-pointer'
                     />
                 </div>
             </div>

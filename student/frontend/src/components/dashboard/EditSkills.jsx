@@ -24,8 +24,8 @@ const EditSkills = ({ skillsData, handleSkillsChange }) => {
               key={category}
               className={
                 activeCategory === category
-                  ? `bg-[#501214] text-white rounded-xl w-full text-base transform transition duration-200 p-3 lift-up`
-                  : `border-1 border-black text-black rounded-xl w-full text-base p-3 lift-up`}
+                  ? `bg-[#501214] text-white rounded-xl w-full text-base transform transition duration-200 p-3 lift-up cursor-pointer`
+                  : `border-1 border-black text-black rounded-xl w-full text-base p-3 lift-up cursor-pointer`}
               onClick={() => setActiveCategory(category)}
             >
               {category}
