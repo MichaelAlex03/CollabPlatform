@@ -26,7 +26,8 @@ router.route('/')
             { name: 'letterOfRec', maxCount: 1 }
         ]),
         studentController.handleAddFormData
-    );
+    )
+    .patch(studentController.updateUser)
 
 router.route('/:id')
     .get(studentController.fetchUser)
