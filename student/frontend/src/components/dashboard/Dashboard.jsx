@@ -6,6 +6,7 @@ import axios from '../../../api/axios';
 import useAxiosPrivate from '../../../hooks/useAxiosPrivate';
 import EditProfile from './EditProfile';
 import EditSkills from './EditSkills';
+import Dropdown from './headerDropdown/Dropdown';
 
 const LOGOUT_URL = '/auth/logout'
 const STUDENT_URL = '/api/student'
@@ -247,13 +248,19 @@ const Dashboard = () => {
   return (
     <div className='flex flex-col items-center justify-center w-full p-6 gap-4'>
 
-      <div className='flex flex-row w-full items-center justify-end gap-4'>
+      <div className='flex flex-row w-full items-center justify-end gap-4 relative'>
         <button className='flex flex-row items-center gap-2 cursor-pointer'>
           <h1 className='text-lg'>{serverProfile.studentName}</h1>
           <FontAwesomeIcon icon={faAngleDown} />
         </button>
         <FontAwesomeIcon icon={faUserCircle} size='3x' />
+
+        {/* Dropdown */}
+        <div className='absolute top-12 right-15 w-30'>
+          <Dropdown />
+        </div>
       </div>
+
 
       <div className='w-full'>
         {showProfile
@@ -264,7 +271,7 @@ const Dashboard = () => {
       </div>
 
       <div className='flex w-full min-h-[600px]'>
-        
+
         {/* Form Component */}
         {showProfile && (
           <div className='flex flex-col w-full'>
