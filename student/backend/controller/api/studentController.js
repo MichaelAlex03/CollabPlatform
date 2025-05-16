@@ -14,18 +14,18 @@ const handleAddFormData = async (req, res) => {
   // Create file data objects for MongoDB
   const resumeData = resumeFile
     ? {
-        data: resumeFile.buffer,
-        contentType: resumeFile.mimetype,
-        filename: resumeFile.originalname,
-      }
+      data: resumeFile.buffer,
+      contentType: resumeFile.mimetype,
+      filename: resumeFile.originalname,
+    }
     : undefined;
 
   const letterOfRecData = letterOfRecFile
     ? {
-        data: letterOfRecFile.buffer,
-        contentType: letterOfRecFile.mimetype,
-        filename: letterOfRecFile.originalname,
-      }
+      data: letterOfRecFile.buffer,
+      contentType: letterOfRecFile.mimetype,
+      filename: letterOfRecFile.originalname,
+    }
     : undefined;
 
   //Go through all skills
@@ -85,8 +85,50 @@ const fetchUser = async (req, res) => {
   }
 };
 
-const updateUser = () => {
-  const { formData } = req.body;
+const updateUser = async () => {
+
+  const formData = JSON.parse(req.body.formData);
+  const skills = JSON.parse(req.body.skillsData);
+
+  const resumeFile = req.file.resume[0];
+  const letterOfRecFile = req.file?.letterOfRec?.[0];
+
+  const resumeData = {
+    data: resumeFile.buffer,
+    contentType: resumeFile.mimetype,
+    filename: resumeFile.originalname
+  }
+
+  const letterOfRecData = letterOfRecFile ? {
+    data: letterOfRecFile.buffer,
+    contentType: letterOfRecFile.mimetype,
+    filename: letterOfRecFile.originalname
+  } : undefined
+
+  try {
+
+    const student = await StudentProfile.findOne({ aNum: formData.aNum });
+
+    for (key in formData) {
+      if (key === 'skills') {
+        student[key] = skills;
+      } else if (key === 'resume') {
+        student[key] = resumeData
+      } else if (key === 'letterOfRec') {
+        student[key] = letterOfRecData
+      } else {
+        student[key] = formData[key];
+      }
+    }
+
+    await student.save();
+    res.status(200).json({ "message": "succesfully updated student" });
+
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+
+  }
 };
 
 module.exports = {

@@ -4,11 +4,11 @@ const multer = require('multer');
 const studentController = require('../../controller/api/studentController');
 
 const storage = multer.memoryStorage();
-const upload = multer({ 
+const upload = multer({
     storage,
     limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
     fileFilter: (req, file, cb) => {
-        if (file.mimetype === 'application/pdf' || 
+        if (file.mimetype === 'application/pdf' ||
             file.mimetype === 'application/msword' ||
             file.mimetype === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
             cb(null, true);
@@ -27,7 +27,13 @@ router.route('/')
         ]),
         studentController.handleAddFormData
     )
-    .patch(studentController.updateUser)
+    .patch(
+        upload.fields([
+            { name: 'resume', maxCount: 1 },
+            { name: 'letterOfRec', maxCount: 1 }
+        ]),
+        studentController.updateUser
+    )
 
 router.route('/:id')
     .get(studentController.fetchUser)
