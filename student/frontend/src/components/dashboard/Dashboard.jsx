@@ -169,6 +169,14 @@ const Dashboard = () => {
     }
 
     try {
+      const formData = new FormData();
+
+      formData.append('resume', localProfile.resume);
+
+      if(localProfile.letterOfRec){
+        formData.append('letterOfRec', localProfile.letterOfRec)
+      }
+
       const skills = [];
       for (const [key, value] of Object.entries(skillsData)) {
         if (value !== "none") {
@@ -179,15 +187,26 @@ const Dashboard = () => {
         }
       }
 
-      setLocalProfile({
-        ...localProfile,
-        skills,
+      let updatedLocalProfile = localProfile;
+
+      //Dont want to send resume and letter of rec in object. Also want to send skills array seperately
+      updatedLocalProfile = {
+        ...updatedLocalProfile,
+        skills: [],
+        resume: undefined,
+        letterOfRec: undefined
+      }
+
+      formData.append('formData', JSON.stringify(updatedLocalProfile));
+      formData.append('skillsData', JSON.stringify(skills));
+
+      await axiosPrivate.post(PROFILE_URL, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
       });
 
-      await axiosPrivate(STUDENT_URL, {
-        localProfile
-      });
-
+      //Refetch user data after update
       fetchUser();
     } catch (error) {
       console.log(error);
