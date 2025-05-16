@@ -46,7 +46,7 @@ const EditProfile = ({ localProfile, handleChange }) => {
             {/* Profile Picture Selector*/}
             <div className="bg-white/80 backdrop-blur-md shadow-2xl border border-gray-200 rounded-xl p-6 flex flex-col items-center flex-1/3 h-2/5">
                 <div className="bg-gray-500 rounded-full p-24 flex items-center justify-center relative h-1/3">
-                    <FontAwesomeIcon icon={faCamera} size="6xl" className="text-white text-2xl" />
+                    <FontAwesomeIcon icon={faCamera} size="2xl" className="text-white text-2xl" />
                     <div className='flex flex-col items-center absolute bottom-10'>
                     </div>
                 </div>
@@ -207,8 +207,8 @@ const EditProfile = ({ localProfile, handleChange }) => {
                                 value={localProfile.degree}
                                 onChange={handleChange}
                             >
-                                {degrees.map((degree) => (
-                                    <option value={degree}>{degree}</option>
+                                {degrees.map((degree, i) => (
+                                    <option key={i} value={degree}>{degree}</option>
                                 ))}
                             </select>
                             <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Degree Sought</label>
@@ -222,8 +222,8 @@ const EditProfile = ({ localProfile, handleChange }) => {
                                 value={localProfile.degreeCompleted}
                                 onChange={handleChange}
                             >
-                                {degrees.map((degree) => (
-                                    <option value={degree}>{degree}</option>
+                                {degrees.map((degree, i) => (
+                                    <option key={i} value={degree}>{degree}</option>
                                 ))}
                             </select>
                             <label className='absolute left-8 p-1 top-0 bg-white  focus:text-[#501214] z-50'>Degree Completed</label>

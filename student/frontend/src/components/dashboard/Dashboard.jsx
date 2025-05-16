@@ -183,7 +183,11 @@ const Dashboard = () => {
         skills,
       });
 
-      
+      await axiosPrivate(STUDENT_URL, {
+        localProfile
+      });
+
+      fetchUser();
     } catch (error) {
       console.log(error);
     }
@@ -241,19 +245,24 @@ const Dashboard = () => {
       const serverVal = server[key];
 
       if (localVal !== serverVal) {
-        return false;
+        return true;
       }
     }
 
-    return true;
+    return false;
   };
 
   useEffect(() => {
-    setReadyToSaveForm(!compareLocalVsServer(localProfile, serverProfile));
-    setReadyToSaveSkills(
-      !compareLocalVsServer(localSkillsData, serverSkillsData)
-    );
+    setReadyToSaveForm(compareLocalVsServer(localProfile, serverProfile));
+    setReadyToSaveSkills(compareLocalVsServer(localSkillsData, serverSkillsData));
   }, [localProfile, localSkillsData]);
+
+  useEffect(() => {
+    console.log("FORM", readyToSaveForm);
+    console.log("SKILLS", readyToSaveSkills);
+    setReadyToSubmit(!(readyToSaveForm || readyToSaveSkills));
+  }, [readyToSaveForm, readyToSaveSkills]);
+
 
   useEffect(() => {
     fetchUser();
@@ -297,7 +306,7 @@ const Dashboard = () => {
                     : "w-1/8 flex flex-row justify-center bg-[#501214] border-2 border-gray-400 rounded-xl p-2 opacity-70"
                 }
               >
-                <button disabled={readyToSaveForm} className="text-white">
+                <button disabled={readyToSubmit} className="text-white">
                   Save
                 </button>
               </div>
